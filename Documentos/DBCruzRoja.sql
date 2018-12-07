@@ -3,7 +3,7 @@ create database CruzRojaSAGuardavidas;
 use CruzRojaSAGuardavidas;
 
 create table Usuario(
-	carnet int auto_increment not null,
+	carnet varchar(8) not null,
 	nombres varchar(60) not null,
 	apellidos varchar(60) not null,
 	clave varchar(256) not null,
@@ -28,7 +28,7 @@ create table Entreno(
 
 create table UsuarioXEntreno(
 	idUsuarioXEntreno int auto_increment not null,
-	carnet int not null,
+	carnet varchar(8) not null,
 	idEntreno int not null,
 	primary key pkUsuarioXEntreno(idUsuarioXEntreno),
 	foreign key fkUsuarioXEntrenoXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -48,7 +48,7 @@ create table Reunion(
 
 create table UsuarioXReunion(
 	idUsuarioXReunion int auto_increment not null,
-	carnet int  not null,
+	carnet varchar(8)  not null,
 	idReunion int  not null,
 	primary key pkUsuarioXEntreno(idUsuarioXReunion),
 	foreign key fkUsuarioXReunionXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -60,19 +60,20 @@ create table Excursion(
 	idExcursion int auto_increment not null,
 	diaMultiple boolean not null,
 	cantidadDias int null,
+	lugarExcursion varchar(60) not null,
 	fechaInicio date not null,
 	fechaFin date null,
 	horaSalida date not null,
 	extraordinaria boolean,
 	lugarLLegadaGuardavidas varchar(50) not null,
-	estado varchar(20) not null,
+	estado varchar(20) not null comment 'espera, en curso, pendiente, finalizada',
 	primary key pkExcursion(idExcursion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 create table Acompanyante(
 	idAcompanyante int auto_increment not null,
-	carnet int null,
+	carnet varchar(8) null,
 	carnetizado boolean not null,
 	idExcursion int not null,
 	primary key pkAcompanyante(idAcompanyante),
@@ -82,7 +83,7 @@ create table Acompanyante(
 
 create table UsuarioXExcursion(
 	idUsuarioXExcursion int auto_increment not null,
-	carnet int  not null,
+	carnet varchar(8)  not null,
 	idExcursion int  not null,
 	primary key pkUsuarioXExcursion(idUsuarioXExcursion),
 	foreign key fkUsuarioXExcursionXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -91,3 +92,11 @@ create table UsuarioXExcursion(
 
 
 
+insert into Usuario 
+values('216-258','Roberto Enrique',
+	'Funes Rivera','holamundo',20,'Masculino','1998-6-10','sub-jefe','novato','robertofunes98@gmail.com','admin','7504-8995');
+
+
+
+insert into Excursion 
+values(null,0,null,'Playa metalio rancho privado','2018-12-10',null,'6:00:00',1,'Cruz Roja Departamental Santa Ana','espera');
