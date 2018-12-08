@@ -18,6 +18,14 @@ create table Usuario(
 	primary key pkCarnet(carnet)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+create table Disponibilidad(
+	idDisponibilidad int auto_increment not null,
+	idCarnet varchar(8) not null,
+	fecha date not null,
+	primary key pkDisponibilidad(idDisponibilidad)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 create table Entreno(
 	idEntreno int auto_increment not null,
 	fecha date not null,
