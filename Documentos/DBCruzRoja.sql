@@ -98,6 +98,24 @@ create table UsuarioXExcursion(
 	foreign key fkUsuarioXExcursionXEntreno(idExcursion) references Excursion(idExcursion) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+create table Evento(
+	idEvento int auto_increment not null,
+	nombre varchar(60) not null,
+	fecha date not null,
+	hora date not null,
+	lugar varchar(30) not null,
+	primary key pkEvento(idEvento)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table UsuarioXEvento(
+	idUsuarioXEvento int auto_increment not null,
+	carnet varchar(8) not null,
+	idEvento int not null,
+	primary key pkUsuarioXEvento(idUsuarioXEvento),
+	foreign key fkUsuarioXEventoXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
+	foreign key fkUsuarioXEventoXEvento(idEvento) references Evento(idEvento) ON UPDATE CASCADE ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 insert into Usuario 
