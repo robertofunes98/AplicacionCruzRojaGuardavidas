@@ -41,7 +41,7 @@ public class ConexionWebService extends AsyncTask<String, String, String> {
             //el parametro "_test" es en si la informacion que alamcena la cookie llamda _test
             // espires es por ende la fecha de expiracion
             //path es la ruta de la cookie
-            conexionHttp.setRequestProperty("Cookie", "__test=afddf2575c0b62b46812fb77bca8fb01; expires=Thu, 31-Dec-37 17:55:55 GMT; path=/");
+            conexionHttp.setRequestProperty("Cookie", "__test=2bf845fd6e8893f8e5d0b9e7ab27d8d1; expires=Thu, 31-Dec-37 17:55:55 GMT; path=/");
             conexionHttp.setRequestMethod("POST");
             conexionHttp.setDoOutput(true);
 
