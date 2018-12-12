@@ -13,8 +13,9 @@ create table Usuario(
 	cargo varchar(20) not null,
 	rango varchar(20) not null,
 	correo varchar(200) not null,
-	tipoUsuario varchar(20) not null,
+	tipoUsuario int not null comment "1 = admin, 2 = acceso parcial, 3 = solo lectura",
 	telefono varchar(20) not null,
+	primerLogeo boolean not null,
 	primary key pkCarnet(carnet)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -120,7 +121,7 @@ create table UsuarioXEvento(
 
 insert into Usuario 
 values('216-258','Roberto Enrique',
-	'Funes Rivera','holamundo',20,'Masculino','1998-6-10','sub-jefe','novato','robertofunes98@gmail.com','admin','7504-8995');
+	'Funes Rivera','holamundo',20,'Masculino','1998-6-10','sub-jefe','novato','robertofunes98@gmail.com',1,'7504-8995',1);
 
 
 
