@@ -30,6 +30,7 @@ public class InicioSesion extends Fragment {
     Button btnInicio;
     ConexionWebService conexion;
     String cadena1 = new String("");
+    String cookie="";
 
     //contenedores de datos a guardar en DB
     EditText VetCarnet,etNombres,etApellidos,VetClave,etCorreo,etTelefono,etFechaNacimiento,etCargo;
@@ -44,6 +45,7 @@ public class InicioSesion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio_sesion, container, false);
 
+        cookie = getArguments().getString("cookie");
         btnInicio=rootView.findViewById(R.id.btnInicio);
 
         //contenedores de datos a guardar en DB
@@ -59,7 +61,7 @@ public class InicioSesion extends Fragment {
                 JSONObject jsonObjeto=null;
                 conexion=new ConexionWebService();
                 try {
-                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/inicioSesion.php","carnet="+VetCarnet.getText()+"&clave="+VetClave.getText()).get();
+                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/inicioSesion.php","carnet="+VetCarnet.getText()+"&clave="+VetClave.getText(),cookie).get();
 
                     JSONArray jsonRespuesta= new JSONArray(resultado);
 
