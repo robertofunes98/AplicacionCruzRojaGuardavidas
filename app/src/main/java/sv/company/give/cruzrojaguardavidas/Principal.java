@@ -1,9 +1,11 @@
 package sv.company.give.cruzrojaguardavidas;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,14 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
+import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    String cookie="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +36,6 @@ public class Principal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        Intent intent=getIntent();
-        Bundle bundle=intent.getExtras();
-
-        cookie=bundle.getString("cookie");
-        //Toast.makeText(getApplicationContext(),cookie,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -85,7 +79,9 @@ public class Principal extends AppCompatActivity
         if (id == R.id.opc_registro_usuarios) {
             cargarFragment(new RegistroUsuarios());
         } else if (id == R.id.opc_cambiar_claves) {
-            cargarFragment(new CambiarClaves());
+
+        } else if (id == R.id.opc_inicio_sesion) {
+            cargarFragment(new InicioSesion());
         } else if (id == R.id.opc_entrenos) {
 
         } else if (id == R.id.opc_eventos) {
@@ -108,17 +104,6 @@ public class Principal extends AppCompatActivity
 
     private void cargarFragment(Fragment fragmento)
     {
-
-        // Creamos un nuevo Bundle
-        Bundle args = new Bundle();
-
-        // Colocamos el String
-        args.putString("cookie", cookie);
-
-        //Colocamos este nuevo Bundle como argumento en el fragmento.
-
-        fragmento.setArguments(args);
-
         FragmentManager manejador=getSupportFragmentManager();
         manejador.beginTransaction().replace(R.id.contenedorFragmento,fragmento).commit();
     }
