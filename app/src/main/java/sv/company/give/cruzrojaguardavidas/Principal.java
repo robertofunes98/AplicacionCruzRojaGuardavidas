@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
 
 public class Principal extends AppCompatActivity
@@ -84,7 +85,7 @@ public class Principal extends AppCompatActivity
         if (id == R.id.opc_registro_usuarios) {
             cargarFragment(new RegistroUsuarios());
         } else if (id == R.id.opc_cambiar_claves) {
-
+            cargarFragment(new CambiarClaves());
         } else if (id == R.id.opc_entrenos) {
 
         } else if (id == R.id.opc_eventos) {
