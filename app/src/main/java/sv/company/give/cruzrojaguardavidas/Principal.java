@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
+import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
 
 public class Principal extends AppCompatActivity
@@ -70,8 +71,8 @@ public class Principal extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.opc_notificaciones) {
+            cargarFragment(new Notificaciones());
         }
 
         return super.onOptionsItemSelected(item);
