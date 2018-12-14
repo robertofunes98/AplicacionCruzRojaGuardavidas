@@ -31,6 +31,7 @@ import sv.company.give.cruzrojaguardavidas.R;
 public class RegistroUsuarios extends Fragment {
     Button btnRegistrar;
     ConexionWebService conexion;
+    String cookie="";
 
     //contenedores de datos a guardar en DB
     EditText etCarnet,etNombres,etApellidos,etClave,etCorreo,etTelefono,etFechaNacimiento,etCargo;
@@ -60,6 +61,7 @@ public class RegistroUsuarios extends Fragment {
         spSexo=(rootView.findViewById(R.id.spSexo));
         spPermisos=(rootView.findViewById(R.id.spPermisos));
 
+        cookie = getArguments().getString("cookie");
 
         etFechaNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +89,9 @@ public class RegistroUsuarios extends Fragment {
                             +"&telefono="+etTelefono.getText()+"&fechaNacimiento="+etFechaNacimiento.getText()
                             +"&cargo="+etCargo.getText()+"&rango="+spRango.getSelectedItem().toString()
                             +"&sexo="+spSexo.getSelectedItem().toString()
-                            +"&permisos="+Long.toString((spPermisos.getSelectedItemId()+1))).get();
+                            +"&permisos="+Long.toString((spPermisos.getSelectedItemId()+1)),cookie).get();
+
+                    //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
                     JSONArray jsonRespuesta= new JSONArray(resultado);
 
