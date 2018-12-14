@@ -30,6 +30,7 @@ public class InicioSesion extends Fragment {
     Button btnInicio;
     ConexionWebService conexion;
     String cadena1 = new String("");
+    //Variable que guardara la cookie en el fragment al recibirla
     String cookie="";
 
     //contenedores de datos a guardar en DB
@@ -45,7 +46,11 @@ public class InicioSesion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio_sesion, container, false);
 
+        //Despues de crear la vista se llama al metodo getArguments
+        // que obtiene los parametros mandados a la hora de crear el fragment en PRINCIPAL
+        //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
+
         btnInicio=rootView.findViewById(R.id.btnInicio);
 
         //contenedores de datos a guardar en DB
@@ -61,6 +66,7 @@ public class InicioSesion extends Fragment {
                 JSONObject jsonObjeto=null;
                 conexion=new ConexionWebService();
                 try {
+                    //conexion.execute(url,parametros,cookie)
                     String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/inicioSesion.php","carnet="+VetCarnet.getText()+"&clave="+VetClave.getText(),cookie).get();
 
                     JSONArray jsonRespuesta= new JSONArray(resultado);
