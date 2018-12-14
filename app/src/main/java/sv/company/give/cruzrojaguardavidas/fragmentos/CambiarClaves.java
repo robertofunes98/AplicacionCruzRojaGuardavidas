@@ -2,6 +2,7 @@ package sv.company.give.cruzrojaguardavidas.fragmentos;
 
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class CambiarClaves extends Fragment {
     Button btnCambiarClave;
 
     //contenedores de datos
-    EditText etCarnet;
+    EditText etCarnet,etNuevaClave;
     JSONObject jsonObjeto=null;
 
     public CambiarClaves() {
@@ -47,12 +48,14 @@ public class CambiarClaves extends Fragment {
         btnCambiarClave=rootView.findViewById(R.id.btnCambiarClave);
 
         etCarnet=rootView.findViewById(R.id.etCarnet);
+        etNuevaClave=rootView.findViewById(R.id.etNuevaClave);
 
         btnCambiarClave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 conexion=new ConexionWebService();
                 try {
+                    //conexion.execute(url,parametros,cookie)
                     String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/cambiarClave.php","accion=obtenerNombre&carnet="
                             +etCarnet.getText(),cookie).get();
 
@@ -68,17 +71,36 @@ public class CambiarClaves extends Fragment {
                     {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setMessage("¿Desea cambiar clave al usuario "+jsonObjeto.getString("nombres")+" "+jsonObjeto.getString("apellidos")+"?")
-                                .setTitle("Confirmacion").setPositiveButton("Aceptar", null)
+                                .setTitle("Confirmacion").setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                conexion=new ConexionWebService();
+                                try {
+                                    //conexion.execute(url,parametros,cookie)
+                                    String resultadoCambioContra=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/cambiarClave.php","accion=cambiarClave&carnet="
+                                            +etCarnet.getText()+"&clave="+etNuevaClave.getText(),cookie).get();
+
+                                    //Toast.makeText(getContext(),resultadoCambioContra,Toast.LENGTH_LONG).show();
+
+                                    JSONArray jsonRespuesta= new JSONArray(resultadoCambioContra);
+
+                                    jsonObjeto= jsonRespuesta.getJSONObject(0);
+
+                                    if(jsonObjeto.has("error"))
+                                        Toast.makeText(getContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
+                                    else
+                                    Toast.makeText(getContext(),jsonObjeto.getString("resultado"),Toast.LENGTH_LONG).show();
+
+                                } catch (ExecutionException | InterruptedException | JSONException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        })
                                 .setCancelable(false).setNegativeButton("Cancelar",null).create().show();
                     }
 
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                } catch (JSONException e) {
+                } catch (ExecutionException | InterruptedException | JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
                 }
