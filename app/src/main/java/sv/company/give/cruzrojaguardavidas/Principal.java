@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
+import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
 
 public class Principal extends AppCompatActivity
@@ -96,8 +97,8 @@ public class Principal extends AppCompatActivity
 
         } else if (id == R.id.opc_salir) {
             finishAffinity();
-        } else if (id == R.id.opc_sin_definir) {
-
+        } else if (id == R.id.opc_inicio_sesion) {
+            cargarFragment(new InicioSesion());
         }
 
 
