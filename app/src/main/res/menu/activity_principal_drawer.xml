@@ -11,7 +11,7 @@
             android:title="Inicio Sesion (test)" />
         <item
             android:id="@+id/opc_registro_usuarios"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_adduser"
             android:title="Registro de usuarios" />
         <item
             android:id="@+id/opc_entrenos"
@@ -37,10 +37,6 @@
                 android:id="@+id/opc_cambiar_claves"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Cambiar contraseñas" />
-            <item
-                android:id="@+id/opc_sin_definir"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Espacio libre" />
             <item
                 android:id="@+id/opc_salir"
                 android:icon="@drawable/ic_menu_send"
