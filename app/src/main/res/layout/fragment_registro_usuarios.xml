@@ -6,216 +6,276 @@
     tools:context=".fragmentos.RegistroUsuarios">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp">
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Agregar Usuario"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/tvCarnet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Carnet"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
+            <EditText
+                android:id="@+id/etCarnet"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/etCorreo"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@+id/tvCarnet"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:hint="Carnet"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/background_dark" />
 
-                <EditText
-                    android:id="@+id/etCarnet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvCarnet"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/etNombres"
+                android:layout_width="333dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/tvTitulo"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/background_dark" />
 
-                <TextView
-                    android:id="@+id/tvNombres"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etCarnet"
-                    android:text="Nombres"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
+            <EditText
+                android:id="@+id/etApellidos"
+                android:layout_width="333dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/etNombres"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:hint="Apellido"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/background_dark" />
 
-                <EditText
-                    android:id="@+id/etNombres"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvNombres"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/tvApellidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etNombres"
-                    android:text="Apellidos"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etApellidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvApellidos"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/tvClave"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etApellidos"
-                    android:text="Clave"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etClave"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvClave"
-                    android:ems="10"
-                    android:inputType="textPassword" />
-
-                <TextView
-                    android:id="@+id/tvCorreo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etClave"
-                    android:text="Correo"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etCorreo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvCorreo"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/tvTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etCorreo"
-                    android:text="Teléfono"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvTelefono"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/tvSexo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etTelefono"
-                    android:text="Sexo"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <Spinner
-                    android:id="@+id/spSexo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvSexo"
-                    android:entries="@array/sexo" />
-
-                <TextView
-                    android:id="@+id/tvFechaNacimiento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/spSexo"
-                    android:text="Fecha de nacimiento"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etFechaNacimiento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvFechaNacimiento"
-                    android:clickable="true"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:inputType="date"
-                    android:maxLines="1" />
-
-                <TextView
-                    android:id="@+id/tvCargo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etFechaNacimiento"
-                    android:text="Cargo"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/etCargo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvCargo"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/tvRango"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/etCargo"
-                    android:text="Rango"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <Spinner
-                    android:id="@+id/spRango"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvRango"
-                    android:entries="@array/rangos" />
-
-                <TextView
-                    android:id="@+id/tvPermisos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/spRango"
-                    android:text="Permisos a otorgar"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <Spinner
-                    android:id="@+id/spPermisos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvPermisos"
-                    android:entries="@array/permisos" />
-
-                <Button
-                    android:id="@+id/btnRegistrar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/spPermisos"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="1dp"
-                    android:text="Registrar" />
-            </RelativeLayout>
-        </ScrollView>
+            <EditText
+                android:id="@+id/etClave"
+                android:layout_width="333dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/etApellidos"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="@android:color/background_dark" />
 
 
-    </RelativeLayout>
+            <EditText
+                android:id="@+id/etCorreo"
+                android:layout_width="333dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/etClave"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:hint="Correo"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/background_dark" />
+
+            <EditText
+                android:id="@+id/etTelefono"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/etCorreo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:hint="Teléfono"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/background_dark" />
+
+            <TextView
+                android:id="@+id/tvSexo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etCarnet"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="144dp"
+                android:text="Sexo"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spSexo"
+                android:layout_width="187dp"
+                android:layout_height="45dp"
+                android:layout_below="@id/tvSexo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-4dp"
+                android:layout_marginEnd="1dp"
+                android:backgroundTint="@color/colorAccent"
+                android:entries="@array/sexo"
+                android:foregroundTint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tvFechaNacimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etCarnet"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="1dp"
+                android:text="Fecha Nacimiento"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etFechaNacimiento"
+                android:layout_width="333dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/tvFechaNacimiento"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="200dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="date"
+                android:maxLines="1"
+                android:textColor="@android:color/background_dark" />
+
+            <TextView
+                android:id="@+id/tvCargo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etFechaNacimiento"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:text="Cargo"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etCargo"
+                android:layout_width="333dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/tvCargo"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="200dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/background_dark" />
+
+            <TextView
+                android:id="@+id/tvRango"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spSexo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="133dp"
+                android:text="Rango"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spRango"
+                android:layout_width="187dp"
+                android:layout_height="45dp"
+                android:layout_below="@id/tvRango"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:backgroundTint="@color/colorAccent"
+                android:entries="@array/rangos"
+                android:foregroundTint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tvPermisos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etCargo"
+                android:layout_alignEnd="@+id/etNombres"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="110dp"
+                android:text="Permisos a otorgar"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spPermisos"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvPermisos"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="1dp"
+                android:backgroundTint="@color/colorAccent"
+                android:entries="@array/permisos"
+                android:foregroundTint="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/btnRegistrar"
+                android:layout_width="152dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/spPermisos"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="116dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="116dp"
+                android:layout_marginBottom="0dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="Registrar"
+                android:textAlignment="center"
+                android:textColor="@color/boton" />
+        </RelativeLayout>
+    </ScrollView>
 
 </FrameLayout>
