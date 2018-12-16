@@ -15,32 +15,34 @@
             android:title="Registro de usuarios" />
         <item
             android:id="@+id/opc_entrenos"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_entreno"
             android:title="Entrenos" />
         <item
             android:id="@+id/opc_reuniones"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_meeting"
             android:title="Reuniones" />
         <item
             android:id="@+id/opc_excursiones"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_travel"
             android:title="Excursiones" />
         <item
             android:id="@+id/opc_eventos"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_event"
             android:title="Eventos" />
     </group>
 
     <item android:title="Administrativo">
         <menu>
-            <item
-                android:id="@+id/opc_cambiar_claves"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Cambiar contraseñas" />
-            <item
-                android:id="@+id/opc_salir"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Salir" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/opc_cambiar_claves"
+                    android:icon="@drawable/ic_password"
+                    android:title="Cambiar contraseñas" />
+                <item
+                    android:id="@+id/opc_salir"
+                    android:icon="@drawable/ic_singout"
+                    android:title="Salir" />
+            </group>
         </menu>
 
     </item>
