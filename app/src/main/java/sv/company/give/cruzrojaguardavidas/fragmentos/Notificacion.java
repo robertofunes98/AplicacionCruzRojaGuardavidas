@@ -25,7 +25,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
  * A simple {@link Fragment} subclass.
  */
 public class Notificacion extends Fragment {
-    String titulo,contenido;
+    String titulo,contenido,cookie;
     int icono;
 
     ImageView ivIcono;
@@ -42,6 +42,7 @@ public class Notificacion extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_notificacion, container, false);
 
+        cookie=getArguments().getString("cookie");
         titulo=getArguments().getString("titulo");
         contenido=getArguments().getString("contenido");
         icono=getArguments().getInt("icono");
@@ -55,32 +56,6 @@ public class Notificacion extends Fragment {
         tvTitulo.setText(titulo);
         tvContenido.setText(contenido);
 
-        notificacionPrincipal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"prueba de notificacion",Toast.LENGTH_SHORT).show();
-
-                NotificationCompat.Builder mBuilder;
-                NotificationManager mNotifyMgr =(NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
-
-                int icono = R.mipmap.ic_launcher;
-                Intent i=new Intent(getContext(), Principal.class);
-                PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, i, 0);
-
-                mBuilder =new NotificationCompat.Builder(getContext(),"M_CH_ID")
-                        .setContentIntent(pendingIntent)
-                        .setSmallIcon(icono)
-                        .setContentTitle("Titulo")
-                        .setContentText("Hola que tal?")
-                        .setVibrate(new long[] {100, 250, 100, 500})
-                        .setDefaults(Notification.DEFAULT_SOUND)
-                        .setAutoCancel(true);
-
-
-
-                mNotifyMgr.notify(1, mBuilder.build());
-            }
-        });
 
         return rootView;
     }
