@@ -145,3 +145,8 @@ values(null,0,null,'Playa metalio rancho privado','2018-12-10',null,'6:00:00',1,
 insert into Notificacion 
 values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',0);
 
+insert into Notificacion 
+values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',0);
+
+insert into Notificacion 
+values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',1);
