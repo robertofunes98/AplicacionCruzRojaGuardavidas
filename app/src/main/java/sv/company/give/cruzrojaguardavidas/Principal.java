@@ -1,10 +1,16 @@
 package sv.company.give.cruzrojaguardavidas;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +20,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
@@ -21,7 +34,12 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
 
 public class ktPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    String cookie="";
+    String cookie = "";
+    public static String carnetGlobal = "216-258";
+
+    ConexionWebService conexion;
+    JSONObject jsonObjeto=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +57,17 @@ public class ktPrincipal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Intent intent=getIntent();
-        Bundle bundle=intent.getExtras();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
-        cookie=bundle.getString("cookie");
+        cookie = bundle.getString("cookie");
+
+        if (intent.hasExtra("notificacion")) {
+            Toast.makeText(getApplicationContext(), "recibio notificaion", Toast.LENGTH_LONG).show();
+        }
         //Toast.makeText(getApplicationContext(),cookie,Toast.LENGTH_LONG).show();
+
+        ejecutar();
     }
 
     @Override
@@ -108,8 +132,7 @@ public class ktPrincipal extends AppCompatActivity
         return true;
     }
 
-    private void cargarFragment(Fragment fragmento)
-    {
+    private void cargarFragment(Fragment fragmento) {
 
         // Creamos un nuevo Bundle
         Bundle args = new Bundle();
@@ -121,7 +144,90 @@ public class ktPrincipal extends AppCompatActivity
 
         fragmento.setArguments(args);
 
-        FragmentManager manejador=getSupportFragmentManager();
-        manejador.beginTransaction().replace(R.id.contenedorFragmento,fragmento).commit();
+        FragmentManager manejador = getSupportFragmentManager();
+        manejador.beginTransaction().replace(R.id.contenedorFragmento, fragmento).commit();
+    }
+
+
+    public void MostrarNotificacion()
+    {
+        conexion=new ConexionWebService();
+        try {
+            //conexion.execute(url,parametros,cookie)
+            String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/obtenerNotificaciones.php",
+                    "accion=obtenerNotificacion&carnet="
+                            +Principal.carnetGlobal,cookie).get();
+
+            //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
+
+            JSONArray jsonRespuesta= new JSONArray(resultado);
+
+            jsonObjeto= jsonRespuesta.getJSONObject(0);
+
+            if(jsonObjeto.has("error"))
+                Toast.makeText(getApplicationContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
+            else
+            {
+                String cantidadNotificaciones=jsonObjeto.getString("resultado"),mensajeInfo="";
+
+                if(cantidadNotificaciones.equals("1"))
+                    mensajeInfo=" notificacion nueva";
+                else
+                    mensajeInfo=" notificaciones nuevas";
+
+                NotificationCompat.Builder mBuilder;
+                NotificationManager mNotifyMgr =(NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+
+                int icono = R.mipmap.ic_launcher;
+
+                Intent intent=new Intent(getApplicationContext(),Principal.class);
+                intent.putExtra("cookie",cookie);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                mBuilder =new NotificationCompat.Builder(getApplicationContext(),"CruzRojaSantaAna")
+                        .setContentIntent(pendingIntent)
+                        .setSmallIcon(icono)
+                        .setContentTitle("Notificaciones nuevas")
+                        .setContentText("Tienes "+cantidadNotificaciones+mensajeInfo)
+                        .setVibrate(new long[] {100, 250, 100, 500})
+                        .setDefaults(Notification.DEFAULT_SOUND)
+                        .setAutoCancel(true)
+                        .setContentIntent(pendingIntent);
+                mNotifyMgr.notify(1, mBuilder.build());
+            }
+        } catch (ExecutionException | InterruptedException | JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void ejecutar() {
+        MostrarNotificacion();
+        Tiempo a = new Tiempo();
+        a.execute();
+    }
+
+    public void hilo() {
+        try {
+            Thread.sleep(900000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public class Tiempo extends AsyncTask<Void,Integer,Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            hilo();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            ejecutar();
+        }
     }
 }

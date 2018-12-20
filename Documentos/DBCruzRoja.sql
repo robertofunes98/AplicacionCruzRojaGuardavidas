@@ -118,6 +118,18 @@ create table UsuarioXEvento(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+/*Tablas bolsas*/
+
+create table Notificacion(
+	idNotificacion int auto_increment not null,
+	titulo varchar(60) not null,
+	contenido varchar(60) not null,
+	extras varchar(500) not null,
+	carnet varchar(8) not null,
+	vista boolean not null,
+	primary key pkNotificacion(idNotificacion)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 insert into Usuario 
 values('216-258','Roberto Enrique',
@@ -127,3 +139,14 @@ values('216-258','Roberto Enrique',
 
 insert into Excursion 
 values(null,0,null,'Playa metalio rancho privado','2018-12-10',null,'6:00:00',1,'Cruz Roja Departamental Santa Ana','espera');
+
+
+
+insert into Notificacion 
+values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',0);
+
+insert into Notificacion 
+values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',0);
+
+insert into Notificacion 
+values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',1);
