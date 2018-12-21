@@ -28,7 +28,6 @@ import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
 
-import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +35,11 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 public class Notificaciones extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
     String cookie="";
+
+    ConexionWebService conexion;
+    JSONObject jsonObjeto=null;
+
+    Button btnVerMas;
 
     public Notificaciones() {
         // Required empty public constructor
@@ -52,13 +56,44 @@ public class Notificaciones extends Fragment {
         //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
 
+        btnVerMas=rootView.findViewById(R.id.btnVerMas);
 
-        cargarFragment(new Notificacion(),"Prueba","todoo va bien, de momento",R.drawable.ic_menu_send);
+        conexion=new ConexionWebService();
+        try {
+            //conexion.execute(url,parametros,cookie)
+            String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/obtenerNotificaciones.php",
+                    "accion=obtenerContenidoNotificaciones&carnet="
+                            +Principal.carnetGlobal,cookie).get();
 
+            //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
+
+            JSONArray jsonRespuesta= new JSONArray(resultado);
+
+            int conteo=jsonRespuesta.length();
+
+            for (int i=0;i<conteo;i++)
+            {
+                jsonObjeto= jsonRespuesta.getJSONObject(i);
+
+                if(jsonObjeto.has("error"))
+                    Toast.makeText(getContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
+                else
+                {
+                    cargarFragment(new Notificacion(),jsonObjeto.getString("titulo"),jsonObjeto.getString("contenido")
+                            ,R.drawable.ic_menu_send,jsonObjeto.getString("tipo"),jsonObjeto.getString("referencia")
+                            ,jsonObjeto.getString("idNotificacion"));
+                }
+            }
+
+
+        } catch (ExecutionException | InterruptedException | JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+        }
         return rootView;
     }
 
-    private void cargarFragment(Fragment fragmento, String titulo, String contenido, int icono)
+    private void cargarFragment(Fragment fragmento, String titulo, String contenido, int icono, String tipo, String referencia, String idNotificacion)
     {
         // Creamos un nuevo Bundle
         Bundle args = new Bundle();
@@ -68,6 +103,9 @@ public class Notificaciones extends Fragment {
         args.putString("titulo", titulo);
         args.putString("contenido", contenido);
         args.putInt("icono", icono);
+        args.putString("tipo", tipo);
+        args.putString("referencia", referencia);
+        args.putString("idNotificacion", idNotificacion);
 
         //Colocamos este nuevo Bundle como argumento en el fragmento.
 

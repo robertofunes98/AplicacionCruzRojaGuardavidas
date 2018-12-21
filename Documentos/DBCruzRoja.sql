@@ -123,9 +123,10 @@ create table UsuarioXEvento(
 create table Notificacion(
 	idNotificacion int auto_increment not null,
 	titulo varchar(60) not null,
-	contenido varchar(60) not null,
-	extras varchar(500) not null,
+	contenido varchar(200) not null,
 	carnet varchar(8) not null,
+	tipo int not null comment '0=excursion,1=evento,2=informativa,3=cambioClave,etc.',
+	referencia varchar(20) not null comment 'Id de lo que se asigno. Ejemplo: idExcursion',
 	vista boolean not null,
 	primary key pkNotificacion(idNotificacion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -143,10 +144,17 @@ values(null,0,null,'Playa metalio rancho privado','2018-12-10',null,'6:00:00',1,
 
 
 insert into Notificacion 
-values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',0);
+values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00, Lugar de llegada: Base cruz roja'
+	,'216-258',0,"1",0);
 
 insert into Notificacion 
-values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',0);
+values(null,'Evento','Confirmacion de asistencia a plan belen. Fecha 1 de enero del 2019'
+	,'216-258',1,"1",0);
 
 insert into Notificacion 
-values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00','tipo=excursion&id=1','216-258',1);
+values(null,'Entreno','Recordatorio: Hoy hay entreno en indes a las 7 pm'
+	,'216-258',2,"2",0);
+
+insert into Notificacion 
+values(null,'Cambiar clave','Roberto Enrique Funes RIvera con carnet 216-258 necesita restablecimiento de clave'
+	,'216-258',3,"216-258",0);

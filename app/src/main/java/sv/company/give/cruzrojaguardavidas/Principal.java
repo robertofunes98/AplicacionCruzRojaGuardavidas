@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -37,9 +38,6 @@ public class Principal extends AppCompatActivity
     String cookie = "";
     public static String carnetGlobal = "216-258";
 
-    ConexionWebService conexion;
-    JSONObject jsonObjeto=null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +60,7 @@ public class Principal extends AppCompatActivity
 
         cookie = bundle.getString("cookie");
 
-        if (intent.hasExtra("notificacion")) {
-            Toast.makeText(getApplicationContext(), "recibio notificaion", Toast.LENGTH_LONG).show();
-        }
-        //Toast.makeText(getApplicationContext(),cookie,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),cookie+" la cookie",Toast.LENGTH_LONG).show();
 
         ejecutar();
     }
@@ -151,24 +146,26 @@ public class Principal extends AppCompatActivity
 
     public void MostrarNotificacion()
     {
-        conexion=new ConexionWebService();
+        ConexionWebService conexionPrincipal;
+        JSONObject jsonObjetoPrincipal=null;
+        conexionPrincipal=new ConexionWebService();
         try {
             //conexion.execute(url,parametros,cookie)
-            String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/obtenerNotificaciones.php",
+            String resultado=conexionPrincipal.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/obtenerNotificaciones.php",
                     "accion=obtenerNotificacion&carnet="
                             +Principal.carnetGlobal,cookie).get();
 
-            //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
 
-            JSONArray jsonRespuesta= new JSONArray(resultado);
+            JSONArray jsonRespuestaPrincipal= new JSONArray(resultado);
 
-            jsonObjeto= jsonRespuesta.getJSONObject(0);
+            jsonObjetoPrincipal= jsonRespuestaPrincipal.getJSONObject(0);
 
-            if(jsonObjeto.has("error"))
-                Toast.makeText(getApplicationContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
+            if(jsonObjetoPrincipal.has("error"))
+                Toast.makeText(getApplicationContext(),jsonObjetoPrincipal.getString("error"),Toast.LENGTH_LONG).show();
             else
             {
-                String cantidadNotificaciones=jsonObjeto.getString("resultado"),mensajeInfo="";
+                String cantidadNotificaciones=jsonObjetoPrincipal.getString("resultado"),mensajeInfo="";
 
                 if(cantidadNotificaciones.equals("1"))
                     mensajeInfo=" notificacion nueva";
@@ -201,33 +198,15 @@ public class Principal extends AppCompatActivity
         }
     }
 
-    public void ejecutar() {
-        MostrarNotificacion();
-        Tiempo a = new Tiempo();
-        a.execute();
+    private void ejecutar(){
+        final Handler handler= new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MostrarNotificacion();//llamamos nuestro metodo
+                handler.postDelayed(this,900000);//se ejecutara cada 10 segundos
+            }
+        },1000);//empezara a ejecutarse después de 5 milisegundos
     }
 
-    public void hilo() {
-        try {
-            Thread.sleep(900000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public class Tiempo extends AsyncTask<Void,Integer,Boolean> {
-
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            hilo();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            super.onPostExecute(aBoolean);
-            ejecutar();
-        }
-    }
 }

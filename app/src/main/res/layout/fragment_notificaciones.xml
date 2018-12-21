@@ -15,16 +15,26 @@
 
 
         <LinearLayout
-            android:id="@+id/inclusionlayout"
+            android:id="@+id/princpialLayoutNotificaciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/inclusionlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
             <Button
-                android:id="@+id/btnPrueba"
+                android:id="@+id/btnVerMas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Ver más..."
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
+
 </FrameLayout>
