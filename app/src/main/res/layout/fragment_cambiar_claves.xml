@@ -42,25 +42,10 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/etAnteriorClave"
-                android:layout_width="333dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/etCarnet"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:ems="10"
-                android:hint="Clave Actual"
-                android:inputType="textPassword" />
-
-            <EditText
                 android:id="@+id/etNuevaClave"
                 android:layout_width="333dp"
                 android:layout_height="50dp"
-                android:layout_below="@id/etAnteriorClave"
+                android:layout_below="@id/etCarnet"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="24dp"
@@ -73,8 +58,8 @@
 
             <Button
                 android:id="@+id/btnCambiarClave"
-                android:layout_width="152dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/etNuevaClave"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"

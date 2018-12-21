@@ -33,7 +33,7 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
 
-public class Principal extends AppCompatActivity
+public class ktPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     String cookie = "";
     public static String carnetGlobal = "216-258";
