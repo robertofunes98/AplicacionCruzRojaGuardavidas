@@ -23,9 +23,15 @@
     </string-array>
     <string-array name="permisos">
         <item value="1">Acceso completo al sistema (Solo administradores)</item>
-        <item value="2">Acceso como junta directivca</item>
+        <item value="2">Acceso como junta directiva</item>
         <item value="3">Acceso como miembro</item>
     </string-array>
+    <string-array name="tipoRecuperacion">
+        <item value="1">----</item>
+        <item value="2">Correo electronico</item>
+        <item value="3">Mensaje al administrador</item>
+    </string-array>
+
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

@@ -128,6 +128,7 @@ create table Notificacion(
 	tipo int not null comment '0=excursion,1=evento,2=informativa,3=cambioClave,etc.',
 	referencia varchar(20) not null comment 'Id de lo que se asigno. Ejemplo: idExcursion',
 	vista boolean not null,
+	fecha date,
 	primary key pkNotificacion(idNotificacion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

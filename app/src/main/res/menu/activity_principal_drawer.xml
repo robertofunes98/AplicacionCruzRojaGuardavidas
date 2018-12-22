@@ -47,5 +47,9 @@
 
     </item>
 
+    <item
+        android:id="@+id/opc_peticion_cambiar_clave"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="Cambiar clave usuario (test)" />
 
 </menu>

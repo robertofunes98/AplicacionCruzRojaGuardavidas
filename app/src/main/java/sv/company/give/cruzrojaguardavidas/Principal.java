@@ -31,6 +31,7 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
+import sv.company.give.cruzrojaguardavidas.fragmentos.PeticionNuevaClave;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
 
 public class Principal extends AppCompatActivity
@@ -119,6 +120,8 @@ public class Principal extends AppCompatActivity
             finishAffinity();
         } else if (id == R.id.opc_inicio_sesion) {
             cargarFragment(new InicioSesion());
+        } else if (id == R.id.opc_peticion_cambiar_clave) {
+            cargarFragment(new PeticionNuevaClave());
         }
 
 

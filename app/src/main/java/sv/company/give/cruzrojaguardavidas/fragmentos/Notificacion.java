@@ -82,8 +82,9 @@ public class Notificacion extends Fragment{
                 switch (tipo)
                 {
                     case 0:
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setMessage("¿Aceptas la excursion?")
+                        //Excursion
+                        AlertDialog.Builder builder0 = new AlertDialog.Builder(getContext());
+                        builder0.setMessage("¿Aceptas la excursion?")
                                 .setTitle("Excursion").setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -110,8 +111,40 @@ public class Notificacion extends Fragment{
                         }).setCancelable(false).setNegativeButton("Cancelar",null).create().show();
                         break;
                     case 1:
+                        //Evento
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                        builder1.setMessage("¿Confirmar particiacion?")
+                                .setTitle("Evento").setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                conexion=new ConexionWebService();
+                                try {
+                                    //conexion.execute(url,parametros,cookie)
+                                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/confirmacionNotificaciones.php",
+                                            "accion=confirmarEvento&referencia="+referencia+"&carnet="
+                                                    +Principal.carnetGlobal+"&idNotificacion="+idNotificacion,cookie).get();
+
+                                    Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
+
+                                    JSONArray jsonRespuesta= new JSONArray(resultado);
+
+                                    jsonObjeto=jsonRespuesta.getJSONObject(0);
+
+
+
+                                } catch (ExecutionException | InterruptedException | JSONException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }).setCancelable(false).setNegativeButton("Cancelar",null).create().show();
+                        break;
+                    case 2:
+                        //Informativa
+                        //De momento desapareceran con la fecha de caducidad
                         break;
                     case 3:
+                        //Restablecimiento de contraseña
                         AlertDialog.Builder builder3 = new AlertDialog.Builder(getContext());
                         View dialogView =inflater.inflate(R.layout.dialogo_cambiar_clave,null);
                         builder3.setView(dialogView);
