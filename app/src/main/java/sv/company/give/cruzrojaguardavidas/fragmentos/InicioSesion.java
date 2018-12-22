@@ -21,6 +21,7 @@ import java.util.concurrent.ExecutionException;
 
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.DatePickerFragment;
+import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
 
 /**
@@ -69,21 +70,19 @@ public class InicioSesion extends Fragment {
                     //conexion.execute(url,parametros,cookie)
                     String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/inicioSesion.php","carnet="+VetCarnet.getText()+"&clave="+VetClave.getText(),cookie).get();
 
+                    //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
+
                     JSONArray jsonRespuesta= new JSONArray(resultado);
 
                     jsonObjeto= jsonRespuesta.getJSONObject(0);
 
-
-
-                    /**
-                    Toast.makeText(getContext(),jsonObjeto.getString("carnet"),Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getContext(),jsonObjeto.getString("clave"),Toast.LENGTH_SHORT).show();
-                    */
-
-
-                    if(((VetCarnet.getText().toString()).equals(jsonObjeto.getString("carnet")))&& ((VetClave.getText().toString()).equals(jsonObjeto.getString("clave"))))
-                        Toast.makeText(getContext(),"Usuario Encontrado",Toast.LENGTH_LONG).show();
-
+                    if(((VetCarnet.getText().toString()).equals(jsonObjeto.getString("carnet")))&&
+                            ((VetClave.getText().toString()).equals(jsonObjeto.getString("clave"))))
+                    {
+                        Toast.makeText(getContext(),"Usuario Encontrado y rango del usuario es "+jsonObjeto.getString("tipoUsuario"),Toast.LENGTH_LONG).show();
+                        Principal.carnetGlobal=jsonObjeto.getString("carnet");
+                        Principal.tipoUsuario=Integer.parseInt(jsonObjeto.getString("tipoUsuario"));
+                    }
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();
@@ -95,8 +94,6 @@ public class InicioSesion extends Fragment {
                     e.printStackTrace();
                     Toast.makeText(getContext(),"Usuario o Contraseña incorrecto",Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
         return rootView;
