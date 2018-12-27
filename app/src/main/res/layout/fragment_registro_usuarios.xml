@@ -172,8 +172,8 @@
                 android:layout_marginEnd="200dp"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
-                android:ems="10"
                 android:focusable="false"
+                android:ems="10"
                 android:inputType="date"
                 android:maxLines="1"
                 android:textColor="@android:color/background_dark" />

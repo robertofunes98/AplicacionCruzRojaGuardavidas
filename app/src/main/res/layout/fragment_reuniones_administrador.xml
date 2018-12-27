@@ -26,6 +26,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date"
+                android:clickable="true"
+                android:focusable="false"
                 android:layout_below="@id/tvFecha"/>
 
             <TextView
@@ -41,6 +43,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="time"
+                android:clickable="true"
+                android:focusable="false"
                 android:layout_below="@id/tvHora"/>
 
             <TextView

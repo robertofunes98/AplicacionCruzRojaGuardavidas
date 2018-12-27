@@ -47,8 +47,7 @@ create table UsuarioXEntreno(
 
 create table Reunion(
 	idReunion int auto_increment not null,
-	fecha date not null,
-	hora date not null,
+	fechaHora datetime not null,
 	lugar varchar(30) not null,
 	primary key pkReunion(idReunion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -127,7 +126,6 @@ create table Notificacion(
 	carnet varchar(8) not null,
 	tipo int not null comment '0=excursion,1=evento,2=informativa,3=cambioClave,etc.',
 	referencia varchar(20) not null comment 'Id de lo que se asigno. Ejemplo: idExcursion',
-	vista boolean not null,
 	fecha date,
 	primary key pkNotificacion(idNotificacion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -137,25 +135,25 @@ insert into Usuario
 values('216-258','Roberto Enrique',
 	'Funes Rivera','holamundo',20,'Masculino','1998-6-10','sub-jefe','novato','robertofunes98@gmail.com',1,'7504-8995',1);
 
-
-
 insert into Excursion 
 values(null,0,null,'Playa metalio rancho privado','2018-12-10',null,'6:00:00',1,'Cruz Roja Departamental Santa Ana','espera');
 
-
-
 insert into Notificacion 
 values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00, Lugar de llegada: Base cruz roja'
-	,'216-258',0,"1",0);
+	,'216-258',0,"1",null);
 
 insert into Notificacion 
 values(null,'Evento','Confirmacion de asistencia a plan belen. Fecha 1 de enero del 2019'
-	,'216-258',1,"1",0);
+	,'216-258',1,"1",null);
 
 insert into Notificacion 
 values(null,'Entreno','Recordatorio: Hoy hay entreno en indes a las 7 pm'
-	,'216-258',2,"2",0);
+	,'216-258',2,"2",null);
 
 insert into Notificacion 
 values(null,'Cambiar clave','Roberto Enrique Funes RIvera con carnet 216-258 necesita restablecimiento de clave'
-	,'216-258',3,"216-258",0);
+	,'216-258',3,"216-258",null);
+
+
+insert into Reunion 
+values(null,'2018-12-31 16:30:00','Base cruz roja');

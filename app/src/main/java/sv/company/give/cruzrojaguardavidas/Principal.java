@@ -33,6 +33,7 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.PeticionNuevaClave;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
+import sv.company.give.cruzrojaguardavidas.fragmentos.ReunionesAdministrador;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -123,6 +124,8 @@ public class Principal extends AppCompatActivity
             cargarFragment(new InicioSesion());
         } else if (id == R.id.opc_peticion_cambiar_clave) {
             cargarFragment(new PeticionNuevaClave());
+        } else if (id == R.id.opc_reuniones_admin) {
+            cargarFragment(new ReunionesAdministrador());
         }
 
 
