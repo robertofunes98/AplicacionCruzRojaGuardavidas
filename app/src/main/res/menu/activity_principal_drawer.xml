@@ -42,6 +42,10 @@
                     android:id="@+id/opc_salir"
                     android:icon="@drawable/ic_singout"
                     android:title="Salir" />
+                <item
+                    android:id="@+id/opc_reuniones_admin"
+                    android:icon="@drawable/ic_meeting"
+                    android:title="Reuniones administrador" />
             </group>
         </menu>
 
