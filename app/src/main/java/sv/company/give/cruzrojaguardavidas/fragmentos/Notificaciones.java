@@ -80,7 +80,7 @@ public class Notificaciones extends Fragment {
                 else
                 {
                     cargarFragment(new Notificacion(),jsonObjeto.getString("titulo"),jsonObjeto.getString("contenido")
-                            ,R.drawable.ic_menu_send,jsonObjeto.getString("tipo"),jsonObjeto.getString("referencia")
+                            ,R.drawable.ic_notification,jsonObjeto.getString("tipo"),jsonObjeto.getString("referencia")
                             ,jsonObjeto.getString("idNotificacion"));
                 }
             }
