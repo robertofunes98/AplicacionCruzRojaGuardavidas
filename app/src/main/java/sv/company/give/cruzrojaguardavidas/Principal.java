@@ -1,11 +1,16 @@
 package sv.company.give.cruzrojaguardavidas;
 
-import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -20,14 +25,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
-
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
@@ -40,6 +41,8 @@ public class Principal extends AppCompatActivity
     String cookie = "";
     public static String carnetGlobal = "216-258";
     public static int tipoUsuario = 1;
+
+    public static int conectividad=1;
 
 
     @Override
@@ -66,6 +69,7 @@ public class Principal extends AppCompatActivity
         //Toast.makeText(getApplicationContext(),cookie+" la cookie",Toast.LENGTH_LONG).show();
 
         ejecutar();
+
     }
 
     @Override
@@ -216,4 +220,41 @@ public class Principal extends AppCompatActivity
         },1000);//empezara a ejecutarse después de 5 milisegundos
     }
 
+    /*Codigo encargado de verificar el estado de la conexion*/
+
+    private BroadcastReceiver networkStateReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo ni = manager.getActiveNetworkInfo();
+            recargarAplicacion(ni);//Toast.makeText(getApplicationContext(),"holaaaaa",Toast.LENGTH_LONG).show();//doSomethingOnNetworkChange(ni);
+        }
+    };
+    @Override
+    public void onResume() {
+        super.onResume();
+        registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        unregisterReceiver(networkStateReceiver);
+        super.onPause();
+    }
+
+    public void recargarAplicacion(NetworkInfo ni)
+    {
+        if(ni== null)
+        {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(Principal.this);
+            builder1.setMessage("Se ha detectado un cambio de red, por favor recargue la aplicacion")
+                    .setTitle("Error de conexion").setPositiveButton("Recargar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intento=new Intent(Principal.this,CapturarCookie.class);
+                    startActivity(intento);
+                }
+            }).setCancelable(false).create().show();
+        }
+    }
 }
