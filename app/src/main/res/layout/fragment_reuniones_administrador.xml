@@ -3,75 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragmentos.ReunionesAdministrador">
 
+
     <!-- TODO: Update blank fragment layout -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:visibility="visible">
 
-            <TextView
-                android:id="@+id/tvFecha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fecha" />
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/etFecha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date"
-                android:clickable="true"
-                android:focusable="false"
-                android:layout_below="@id/tvFecha"/>
+            </android.support.design.widget.TabLayout>
 
-            <TextView
-                android:id="@+id/tvHora"
-                android:layout_width="wrap_content"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:layout_below="@id/etFecha"/>
+                android:layout_below="@+id/tabs"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <EditText
-                android:id="@+id/etHora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time"
-                android:clickable="true"
-                android:focusable="false"
-                android:layout_below="@id/tvHora"/>
-
-            <TextView
-                android:id="@+id/tvLugar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lugar"
-                android:layout_below="@id/etHora"/>
-
-            <EditText
-                android:id="@+id/etLugar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name"
-                android:layout_below="@id/tvLugar"/>
-
-            <Button
-                android:id="@+id/btnGuardar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/etLugar"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="-1dp"
-                android:text="Guardar reunion" />
         </RelativeLayout>
-    </ScrollView>
+
+
 
 </FrameLayout>

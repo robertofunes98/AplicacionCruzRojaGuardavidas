@@ -1,17 +1,9 @@
 package sv.company.give.cruzrojaguardavidas.fragmentos;
 
 
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.Notificacion;
 
 
 /**

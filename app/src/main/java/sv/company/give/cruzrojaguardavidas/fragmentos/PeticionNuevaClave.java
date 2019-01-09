@@ -22,7 +22,6 @@ import org.json.JSONObject;
 import java.util.concurrent.ExecutionException;
 
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
-import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
 import java.security.SecureRandom;
 import java.math.BigInteger;
