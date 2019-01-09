@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragmentos.child_fragments.AgregarReunion">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha" />
+
+            <EditText
+                android:id="@+id/etFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvFecha"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="date" />
+
+            <TextView
+                android:id="@+id/tvHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etFecha"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/etHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvHora"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="time" />
+
+            <TextView
+                android:id="@+id/tvLugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etHora"
+                android:text="Lugar" />
+
+            <EditText
+                android:id="@+id/etLugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvLugar"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etLugar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-1dp"
+                android:text="Guardar reunion" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>

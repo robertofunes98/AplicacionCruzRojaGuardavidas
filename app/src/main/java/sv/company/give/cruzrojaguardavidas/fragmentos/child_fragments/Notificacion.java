@@ -1,4 +1,4 @@
-package sv.company.give.cruzrojaguardavidas.fragmentos;
+package sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments;
 
 
 import android.app.AlertDialog;

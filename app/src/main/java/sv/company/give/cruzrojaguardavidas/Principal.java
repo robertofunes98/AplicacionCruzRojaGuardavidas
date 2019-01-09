@@ -69,7 +69,6 @@ public class Principal extends AppCompatActivity
         //Toast.makeText(getApplicationContext(),cookie+" la cookie",Toast.LENGTH_LONG).show();
 
         ejecutar();
-
     }
 
     @Override
