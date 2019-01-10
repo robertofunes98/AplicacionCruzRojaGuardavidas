@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
+import sv.company.give.cruzrojaguardavidas.fragmentos.EntrenosAdministrador;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.PeticionNuevaClave;
@@ -129,6 +130,8 @@ public class Principal extends AppCompatActivity
             cargarFragment(new PeticionNuevaClave());
         } else if (id == R.id.opc_reuniones_admin) {
             cargarFragment(new ReunionesAdministrador());
+        } else if(id==R.id.opc_entreno_admin) {
+            cargarFragment(new EntrenosAdministrador());
         }
 
 
@@ -165,7 +168,7 @@ public class Principal extends AppCompatActivity
                     "accion=obtenerNotificacion&carnet="
                             +Principal.carnetGlobal,cookie).get();
 
-            //Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
 
             JSONArray jsonRespuestaPrincipal= new JSONArray(resultado);
 

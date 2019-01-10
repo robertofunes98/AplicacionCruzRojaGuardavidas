@@ -1,5 +1,6 @@
 package sv.company.give.cruzrojaguardavidas.fragmentos;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,31 +12,36 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarReunion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AsistenciaReuniones;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReunionesAdministrador extends Fragment {
+public class EntrenosAdministrador extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
     static String cookie="";
 
     //El contexto al que pertenece el fragmento
     private FragmentActivity myContext;
 
-    public ReunionesAdministrador() {
+
+    public EntrenosAdministrador() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_reuniones_administrador, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_entrenos_administrador, container, false);
 
         //Despues de crear la vista se llama al metodo getArguments
         // que obtiene los parametros mandados a la hora de crear el fragment en PRINCIPAL
@@ -98,10 +104,8 @@ public class ReunionesAdministrador extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(myContext.getSupportFragmentManager());
-        adapter.addFragment(new AgregarReunion(), "Agregar reunion");
-        adapter.addFragment(new ListadoReuniones(), "Listado de reuniones");
-        adapter.addFragment(new AsistenciaReuniones(), "Asistencia a reuniones");
+        ReunionesAdministrador.Adapter adapter = new ReunionesAdministrador.Adapter(myContext.getSupportFragmentManager());
+        adapter.addFragment(new ListadoEntrenos(), "Listado de entrenos");
         viewPager.setAdapter(adapter);
     }
 }

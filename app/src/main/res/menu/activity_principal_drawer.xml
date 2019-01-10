@@ -46,6 +46,10 @@
                     android:id="@+id/opc_reuniones_admin"
                     android:icon="@drawable/ic_meeting"
                     android:title="Reuniones administrador" />
+                <item
+                    android:id="@+id/opc_entreno_admin"
+                    android:icon="@drawable/ic_meeting"
+                    android:title="Entrenos administrador" />
             </group>
         </menu>
 
