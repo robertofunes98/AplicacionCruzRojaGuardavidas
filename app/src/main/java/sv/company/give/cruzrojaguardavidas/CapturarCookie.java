@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 public class CapturarCookie extends AppCompatActivity {
 
     WebView wvNavegador;
-    String cookie="";
+    String cookie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,8 @@ public class CapturarCookie extends AppCompatActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                cookie=wvNavegador.getTitle();
+                while(cookie==null)
+                    cookie=wvNavegador.getTitle();
                 Intent intento=new Intent(CapturarCookie.this,Principal.class);
                 intento.putExtra("cookie",cookie);
                 startActivity(intento);
