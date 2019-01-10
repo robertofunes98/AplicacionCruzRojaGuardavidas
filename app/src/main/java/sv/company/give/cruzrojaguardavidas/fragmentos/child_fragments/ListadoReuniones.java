@@ -15,14 +15,14 @@ import sv.company.give.cruzrojaguardavidas.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificarReunion extends Fragment {
+public class ListadoReuniones extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
     String cookie="";
     ConexionWebService conexion;
     JSONObject jsonObjeto=null;
 
 
-    public NotificarReunion() {
+    public ListadoReuniones() {
         // Required empty public constructor
     }
 
@@ -30,7 +30,7 @@ public class NotificarReunion extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_notificar_reunion, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_listado_reuniones, container, false);
 
         //Despues de crear la vista se llama al metodo getArguments
         // que obtiene los parametros mandados a la hora de crear el fragment en PRINCIPAL

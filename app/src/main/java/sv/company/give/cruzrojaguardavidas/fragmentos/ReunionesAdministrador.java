@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarReunion;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.NotificarReunion;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AsistenciaReuniones;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,11 +27,7 @@ public class ReunionesAdministrador extends Fragment {
     static String cookie="";
 
     //private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
     private FragmentActivity myContext;
-
-    //Varibale que guarda la cantidad de paginas a ocupar
-    public int cantidadPaginas=2;
 
     public ReunionesAdministrador() {
         // Required empty public constructor
@@ -46,15 +43,11 @@ public class ReunionesAdministrador extends Fragment {
         //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
 
-
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        if (viewPager != null) {
+        if (viewPager != null)
             setupViewPager(viewPager);
-        }
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
         return  rootView;
     }
 
@@ -108,8 +101,8 @@ public class ReunionesAdministrador extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(myContext.getSupportFragmentManager());
         adapter.addFragment(new AgregarReunion(), "Agregar reunion");
-        adapter.addFragment(new NotificarReunion(), "Listado de reuniones");
-        adapter.addFragment(new AgregarReunion(), "Category 2");
+        adapter.addFragment(new ListadoReuniones(), "Listado de reuniones");
+        adapter.addFragment(new AsistenciaReuniones(), "Asistencia a reuniones");
         viewPager.setAdapter(adapter);
     }
 }

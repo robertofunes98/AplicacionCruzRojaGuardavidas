@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragmentos.child_fragments.AsistenciaReuniones">
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/rlListaReuniones"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- En este RecyclerVuiew se cargaran las reuniones registradas en la base de datos
+                hasta un maximo de 10, si se quieren cargar mas el elemento 11 debera ser un campo que
+                funcione como boton "cargar mas"
+
+                En caso de que el usuario de click en una reunion se deberan cargar los usuario que
+                asistieron en el recicletrView de abajo llamado rvUsuarioAsistentes-->
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvReuniones"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </android.support.v7.widget.RecyclerView>
+
+                <!--Este boton servira para abrir un AlertDialog para agregar un nuevo usuario o
+                 usuarios a la asistencia de la reuinion-->
+                <Button
+                    android:id="@+id/btnAgregarAsistentes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rvReuniones"
+                    android:text="Agregar asistentes" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rlListaReuniones">
+
+                <!--Aqui se cargaran los mimbros que han asistido a la reunion-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvUsuariosAsistentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </android.support.v7.widget.RecyclerView>
+
+                <!--Este boton servira para quitar un usuario de la lista de asistencia-->
+                <Button
+                    android:id="@+id/btnEliminarAsistente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rvUsuariosAsistentes"
+                    android:text="Eliminar asistente" />
+
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</FrameLayout>
