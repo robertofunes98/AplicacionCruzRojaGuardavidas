@@ -101,59 +101,59 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/tvFecha"
+                    android:id="@+id/tvFecha2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fecha" />
 
                 <EditText
-                    android:id="@+id/etFecha"
+                    android:id="@+id/etFecha2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvFecha"
+                    android:layout_below="@id/tvFecha2"
                     android:clickable="true"
                     android:ems="10"
                     android:focusable="false"
                     android:inputType="date" />
 
                 <TextView
-                    android:id="@+id/tvHora"
+                    android:id="@+id/tvHora2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etFecha"
+                    android:layout_below="@id/etFecha2"
                     android:text="Hora" />
 
                 <EditText
-                    android:id="@+id/etHora"
+                    android:id="@+id/etHora2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvHora"
+                    android:layout_below="@id/tvHora2"
                     android:clickable="true"
                     android:ems="10"
                     android:focusable="false"
                     android:inputType="time" />
 
                 <TextView
-                    android:id="@+id/tvLugar"
+                    android:id="@+id/tvLugar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etHora"
+                    android:layout_below="@id/etHora2"
                     android:text="Lugar" />
 
                 <EditText
-                    android:id="@+id/etLugar"
+                    android:id="@+id/etLugar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvLugar"
+                    android:layout_below="@id/tvLugar2"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="Name" />
 
                 <Button
-                    android:id="@+id/btnGuardar"
+                    android:id="@+id/btnGuardar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etLugar"
+                    android:layout_below="@id/etLugar2"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="-1dp"
                     android:text="Guardar entreno" />
