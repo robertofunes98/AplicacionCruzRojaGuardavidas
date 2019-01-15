@@ -29,8 +29,7 @@ create table Disponibilidad(
 
 create table Entreno(
 	idEntreno int auto_increment not null,
-	fecha date not null,
-	hora date not null,
+	fechaHora datetime not null,
 	lugar varchar(30) not null,
 	primary key pkEntreno(idEntreno)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

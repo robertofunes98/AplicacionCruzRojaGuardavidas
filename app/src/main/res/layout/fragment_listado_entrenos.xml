@@ -29,6 +29,9 @@
             <!--Estos botones serviran para las acciones "notificar, borrar entreno unicamente,
             borrar todos los entrenos de este dia (Con rango maximo).-->
 
+            <!--Estos botones serviran para las acciones "notificar, borrar entreno unicamente,
+            borrar todos los entrenos de este dia (Con rango maximo).-->
+
             <Button
                 android:id="@+id/btnAccion1"
                 android:layout_width="wrap_content"
