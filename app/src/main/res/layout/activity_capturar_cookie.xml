@@ -7,78 +7,79 @@
     android:background="@color/Fondo"
     tools:context=".CapturarCookie">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="151dp"
-            android:layout_height="151dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="100dp"
-            app:srcCompat="@drawable/ic_menu_send"
-            android:layout_below="@+id/textView3"
-            android:contentDescription="TODO" />
+        <!-- Cruz Roja -->
+    <TextView
+        android:id="@+id/cruz_roja"
+        android:layout_width="wrap_content"
+        android:layout_height="58sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="99sp"
+        android:layout_marginTop="130sp"
+        android:layout_marginEnd="99sp"
+        android:text="@string/cruz_roja"
+        android:textAppearance="@style/main" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="151sp"
+        android:layout_height="151sp"
+        android:layout_below="@+id/cruz_roja"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="130sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="129sp"
+        app:srcCompat="@drawable/red"
+        tools:layout_editor_absoluteX="114sp"
+        tools:layout_editor_absoluteY="137sp"
+        android:contentDescription="@string/todoo" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="Cruz Roja"
-        android:textStyle="bold"
-        android:textColor="@color/LetraW"
-        android:textSize="40sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="203dp"
-        android:layout_height="59dp"
+        android:layout_width="215sp"
+        android:layout_height="71sp"
         android:layout_below="@+id/imageView3"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="85dp"
-        android:layout_marginBottom="222dp"
-        android:text="Santaneca"
-        android:textColor="@color/LetraW"
-        android:textSize="40sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="30dp"
-        app:srcCompat="@drawable/ic_menu_gallery"
-        android:contentDescription="TODO" />
+        android:layout_marginStart="85sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="85sp"
+        android:text="@string/santaneca"
+        android:textAppearance="@style/main" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="158dp"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="40dp"
-        android:layout_toStartOf="@+id/imageView5"
-        android:text="Desarrollado por:"
-        android:textColor="@color/LetraW"
-        android:textSize="20sp" />
+        android:layout_marginStart="50sp"
+        android:layout_marginBottom="50sp"
+        android:text="@string/powered_by_"
+        android:textAppearance="@style/powered_by_" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="154sp"
+        android:layout_height="51sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="65sp"
+        android:layout_marginBottom="40sp"
+        android:layout_toEndOf="@+id/textView"
+        app:srcCompat="@drawable/give"
+        tools:layout_editor_absoluteX="250sp"
+        tools:layout_editor_absoluteY="600sp"
+        android:contentDescription="@string/todooo" />
+    <!-- El que captura la cookie -->
 
     <WebView
         android:id="@+id/wvNavegador"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible" />
-
 
 </RelativeLayout>

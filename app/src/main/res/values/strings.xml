@@ -50,4 +50,19 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- activity_capturar_cookie.xml -->
+    <string name="cruz_roja">
+
+Cruz Roja\n
+</string>
+    <string name="santaneca">Santaneca</string>
+
+    <string name="powered_by_">
+
+Powered by:
+</string>
+    <string name="todoo">TODO</string>
+    <string name="todooo">TODO</string>
+
 </resources>

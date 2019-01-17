@@ -12,4 +12,46 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- activity_capturar_cookie.xml -->
+
+    <style name="main">
+
+        <item name="android:textSize">
+            50sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+
+    <style name="powered_by_">
+
+        <item name="android:textSize">
+            24sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="android:shadowColor">
+            #52000000
+        </item>
+
+        <item name="android:shadowDx">
+            1
+        </item>
+
+        <item name="android:shadowDy">
+            4
+        </item>
+
+        <item name="android:shadowRadius">
+            3
+        </item>
+
+    </style>
+
 </resources>
