@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarEntreno;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarReunion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AsistenciaReuniones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
@@ -106,6 +107,7 @@ public class EntrenosAdministrador extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ReunionesAdministrador.Adapter adapter = new ReunionesAdministrador.Adapter(myContext.getSupportFragmentManager());
         adapter.addFragment(new ListadoEntrenos(), "Listado de entrenos");
+        adapter.addFragment(new AgregarEntreno(), "Agregar entrenos");
         viewPager.setAdapter(adapter);
     }
 }
