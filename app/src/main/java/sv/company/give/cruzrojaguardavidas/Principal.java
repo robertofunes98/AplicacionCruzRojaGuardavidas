@@ -164,7 +164,7 @@ public class Principal extends AppCompatActivity
         conexionPrincipal=new ConexionWebService();
         try {
             //conexion.execute(url,parametros,cookie)
-            String resultado=conexionPrincipal.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/obtenerNotificaciones.php",
+            String resultado=conexionPrincipal.execute(Variables.url+"obtenerNotificaciones.php",
                     "accion=obtenerNotificacion&carnet="
                             +Principal.carnetGlobal,cookie).get();
 
@@ -229,7 +229,7 @@ public class Principal extends AppCompatActivity
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo ni = manager.getActiveNetworkInfo();
-            recargarAplicacion(ni);//Toast.makeText(getApplicationContext(),"holaaaaa",Toast.LENGTH_LONG).show();//doSomethingOnNetworkChange(ni);
+            recargarAplicacion(ni);
         }
     };
     @Override

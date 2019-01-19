@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutionException;
 
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.Variables;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,7 +57,7 @@ public class CambiarClaves extends Fragment {
                 conexion=new ConexionWebService();
                 try {
                     //conexion.execute(url,parametros,cookie)
-                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/cambiarClave.php","accion=obtenerNombre&carnet="
+                    String resultado=conexion.execute(Variables.url+"cambiarClave.php","accion=obtenerNombre&carnet="
                             +etCarnet.getText(),cookie).get();
 
                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
@@ -77,7 +78,7 @@ public class CambiarClaves extends Fragment {
                                 conexion=new ConexionWebService();
                                 try {
                                     //conexion.execute(url,parametros,cookie)
-                                    String resultadoCambioContra=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/cambiarClave.php","accion=cambiarClave&carnet="
+                                    String resultadoCambioContra=conexion.execute(Variables.url+"cambiarClave.php","accion=cambiarClave&carnet="
                                             +etCarnet.getText()+"&clave="+etNuevaClave.getText(),cookie).get();
 
                                     //Toast.makeText(getContext(),resultadoCambioContra,Toast.LENGTH_LONG).show();

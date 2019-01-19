@@ -22,6 +22,7 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.DatePickerFragment;
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.Variables;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,7 +83,7 @@ public class RegistroUsuarios extends Fragment {
                 JSONObject jsonObjeto=null;
                 conexion=new ConexionWebService();
                 try {
-                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/registroUsuarios.php","carnet="+etCarnet.getText()+"&nombres="+etNombres.getText()
+                    String resultado=conexion.execute(Variables.url+"registroUsuarios.php","carnet="+etCarnet.getText()+"&nombres="+etNombres.getText()
                             +"&apellidos="+etApellidos.getText()+"&clave="+etClave.getText()+"&correo="+etCorreo.getText()
                             +"&telefono="+etTelefono.getText()+"&fechaNacimiento="+etFechaNacimiento.getText()
                             +"&cargo="+etCargo.getText()+"&rango="+spRango.getSelectedItem().toString()

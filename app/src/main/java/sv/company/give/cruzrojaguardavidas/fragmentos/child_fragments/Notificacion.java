@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.Variables;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,7 +79,7 @@ public class Notificacion extends Fragment{
                                 conexion=new ConexionWebService();
                                 try {
                                     //conexion.execute(url,parametros,cookie)
-                                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/confirmacionNotificaciones.php",
+                                    String resultado=conexion.execute(Variables.url+"confirmacionNotificaciones.php",
                                             "accion=ConfirmarExcursion&referencia="+referencia+"&carnet="
                                                     +Principal.carnetGlobal+"&idNotificacion="+idNotificacion,cookie).get();
 
@@ -107,7 +108,7 @@ public class Notificacion extends Fragment{
                                 conexion=new ConexionWebService();
                                 try {
                                     //conexion.execute(url,parametros,cookie)
-                                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/confirmacionNotificaciones.php",
+                                    String resultado=conexion.execute(Variables.url+"confirmacionNotificaciones.php",
                                             "accion=confirmarEvento&referencia="+referencia+"&carnet="
                                                     +Principal.carnetGlobal+"&idNotificacion="+idNotificacion,cookie).get();
 
@@ -142,7 +143,7 @@ public class Notificacion extends Fragment{
                         conexion=new ConexionWebService();
                         try {
                             //conexion.execute(url,parametros,cookie)
-                           String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/cambiarClave.php","accion=obtenerNombre&carnet="
+                           String resultado=conexion.execute(Variables.url+"cambiarClave.php","accion=obtenerNombre&carnet="
                                     +Principal.carnetGlobal,cookie).get();
 
                             //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
@@ -171,7 +172,7 @@ public class Notificacion extends Fragment{
                                 conexion=new ConexionWebService();
                                 try {
                                     //conexion.execute(url,parametros,cookie)
-                                    String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/confirmacionNotificaciones.php",
+                                    String resultado=conexion.execute(Variables.url+"confirmacionNotificaciones.php",
                                             "accion=CambiarClave&carnet="
                                                     +Principal.carnetGlobal+"&idNotificacion="+idNotificacion+"&clave="+clave.getText().toString(),cookie).get();
 

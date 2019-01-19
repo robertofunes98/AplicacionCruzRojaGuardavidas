@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.Variables;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.Notificacion;
 
 
@@ -54,7 +55,7 @@ public class Notificaciones extends Fragment {
         conexion=new ConexionWebService();
         try {
             //conexion.execute(url,parametros,cookie)
-            String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/obtenerNotificaciones.php",
+            String resultado=conexion.execute(Variables.url+"obtenerNotificaciones.php",
                     "accion=obtenerContenidoNotificaciones&carnet="
                             +Principal.carnetGlobal,cookie).get();
 

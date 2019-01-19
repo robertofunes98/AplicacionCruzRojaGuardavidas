@@ -23,6 +23,8 @@ import java.util.concurrent.ExecutionException;
 
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.Variables;
+
 import java.security.SecureRandom;
 import java.math.BigInteger;
 
@@ -99,7 +101,7 @@ public class PeticionNuevaClave extends Fragment {
                     try {
                         String claveNueva=generarClaveAleatoria();
                         //conexion.execute(url,parametros,cookie)
-                        String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/peticionNuevaClave.php",
+                        String resultado=conexion.execute(Variables.url+"peticionNuevaClave.php",
                                 "accion=enviarCorreo&correoReceptor="+etDatos.getText()+"&asunto="
                                         +"Recuperacion de clave"+"&nuevaClave="+claveNueva+"&mensaje="+"Se ha restablecido su clave, su nueva clave es: "+claveNueva,cookie).get();
 
@@ -125,7 +127,7 @@ public class PeticionNuevaClave extends Fragment {
                     conexion=new ConexionWebService();
                     try {
                         //conexion.execute(url,parametros,cookie)
-                        String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/peticionNuevaClave.php",
+                        String resultado=conexion.execute(Variables.url+"peticionNuevaClave.php",
                                 "accion=crearNotificacion&carnet="+etDatos.getText(),cookie).get();
 
                         //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();

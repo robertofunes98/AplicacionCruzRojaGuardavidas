@@ -48,7 +48,7 @@ public class CapturarCookie extends AppCompatActivity {
     {
         wvNavegador=(WebView)findViewById(R.id.wvNavegador);
         wvNavegador.getSettings().setJavaScriptEnabled(true);
-        wvNavegador.loadUrl("http://hangbor.byethost24.com/WebServiceCruzRoja/obtenerCookie.php");
+        wvNavegador.loadUrl(Variables.url+"obtenerCookie.php");
         wvNavegador.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;

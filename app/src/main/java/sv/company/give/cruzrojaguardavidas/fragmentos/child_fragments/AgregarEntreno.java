@@ -27,6 +27,7 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.DatePickerFragment;
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.Variables;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -112,7 +113,7 @@ public class AgregarEntreno extends Fragment {
                     conexion=new ConexionWebService();
                     try {
                         //conexion.execute(url,parametros,cookie)
-                        String resultado=conexion.execute("http://hangbor.byethost24.com/WebServiceCruzRoja/entrenos.php",
+                        String resultado=conexion.execute(Variables.url+"entrenos.php",
                                 "accion=guardarEntreno&fecha="+etFecha.getText()+"&hora="+etHora.getText()+":00"+"&lugar="+etLugar.getText(),cookie).get();
 
                         //Toast.makeText(getContext(),cookie,Toast.LENGTH_LONG).show();
