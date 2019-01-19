@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/rlSpinner"
                 android:layout_marginTop="10dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/tvFecha"
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="50dp"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvDiasEntreno"
@@ -111,8 +111,8 @@
                     android:id="@+id/llDiasEntreno"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_below="@id/tvDiasEntreno">
+                    android:layout_below="@id/tvDiasEntreno"
+                    android:orientation="vertical">
 
                     <CheckBox
                         android:id="@+id/checkBox"
@@ -137,11 +137,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jueves" />
+
                     <CheckBox
                         android:id="@+id/checkBox8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Viernes" />
+
                     <CheckBox
                         android:id="@+id/checkBox6"
                         android:layout_width="match_parent"

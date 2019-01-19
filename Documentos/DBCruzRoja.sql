@@ -29,7 +29,10 @@ create table Disponibilidad(
 
 create table Entreno(
 	idEntreno int auto_increment not null,
-	fechaHora datetime not null,
+	tipoEntreno int not null comment '0=patron, 1=diaEspecifico',
+	patron varchar(15) null comment '0=lunes,1=martes,2=miercoles,3=jueves,4=viernes,5=sabado,6=domingo. ejemplo de patron "0,2,4"',
+	horaPatron varchar(20) null comment 'formato 24 Horas ejemplo "15:30"',
+	fechaHora datetime null,
 	lugar varchar(30) not null,
 	primary key pkEntreno(idEntreno)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -150,7 +153,7 @@ values(null,'Entreno','Recordatorio: Hoy hay entreno en indes a las 7 pm'
 	,'216-258',2,"2",null);
 
 insert into Notificacion 
-values(null,'Cambiar clave','Roberto Enrique Funes RIvera con carnet 216-258 necesita restablecimiento de clave'
+values(null,'Cambiar clave','Roberto Enrique Funes Rivera con carnet 216-258 necesita restablecimiento de clave'
 	,'216-258',3,"216-258",null);
 
 

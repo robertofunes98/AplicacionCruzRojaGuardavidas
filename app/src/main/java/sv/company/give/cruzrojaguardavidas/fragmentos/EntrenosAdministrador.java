@@ -105,9 +105,9 @@ public class EntrenosAdministrador extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ReunionesAdministrador.Adapter adapter = new ReunionesAdministrador.Adapter(myContext.getSupportFragmentManager());
-        adapter.addFragment(new ListadoEntrenos(), "Listado de entrenos");
+        Adapter adapter = new Adapter(myContext.getSupportFragmentManager());
         adapter.addFragment(new AgregarEntreno(), "Agregar entrenos");
+        adapter.addFragment(new ListadoEntrenos(), "Listado de entrenos");
         viewPager.setAdapter(adapter);
     }
 }
