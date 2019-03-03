@@ -21,7 +21,7 @@
             android:name=".Principal"
             android:label="@string/title_activity_principal"
             android:theme="@style/AppTheme" />
-        <activity android:name=".CapturarCookie">
+        <activity android:name=".CapturarCookie" android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

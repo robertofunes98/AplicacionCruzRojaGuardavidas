@@ -168,7 +168,7 @@ public class Principal extends AppCompatActivity
                     "accion=obtenerNotificacion&carnet="
                             +Principal.carnetGlobal,cookie).get();
 
-            Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
 
             JSONArray jsonRespuestaPrincipal= new JSONArray(resultado);
 
