@@ -52,7 +52,7 @@ public class AgregarEntreno extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_agregar_entreno, container, false);
+        View rootView = inflater.inflate(R.layout.child_fragment_agregar_entreno, container, false);
 
         //Despues de crear la vista se llama al metodo getArguments
         // que obtiene los parametros mandados a la hora de crear el fragment en PRINCIPAL
