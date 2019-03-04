@@ -14,17 +14,17 @@
         android:visibility="visible">
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/tabsEntrenosAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         </android.support.design.widget.TabLayout>
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
+            android:id="@+id/viewpagerEntrenosAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tabs"
+            android:layout_below="@+id/tabsEntrenosAdmin"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </RelativeLayout>

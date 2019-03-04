@@ -1,10 +1,8 @@
 package sv.company.give.cruzrojaguardavidas.fragmentos;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -25,9 +23,6 @@ public class ReunionesAdministrador extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
     static String cookie="";
 
-    //El contexto al que pertenece el fragmento
-    private FragmentActivity myContext;
-
     public ReunionesAdministrador() {
         // Required empty public constructor
     }
@@ -42,31 +37,24 @@ public class ReunionesAdministrador extends Fragment {
         //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
 
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        if (viewPager != null)
-            setupViewPager(viewPager);
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        ViewPager viewPagerReunionesAdmin = (ViewPager) rootView.findViewById(R.id.viewpagerReunionesAdmin);
+        setupViewPager(viewPagerReunionesAdmin);
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabsReunionesAdmin);
+        tabLayout.setupWithViewPager(viewPagerReunionesAdmin);
         return  rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        myContext=(FragmentActivity) activity;
-        super.onAttach(activity);
     }
 
     //Funciones para la carga de fragmentos en las tabs
 
-    static class Adapter extends FragmentPagerAdapter {
+    private static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
-        public Adapter(FragmentManager fm) {
+        Adapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             // Creamos un nuevo Bundle
             Bundle args = new Bundle();
 
@@ -98,7 +86,7 @@ public class ReunionesAdministrador extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(myContext.getSupportFragmentManager());
+        Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new AgregarReunion(), "Agregar reunion");
         adapter.addFragment(new ListadoReuniones(), "Listado de reuniones");
         adapter.addFragment(new AsistenciaReuniones(), "Asistencia a reuniones");

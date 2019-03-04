@@ -1,11 +1,12 @@
 package sv.company.give.cruzrojaguardavidas.fragmentos;
 
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,12 +17,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import sv.company.give.cruzrojaguardavidas.CapturarCookie;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarEntreno;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarReunion;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AsistenciaReuniones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,10 +28,6 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReu
 public class EntrenosAdministrador extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
     static String cookie="";
-
-    //El contexto al que pertenece el fragmento
-    private FragmentActivity myContext;
-
 
     public EntrenosAdministrador() {
         // Required empty public constructor
@@ -49,31 +44,25 @@ public class EntrenosAdministrador extends Fragment {
         //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
 
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        if (viewPager != null)
-            setupViewPager(viewPager);
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        return  rootView;
-    }
 
-    @Override
-    public void onAttach(Activity activity) {
-        myContext=(FragmentActivity) activity;
-        super.onAttach(activity);
+        ViewPager viewPagerEntrenosAdmin = rootView.findViewById(R.id.viewpagerEntrenosAdmin);
+        setupViewPager(viewPagerEntrenosAdmin);
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabsEntrenosAdmin);
+        tabLayout.setupWithViewPager(viewPagerEntrenosAdmin);
+        return  rootView;
     }
 
     //Funciones para la carga de fragmentos en las tabs
 
-    static class Adapter extends FragmentPagerAdapter {
+    private static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
-        public Adapter(FragmentManager fm) {
+        Adapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             // Creamos un nuevo Bundle
             Bundle args = new Bundle();
 
@@ -102,10 +91,15 @@ public class EntrenosAdministrador extends Fragment {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitles.get(position);
         }
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+            super.destroyItem(container, position, object);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(myContext.getSupportFragmentManager());
+        Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new AgregarEntreno(), "Agregar entrenos");
         adapter.addFragment(new ListadoEntrenos(), "Listado de entrenos");
         viewPager.setAdapter(adapter);

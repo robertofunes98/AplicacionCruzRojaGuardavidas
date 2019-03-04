@@ -43,9 +43,6 @@ public class Principal extends AppCompatActivity
     public static String carnetGlobal = "216-258";
     public static int tipoUsuario = 1;
 
-    public static int conectividad=1;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,6 +150,7 @@ public class Principal extends AppCompatActivity
         fragmento.setArguments(args);
 
         FragmentManager manejador = getSupportFragmentManager();
+
         manejador.beginTransaction().replace(R.id.contenedorFragmento, fragmento).commit();
     }
 
