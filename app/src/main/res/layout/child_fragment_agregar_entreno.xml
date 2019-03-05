@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,148 +11,216 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/rlSpinner"
-                android:layout_width="match_parent"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/clSpinner"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp">
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <Spinner
                     android:id="@+id/spPatron"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/tipoEntreno" />
-            </RelativeLayout>
+                    android:layout_width="220dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:entries="@array/tipoEntreno"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.45999998" />
+            </android.support.constraint.ConstraintLayout>
 
-            <RelativeLayout
-                android:id="@+id/rlContenidoDiaUnico"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/clContenidoDiaUnico"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/rlSpinner"
-                android:layout_marginTop="10dp"
-                android:visibility="visible">
+                android:layout_height="368dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clSpinner">
 
                 <TextView
                     android:id="@+id/tvFecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fecha" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Fecha"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.058"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/etFecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvFecha"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFecha" />
 
                 <TextView
                     android:id="@+id/tvHora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etFecha"
-                    android:text="Hora" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Hora"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.057"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etFecha" />
 
                 <EditText
                     android:id="@+id/etHora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvHora"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="time" />
+                    android:inputType="time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHora" />
 
                 <TextView
                     android:id="@+id/tvLugar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etHora"
-                    android:text="Lugar" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Lugar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.058"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etHora" />
 
                 <EditText
                     android:id="@+id/etLugar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvLugar"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:text="Name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLugar" />
 
                 <Button
-                    android:id="@+id/btnGuardar"
+                    android:id="@+id/btnGuardarDiaUnico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etLugar"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="-1dp"
-                    android:text="Guardar entreno" />
-            </RelativeLayout>
+                    android:layout_marginTop="16dp"
+                    android:text="Guardar entreno"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etLugar" />
+            </android.support.constraint.ConstraintLayout>
 
-            <RelativeLayout
-                android:id="@+id/rlContenidoPatron"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/clContenidoPatron"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="50dp"
-                android:visibility="gone">
+                android:layout_height="582dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clSpinner">
 
                 <TextView
                     android:id="@+id/tvDiasEntreno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dias que se entrenara" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Dias que se entrenara"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:id="@+id/llDiasEntreno"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/tvDiasEntreno"
-                    android:orientation="vertical">
+                    android:layout_height="244dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDiasEntreno">
 
                     <CheckBox
-                        android:id="@+id/checkBox"
+                        android:id="@+id/cbLunes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lunes" />
 
                     <CheckBox
-                        android:id="@+id/checkBox3"
+                        android:id="@+id/cbMartes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Martes" />
 
                     <CheckBox
-                        android:id="@+id/checkBox4"
+                        android:id="@+id/cbMiercoles"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Miercoles" />
 
                     <CheckBox
-                        android:id="@+id/checkBox5"
+                        android:id="@+id/cbJueves"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jueves" />
 
                     <CheckBox
-                        android:id="@+id/checkBox8"
+                        android:id="@+id/cbViernes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Viernes" />
 
                     <CheckBox
-                        android:id="@+id/checkBox6"
+                        android:id="@+id/cbSabado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sabado" />
 
                     <CheckBox
-                        android:id="@+id/checkBox7"
+                        android:id="@+id/cbDomingo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Domingo" />
@@ -161,46 +230,73 @@
                     android:id="@+id/tvHora2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/llDiasEntreno"
-                    android:text="Hora" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Hora"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.022"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llDiasEntreno" />
 
                 <EditText
-                    android:id="@+id/etHora2"
+                    android:id="@+id/etHoraPatron"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvHora2"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="time" />
+                    android:inputType="time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.048"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHora2" />
 
                 <TextView
                     android:id="@+id/tvLugar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etHora2"
-                    android:text="Lugar" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Lugar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.023"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etHoraPatron" />
 
                 <EditText
-                    android:id="@+id/etLugar2"
+                    android:id="@+id/etLugarPatron"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvLugar2"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:text="Name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.048"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLugar2" />
 
                 <Button
-                    android:id="@+id/btnGuardar2"
+                    android:id="@+id/btnGuardarPatron"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/etLugar2"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="-1dp"
-                    android:text="Guardar entreno" />
-            </RelativeLayout>
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Guardar entreno"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etLugarPatron" />
+            </android.support.constraint.ConstraintLayout>
 
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
 </FrameLayout>
