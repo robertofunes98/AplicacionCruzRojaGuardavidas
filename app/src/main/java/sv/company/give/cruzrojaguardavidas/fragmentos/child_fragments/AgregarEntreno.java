@@ -39,11 +39,10 @@ public class AgregarEntreno extends Fragment {
     ConexionWebService conexion;
     JSONObject jsonObjeto=null;
 
-    Spinner spPatron;
-    ConstraintLayout rlPatron, rlDiaUnico;
+    ConstraintLayout clPatron;
 
-    Button btnGuardarDiaUnico, btnGuardarPatron;
-    EditText etHora,etFecha,etLugar, etHoraPatron, etLugarPatron;
+    Button btnGuardarPatron;
+    EditText etHoraPatron, etLugarPatron;
 
     //CheckBoxs de dias
     CheckBox cbLunes, cbMartes, cbMiercoles, cbJueves, cbViernes, cbSabado, cbDomingo, arrayCheckBoxDias[];
@@ -63,19 +62,13 @@ public class AgregarEntreno extends Fragment {
         //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
 
-        spPatron=rootView.findViewById(R.id.spPatron);
-        rlDiaUnico=rootView.findViewById(R.id.clContenidoDiaUnico);
-        rlPatron=rootView.findViewById(R.id.clContenidoPatron);
+        clPatron=rootView.findViewById(R.id.clContenidoPatron);
 
-        btnGuardarDiaUnico=rootView.findViewById(R.id.btnGuardarDiaUnico);
         btnGuardarPatron=rootView.findViewById(R.id.btnGuardarPatron);
 
-        etFecha=rootView.findViewById(R.id.etFecha);
-        etHora=rootView.findViewById(R.id.etHora);
-        etLugar=rootView.findViewById(R.id.etLugar);
+
         etHoraPatron=rootView.findViewById(R.id.etHoraPatron);
         etLugarPatron=rootView.findViewById(R.id.etLugarPatron);
-
 
         //Inicialiacion de checkboxs
         cbLunes=rootView.findViewById(R.id.cbLunes);
@@ -89,41 +82,6 @@ public class AgregarEntreno extends Fragment {
         arrayCheckBoxDias=new CheckBox[]{cbLunes, cbMartes, cbMiercoles, cbJueves, cbViernes, cbSabado, cbDomingo};
 
         //EditText modificados para obtener fecha
-        etFecha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        // +1 because january is zero
-                        final String selectedDate = year + "-" + (month+1) + "-" + day;
-                        etFecha.setText(selectedDate);
-                    }
-                });
-                newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
-            }
-        });
-
-        //editText modificados para obtener hora
-        etHora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int hora,minutos;
-                final Calendar c = Calendar.getInstance();
-                hora=c.get(Calendar.HOUR_OF_DAY);
-                minutos=c.get(Calendar.MINUTE);
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        etHora.setText(hourOfDay+":"+minute);
-                    }
-                },hora,minutos,false);
-
-                timePickerDialog.show();
-            }
-        });
-
         etHoraPatron.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,44 +104,6 @@ public class AgregarEntreno extends Fragment {
         });
 
         //botones
-        btnGuardarDiaUnico.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(etFecha.getText().toString().isEmpty() || etHora.getText().toString().isEmpty() || etLugar.getText().toString().isEmpty())
-                    Toast.makeText(getContext(),"Por favor complete todos los campos",Toast.LENGTH_LONG).show();
-                else
-                {
-                    conexion=new ConexionWebService();
-                    try {
-                        //conexion.execute(url,parametros,cookie)
-                        String resultado=conexion.execute(Variables.url+"entrenos.php",
-                                "accion=guardarEntrenoDiaUnico&fecha="+etFecha.getText()+"&hora="+etHora.getText()+":00"+"&lugar="+etLugar.getText(),cookie).get();
-
-                        //Toast.makeText(getContext(),cookie,Toast.LENGTH_LONG).show();
-
-                        JSONArray jsonRespuesta= new JSONArray(resultado);
-
-                        jsonObjeto=jsonRespuesta.getJSONObject(0);
-
-                        if(jsonObjeto.has("error"))
-                            Toast.makeText(getContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
-                        else {
-                            Toast.makeText(getContext(), jsonObjeto.getString("resultado"), Toast.LENGTH_LONG).show();
-
-                            etLugar.setText("");
-                            etHora.setText("");
-                            etFecha.setText("");
-                        }
-
-                    } catch (ExecutionException | InterruptedException | JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        });
-
         btnGuardarPatron.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,30 +145,6 @@ public class AgregarEntreno extends Fragment {
                 }
             }
         });
-
-
-        spPatron.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0)
-                {
-                    rlDiaUnico.setVisibility(View.VISIBLE);
-                    rlPatron.setVisibility(View.GONE);
-                }
-                else if(position==1)
-                {
-                    rlDiaUnico.setVisibility(View.GONE);
-                    rlPatron.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
         return rootView;
     }
 

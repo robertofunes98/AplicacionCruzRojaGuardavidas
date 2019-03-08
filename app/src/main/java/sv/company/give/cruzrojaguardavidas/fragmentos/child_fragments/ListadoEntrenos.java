@@ -145,7 +145,10 @@ public class ListadoEntrenos extends Fragment {
         if (hora == 0) {
             horaFormateada += "12";
             tipoHora = "AM";
-        } else if (hora > 12) {
+        }else if(hora == 12){
+            horaFormateada += String.valueOf(hora);
+            tipoHora = "PM";
+        }else if (hora > 12) {
             horaFormateada += String.valueOf(hora - 12);
             tipoHora = "PM";
         } else {
