@@ -29,10 +29,8 @@ create table Disponibilidad(
 
 create table Entreno(
 	idEntreno int auto_increment not null,
-	tipoEntreno int not null comment '0=patron, 1=diaEspecifico',
 	patron varchar(15) null comment '0=lunes,1=martes,2=miercoles,3=jueves,4=viernes,5=sabado,6=domingo. ejemplo de patron "0,2,4"',
-	horaPatron varchar(20) null comment 'formato 24 Horas ejemplo "15:30"',
-	fechaHora datetime null,
+	hora varchar(20) null comment 'formato 24 Horas ejemplo "15:30"',
 	lugar varchar(30) not null,
 	primary key pkEntreno(idEntreno)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

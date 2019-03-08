@@ -27,7 +27,7 @@
                 asistieron en el recicletrView de abajo llamado rvUsuarioAsistentes-->
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvReuniones"
+                    android:id="@+id/rvEntrenos"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -40,7 +40,7 @@
                     android:id="@+id/btnAgregarAsistentes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/rvReuniones"
+                    android:layout_below="@+id/rvEntrenos"
                     android:text="Agregar asistentes" />
             </RelativeLayout>
 

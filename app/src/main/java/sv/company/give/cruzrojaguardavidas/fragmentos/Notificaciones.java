@@ -16,10 +16,10 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-import sv.company.give.cruzrojaguardavidas.ConexionWebService;
+import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
-import sv.company.give.cruzrojaguardavidas.Variables;
+import sv.company.give.cruzrojaguardavidas.core.Variables;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.Notificacion;
 
 

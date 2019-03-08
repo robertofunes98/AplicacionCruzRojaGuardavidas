@@ -29,6 +29,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.concurrent.ExecutionException;
+
+import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
+import sv.company.give.cruzrojaguardavidas.core.Variables;
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.EntrenosAdministrador;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;

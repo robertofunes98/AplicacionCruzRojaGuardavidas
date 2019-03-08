@@ -6,4 +6,5 @@
     <color name="colorAccent">#f51717</color>
     <color name="boton">#ffffff</color>
     <color name="LetraW">#fff</color>
+    <color name="seleccion_de_item">#B3485FE3</color>
 </resources>

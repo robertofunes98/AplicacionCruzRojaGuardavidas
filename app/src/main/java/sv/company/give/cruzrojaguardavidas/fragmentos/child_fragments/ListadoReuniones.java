@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import org.json.JSONObject;
 
-import sv.company.give.cruzrojaguardavidas.ConexionWebService;
+import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.R;
 
 /**

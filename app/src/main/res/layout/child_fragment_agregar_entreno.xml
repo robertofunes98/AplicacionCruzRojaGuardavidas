@@ -162,7 +162,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/clSpinner">
 
                 <TextView
-                    android:id="@+id/tvDiasEntreno"
+                    android:id="@+id/tvDiasEntrenoLista"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -181,7 +181,7 @@
                     android:layout_height="244dp"
                     android:layout_marginTop="8dp"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDiasEntreno">
+                    app:layout_constraintTop_toBottomOf="@+id/tvDiasEntrenoLista">
 
                     <CheckBox
                         android:id="@+id/cbLunes"

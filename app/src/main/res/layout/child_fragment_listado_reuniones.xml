@@ -20,8 +20,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvReuniones"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
 
             </android.support.v7.widget.RecyclerView>
@@ -40,13 +39,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Accion2"
-                android:layout_below="@+id/rvReuniones"/>
+                android:layout_below="@+id/rvEntrenos"/>
             <Button
                 android:id="@+id/btnAccion3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Accion3"
-                android:layout_below="@+id/rvReuniones"/>
+                android:layout_below="@+id/rvEntrenos"/>
         </RelativeLayout>
     </ScrollView>
 

@@ -1,4 +1,4 @@
-package sv.company.give.cruzrojaguardavidas;
+package sv.company.give.cruzrojaguardavidas.core;
 
 import android.os.AsyncTask;
 

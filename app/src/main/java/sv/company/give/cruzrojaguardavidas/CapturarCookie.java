@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import sv.company.give.cruzrojaguardavidas.core.Variables;
+
 public class CapturarCookie extends AppCompatActivity {
 
     WebView wvNavegador;
