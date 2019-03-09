@@ -1,85 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Fondo"
+    android:background="@color/boton"
     tools:context=".CapturarCookie">
 
-        <!-- Cruz Roja -->
+    <!-- Cruz Roja -->
     <TextView
-        android:id="@+id/cruz_roja"
+        android:id="@+id/tvCruzRoja"
         android:layout_width="wrap_content"
-        android:layout_height="58sp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="99sp"
-        android:layout_marginTop="130sp"
-        android:layout_marginEnd="99sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/cruz_roja"
-        android:textAppearance="@style/main" />
+        android:textAlignment="center"
+        android:textAppearance="@style/main"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivLogoCruzRoja"
         android:layout_width="151sp"
         android:layout_height="151sp"
-        android:layout_below="@+id/cruz_roja"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="130sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginEnd="129sp"
-        app:srcCompat="@drawable/red"
-        tools:layout_editor_absoluteX="114sp"
-        tools:layout_editor_absoluteY="137sp"
-        android:contentDescription="@string/todoo" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/todoo"
+        android:src="@drawable/logo_cruz_roja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCruzRoja" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="215sp"
-        android:layout_height="71sp"
-        android:layout_below="@+id/imageView3"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="85sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginEnd="85sp"
-        android:text="@string/santaneca"
-        android:textAppearance="@style/main" />
+        android:id="@+id/tvPoweredBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/powered_by_"
+        android:textAppearance="@style/powered_by_"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoCruzRoja" />
+
+    <ImageView
+        android:id="@+id/ivLogoGive"
+        android:layout_width="154sp"
+        android:layout_height="51sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/todooo"
+        android:src="@drawable/give"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoCruzRoja" />
+    <!-- El que captura la cookie -->
+
+    <WebView
+        android:id="@+id/wvNavegador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="50sp"
-        android:layout_marginBottom="50sp"
-        android:text="@string/powered_by_"
-        android:textAppearance="@style/powered_by_" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text=" "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoCruzRoja" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="154sp"
-        android:layout_height="51sp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5sp"
-        android:layout_marginEnd="65sp"
-        android:layout_marginBottom="40sp"
-        android:layout_toEndOf="@+id/textView"
-        app:srcCompat="@drawable/give"
-        tools:layout_editor_absoluteX="250sp"
-        tools:layout_editor_absoluteY="600sp"
-        android:contentDescription="@string/todooo" />
-    <!-- El que captura la cookie -->
-
-    <WebView
-        android:id="@+id/wvNavegador"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible" />
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
