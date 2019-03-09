@@ -9,8 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarReunion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AsistenciaReuniones;
@@ -21,7 +23,7 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReu
  */
 public class ReunionesAdministrador extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
-    static String cookie="";
+    static String cookie = "";
 
     public ReunionesAdministrador() {
         // Required empty public constructor
@@ -41,7 +43,7 @@ public class ReunionesAdministrador extends Fragment {
         setupViewPager(viewPagerReunionesAdmin);
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabsReunionesAdmin);
         tabLayout.setupWithViewPager(viewPagerReunionesAdmin);
-        return  rootView;
+        return rootView;
     }
 
     //Funciones para la carga de fragmentos en las tabs

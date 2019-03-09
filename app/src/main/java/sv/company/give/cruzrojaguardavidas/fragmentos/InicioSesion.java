@@ -30,11 +30,11 @@ public class InicioSesion extends Fragment {
     ConexionWebService conexion;
     String cadena1 = new String("");
     //Variable que guardara la cookie en el fragment al recibirla
-    String cookie="";
+    String cookie = "";
 
     //contenedores de datos a guardar en DB
-    EditText VetCarnet,etNombres,etApellidos,VetClave,etCorreo,etTelefono,etFechaNacimiento,etCargo;
-    Spinner spRango,spSexo,spPermisos;
+    EditText VetCarnet, etNombres, etApellidos, VetClave, etCorreo, etTelefono, etFechaNacimiento, etCargo;
+    Spinner spRango, spSexo, spPermisos;
 
     public InicioSesion() {
         // Required empty public constructor
@@ -50,11 +50,11 @@ public class InicioSesion extends Fragment {
         //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
 
-        btnInicio=rootView.findViewById(R.id.btnInicio);
+        btnInicio = rootView.findViewById(R.id.btnInicio);
 
         //contenedores de datos a guardar en DB
-        VetCarnet=(rootView.findViewById(R.id.etCarnet));
-        VetClave=(rootView.findViewById(R.id.etClave));
+        VetCarnet = (rootView.findViewById(R.id.etCarnet));
+        VetClave = (rootView.findViewById(R.id.etClave));
 
         //etCorreo=(rootView.findViewById(R.id.etCorreo));
 
@@ -62,35 +62,34 @@ public class InicioSesion extends Fragment {
         btnInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject jsonObjeto=null;
-                conexion=new ConexionWebService();
+                JSONObject jsonObjeto = null;
+                conexion = new ConexionWebService();
                 try {
                     //conexion.execute(url,parametros,cookie)
-                    String resultado=conexion.execute(Variables.url+"inicioSesion.php","carnet="+VetCarnet.getText()+"&clave="+VetClave.getText(),cookie).get();
+                    String resultado = conexion.execute(Variables.url + "inicioSesion.php", "carnet=" + VetCarnet.getText() + "&clave=" + VetClave.getText(), cookie).get();
 
                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
-                    JSONArray jsonRespuesta= new JSONArray(resultado);
+                    JSONArray jsonRespuesta = new JSONArray(resultado);
 
-                    jsonObjeto= jsonRespuesta.getJSONObject(0);
+                    jsonObjeto = jsonRespuesta.getJSONObject(0);
 
-                    if(((VetCarnet.getText().toString()).equals(jsonObjeto.getString("carnet")))&&
-                            ((VetClave.getText().toString()).equals(jsonObjeto.getString("clave"))))
-                    {
-                        Toast.makeText(getContext(),"Usuario Encontrado y rango del usuario es "+jsonObjeto.getString("tipoUsuario"),Toast.LENGTH_LONG).show();
-                        Principal.carnetGlobal=jsonObjeto.getString("carnet");
-                        Principal.tipoUsuario=Integer.parseInt(jsonObjeto.getString("tipoUsuario"));
+                    if (((VetCarnet.getText().toString()).equals(jsonObjeto.getString("carnet"))) &&
+                            ((VetClave.getText().toString()).equals(jsonObjeto.getString("clave")))) {
+                        Toast.makeText(getContext(), "Usuario Encontrado y rango del usuario es " + jsonObjeto.getString("tipoUsuario"), Toast.LENGTH_LONG).show();
+                        Principal.carnetGlobal = jsonObjeto.getString("carnet");
+                        Principal.tipoUsuario = Integer.parseInt(jsonObjeto.getString("tipoUsuario"));
                     }
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),"Usuario o Contraseña incorrecto",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Usuario o Contraseña incorrecto", Toast.LENGTH_LONG).show();
                 }
             }
         });

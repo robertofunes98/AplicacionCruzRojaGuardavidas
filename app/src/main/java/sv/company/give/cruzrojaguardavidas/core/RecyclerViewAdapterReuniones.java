@@ -11,11 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import sv.company.give.cruzrojaguardavidas.R;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerViewAdapterReuniones.ViewHolder> {
@@ -23,12 +20,12 @@ public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerV
     private ArrayList<String[]> listArraysReuniones;
     private Context mContext;
     private View fragmentView;
-    private ConstraintLayout clSeleccionAnterior=null;
+    private ConstraintLayout clSeleccionAnterior = null;
 
     public RecyclerViewAdapterReuniones(Context context, ArrayList<String[]> arrayListEntrenos, View viewFragmento) {
         listArraysReuniones = arrayListEntrenos;
         mContext = context;
-        fragmentView=viewFragmento;
+        fragmentView = viewFragmento;
     }
 
     @NonNull
@@ -56,18 +53,17 @@ public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerV
         holder.clItemListaReuniones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(clSeleccionAnterior!=null && clSeleccionAnterior==holder.clSeleccionItemReuniones) {
+                if (clSeleccionAnterior != null && clSeleccionAnterior == holder.clSeleccionItemReuniones) {
                     clSeleccionAnterior.setBackgroundResource(0);
-                    clSeleccionAnterior=null;
+                    clSeleccionAnterior = null;
                     holder.btnNotificarReunion.setEnabled(false);
-                }
-                else {
-                    if(clSeleccionAnterior!=null)
+                } else {
+                    if (clSeleccionAnterior != null)
                         clSeleccionAnterior.setBackgroundResource(0);
                     holder.clSeleccionItemReuniones.setBackgroundColor(Color.parseColor("#B3485FE3"));
                     holder.btnNotificarReunion.setEnabled(true);
-                    ListadoReuniones.itemSeleccionado=position;
-                    clSeleccionAnterior=holder.clSeleccionItemReuniones;
+                    ListadoReuniones.itemSeleccionado = position;
+                    clSeleccionAnterior = holder.clSeleccionItemReuniones;
                 }
             }
         });
@@ -94,8 +90,8 @@ public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerV
             tvFechaReunionLista = itemView.findViewById(R.id.tvFechaReunionLista);
             tvLugarReunionLista = itemView.findViewById(R.id.tvLugarReunionLista);
             tvHoraReunionLista = itemView.findViewById(R.id.tvHoraReunionLista);
-            clSeleccionItemReuniones= itemView.findViewById(R.id.clSeleccionItemReuniones);
-            btnNotificarReunion=fragmentView.findViewById(R.id.btnNotificarReunion);
+            clSeleccionItemReuniones = itemView.findViewById(R.id.clSeleccionItemReuniones);
+            btnNotificarReunion = fragmentView.findViewById(R.id.btnNotificarReunion);
         }
     }
 

@@ -1,7 +1,5 @@
 package sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments;
 
-
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,9 +31,9 @@ import sv.company.give.cruzrojaguardavidas.core.Variables;
  */
 public class ListadoReuniones extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
-    String cookie="", filtrado="pendientes";
+    String cookie = "", filtrado = "pendientes";
     ConexionWebService conexion;
-    JSONObject jsonObjeto=null;
+    JSONObject jsonObjeto = null;
     JSONArray jsonRespuesta;
 
     RecyclerView rvReunion;
@@ -64,36 +62,36 @@ public class ListadoReuniones extends Fragment {
 
         //vinculando los objetos de la vista
         rvReunion = rootview.findViewById(R.id.rvReuniones);
-        btnNotificarReunion=rootview.findViewById(R.id.btnNotificarReunion);
-        spFiltradoReuniones=rootview.findViewById(R.id.spFiltradoReuniones);
+        btnNotificarReunion = rootview.findViewById(R.id.btnNotificarReunion);
+        spFiltradoReuniones = rootview.findViewById(R.id.spFiltradoReuniones);
 
         //Click listeners
         btnNotificarReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                conexion=new ConexionWebService();
+                conexion = new ConexionWebService();
                 try {
                     //conexion.execute(url,parametros,cookie)
-                    String resultado=conexion.execute(Variables.url+"reuniones.php",
-                            "accion=crearNotificacion&tipoReunion="+listArraysReuniones.get(itemSeleccionado)[3]+"&lugar="
-                                    +listArraysReuniones.get(itemSeleccionado)[2]+"&fecha="
-                                    +jsonRespuesta.getJSONObject(itemSeleccionado).getString("fechaHora"),cookie).get();
+                    String resultado = conexion.execute(Variables.url + "reuniones.php",
+                            "accion=crearNotificacion&tipoReunion=" + listArraysReuniones.get(itemSeleccionado)[3] + "&lugar="
+                                    + listArraysReuniones.get(itemSeleccionado)[2] + "&fecha="
+                                    + jsonRespuesta.getJSONObject(itemSeleccionado).getString("fechaHora"), cookie).get();
 
                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
-                    JSONArray jsonRespuesta= new JSONArray(resultado);
+                    JSONArray jsonRespuesta = new JSONArray(resultado);
 
-                    jsonObjeto=jsonRespuesta.getJSONObject(0);
+                    jsonObjeto = jsonRespuesta.getJSONObject(0);
 
-                    if(jsonObjeto.has("error"))
-                        Toast.makeText(getContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
+                    if (jsonObjeto.has("error"))
+                        Toast.makeText(getContext(), jsonObjeto.getString("error"), Toast.LENGTH_LONG).show();
                     else {
                         Toast.makeText(getContext(), jsonObjeto.getString("resultado"), Toast.LENGTH_LONG).show();
                     }
 
                 } catch (ExecutionException | InterruptedException | JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -101,22 +99,22 @@ public class ListadoReuniones extends Fragment {
         spFiltradoReuniones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0)
-                    filtrado="pendientes";
+                if (position == 0)
+                    filtrado = "pendientes";
                 else
-                    filtrado="todas";
+                    filtrado = "todas";
 
                 cargarRecyclerReuniones(rootview);
             }
 
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         return rootview;
     }
 
-    private void cargarRecyclerReuniones(View rootview)
-    {
+    private void cargarRecyclerReuniones(View rootview) {
         //Inicializacion de variables
         listArraysReuniones = new ArrayList<>();
 
@@ -125,7 +123,7 @@ public class ListadoReuniones extends Fragment {
         try {
             //conexion.execute(url,parametros,cookie)
             String resultado = conexion.execute(Variables.url + "reuniones.php",
-                    "accion=obtenerReuniones&tipoFiltrado="+filtrado, cookie).get();
+                    "accion=obtenerReuniones&tipoFiltrado=" + filtrado, cookie).get();
 
             //Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
 
@@ -144,9 +142,9 @@ public class ListadoReuniones extends Fragment {
                 for (int i = 0; i < cantidadReuniones; i++) {
                     jsonObjeto = jsonRespuesta.getJSONObject(i);
 
-                    String[] fechaHora=Funciones.separarFechaHora(jsonObjeto.getString("fechaHora"));
+                    String[] fechaHora = Funciones.separarFechaHora(jsonObjeto.getString("fechaHora"));
 
-                    listArraysReuniones.add(new String[]{fechaHora[0], fechaHora[1], jsonObjeto.getString("lugar"),jsonObjeto.getString("tipoReunion")});
+                    listArraysReuniones.add(new String[]{fechaHora[0], fechaHora[1], jsonObjeto.getString("lugar"), jsonObjeto.getString("tipoReunion")});
                 }
 
                 //se crea el adaptador y se manda la lista con los datos

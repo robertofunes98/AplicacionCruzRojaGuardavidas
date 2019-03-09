@@ -23,7 +23,7 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEnt
  */
 public class EntrenosAdministrador extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
-    static String cookie="";
+    static String cookie = "";
 
     public EntrenosAdministrador() {
         // Required empty public constructor
@@ -45,7 +45,7 @@ public class EntrenosAdministrador extends Fragment {
         setupViewPager(viewPagerEntrenosAdmin);
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabsEntrenosAdmin);
         tabLayout.setupWithViewPager(viewPagerEntrenosAdmin);
-        return  rootView;
+        return rootView;
     }
 
     //Funciones para la carga de fragmentos en las tabs

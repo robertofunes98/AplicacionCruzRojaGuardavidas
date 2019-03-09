@@ -28,10 +28,10 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.Notificaci
  */
 public class Notificaciones extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
-    String cookie="";
+    String cookie = "";
 
     ConexionWebService conexion;
-    JSONObject jsonObjeto=null;
+    JSONObject jsonObjeto = null;
 
     Button btnVerMas;
 
@@ -50,45 +50,42 @@ public class Notificaciones extends Fragment {
         //y por ultimo se almacena en la variable local cookie para ser usada como tercer parametro en la conexion
         cookie = getArguments().getString("cookie");
 
-        btnVerMas=rootView.findViewById(R.id.btnVerMas);
+        btnVerMas = rootView.findViewById(R.id.btnVerMas);
 
-        conexion=new ConexionWebService();
+        conexion = new ConexionWebService();
         try {
             //conexion.execute(url,parametros,cookie)
-            String resultado=conexion.execute(Variables.url+"obtenerNotificaciones.php",
+            String resultado = conexion.execute(Variables.url + "obtenerNotificaciones.php",
                     "accion=obtenerContenidoNotificaciones&carnet="
-                            +Principal.carnetGlobal,cookie).get();
+                            + Principal.carnetGlobal, cookie).get();
 
             //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
-            JSONArray jsonRespuesta= new JSONArray(resultado);
+            JSONArray jsonRespuesta = new JSONArray(resultado);
 
-            int conteo=jsonRespuesta.length();
+            int conteo = jsonRespuesta.length();
 
-            for (int i=0;i<conteo;i++)
-            {
-                jsonObjeto= jsonRespuesta.getJSONObject(i);
+            for (int i = 0; i < conteo; i++) {
+                jsonObjeto = jsonRespuesta.getJSONObject(i);
 
-                if(jsonObjeto.has("error"))
-                    Toast.makeText(getContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
-                else
-                {
-                    cargarFragment(new Notificacion(),jsonObjeto.getString("titulo"),jsonObjeto.getString("contenido")
-                            ,R.drawable.ic_notification,jsonObjeto.getString("tipo"),jsonObjeto.getString("referencia")
-                            ,jsonObjeto.getString("idNotificacion"));
+                if (jsonObjeto.has("error"))
+                    Toast.makeText(getContext(), jsonObjeto.getString("error"), Toast.LENGTH_LONG).show();
+                else {
+                    cargarFragment(new Notificacion(), jsonObjeto.getString("titulo"), jsonObjeto.getString("contenido")
+                            , R.drawable.ic_notification, jsonObjeto.getString("tipo"), jsonObjeto.getString("referencia")
+                            , jsonObjeto.getString("idNotificacion"));
                 }
             }
 
 
         } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
-            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return rootView;
     }
 
-    private void cargarFragment(Fragment fragmento, String titulo, String contenido, int icono, String tipo, String referencia, String idNotificacion)
-    {
+    private void cargarFragment(Fragment fragmento, String titulo, String contenido, int icono, String tipo, String referencia, String idNotificacion) {
         // Creamos un nuevo Bundle
         Bundle args = new Bundle();
 
@@ -105,11 +102,9 @@ public class Notificaciones extends Fragment {
 
         fragmento.setArguments(args);
 
-        FragmentManager manejador=getChildFragmentManager();
-        manejador.beginTransaction().add(R.id.inclusionlayout,fragmento).commit();
+        FragmentManager manejador = getChildFragmentManager();
+        manejador.beginTransaction().add(R.id.inclusionlayout, fragmento).commit();
     }
-
-
 
 
 }

@@ -1,17 +1,11 @@
 package sv.company.give.cruzrojaguardavidas.core;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.widget.Toast;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import sv.company.give.cruzrojaguardavidas.Principal;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 public class Funciones {
     public static String formatearHora(String horaR) {
@@ -22,10 +16,10 @@ public class Funciones {
         if (hora == 0) {
             horaFormateada += "12";
             tipoHora = "AM";
-        }else if(hora == 12){
+        } else if (hora == 12) {
             horaFormateada += String.valueOf(hora);
             tipoHora = "PM";
-        }else if (hora > 12) {
+        } else if (hora > 12) {
             horaFormateada += String.valueOf(hora - 12);
             tipoHora = "PM";
         } else {
@@ -67,26 +61,26 @@ public class Funciones {
         return dias.toString();
     }
 
-    public static String obtenerDiaSemana(String fecha) throws ParseException {
+    static String obtenerDiaSemana(String fecha) throws ParseException {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = sdf.parse(fecha);
         Calendar fechaCal = Calendar.getInstance();
         fechaCal.setTime(date);
-        String inputDateStr = String.format("%s/%s/%s", fechaCal.get(Calendar.DAY_OF_MONTH),fechaCal.get(Calendar.MONTH)+1,fechaCal.get(Calendar.YEAR));
+        String inputDateStr = String.format("%s/%s/%s", fechaCal.get(Calendar.DAY_OF_MONTH), fechaCal.get(Calendar.MONTH) + 1, fechaCal.get(Calendar.YEAR));
         String dayOfWeek = ucFirst(fechaCal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.forLanguageTag("es-ES")));
-        return dayOfWeek+" "+inputDateStr;
+        return dayOfWeek + " " + inputDateStr;
     }
 
     public static String[] separarFechaHora(String fechaHora) throws ParseException {
-        String[] fechaHoraArray=fechaHora.split(" ");
-        String[] fechaSeparada=new String[2];
-        fechaSeparada[0]=obtenerDiaSemana(fechaHoraArray[0]);
-        fechaSeparada[1]=formatearHora(fechaHoraArray[1]);
+        String[] fechaHoraArray = fechaHora.split(" ");
+        String[] fechaSeparada = new String[2];
+        fechaSeparada[0] = obtenerDiaSemana(fechaHoraArray[0]);
+        fechaSeparada[1] = formatearHora(fechaHoraArray[1]);
         return fechaSeparada;
     }
 
-    public static String ucFirst(String str){
+    static String ucFirst(String str) {
         if (str == null || str.isEmpty())
             return str;
         else

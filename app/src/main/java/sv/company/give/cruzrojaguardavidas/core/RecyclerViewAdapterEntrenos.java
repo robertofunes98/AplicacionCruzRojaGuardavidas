@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
-
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 
@@ -22,12 +21,12 @@ public class RecyclerViewAdapterEntrenos extends RecyclerView.Adapter<RecyclerVi
     private Context mContext;
     private View fragmentView;
     private int itemSeleccionado;
-    private ConstraintLayout clSeleccionAnterior=null;
+    private ConstraintLayout clSeleccionAnterior = null;
 
     public RecyclerViewAdapterEntrenos(Context context, ArrayList<String[]> arrayListEntrenos, View viewFragmento) {
         listArraysEntrenos = arrayListEntrenos;
         mContext = context;
-        fragmentView=viewFragmento;
+        fragmentView = viewFragmento;
     }
 
     @NonNull
@@ -54,19 +53,18 @@ public class RecyclerViewAdapterEntrenos extends RecyclerView.Adapter<RecyclerVi
         holder.clItemListaEntrenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(clSeleccionAnterior!=null && clSeleccionAnterior==holder.clSeleccionItem) {
+                if (clSeleccionAnterior != null && clSeleccionAnterior == holder.clSeleccionItem) {
                     clSeleccionAnterior.setBackgroundResource(0);
-                    clSeleccionAnterior=null;
+                    clSeleccionAnterior = null;
                     holder.btnNotificarEntreno.setEnabled(false);
-                }
-                else {
-                    if(clSeleccionAnterior!=null)
+                } else {
+                    if (clSeleccionAnterior != null)
                         clSeleccionAnterior.setBackgroundResource(0);
                     holder.clSeleccionItem.setBackgroundColor(Color.parseColor("#B3485FE3"));
                     holder.btnNotificarEntreno.setEnabled(true);
-                    itemSeleccionado=position;
-                    ListadoEntrenos.itemSeleccionado=itemSeleccionado;
-                    clSeleccionAnterior=holder.clSeleccionItem;
+                    itemSeleccionado = position;
+                    ListadoEntrenos.itemSeleccionado = itemSeleccionado;
+                    clSeleccionAnterior = holder.clSeleccionItem;
                 }
             }
         });
@@ -95,8 +93,8 @@ public class RecyclerViewAdapterEntrenos extends RecyclerView.Adapter<RecyclerVi
             tvHoraEntrenosLista = itemView.findViewById(R.id.tvHoraEntrenosLista);
             tvDiasEntrenoLista = itemView.findViewById(R.id.tvDiasEntrenoLista);
             tvLugarEntrenoLista = itemView.findViewById(R.id.tvLugarEntrenoLista);
-            clSeleccionItem= itemView.findViewById(R.id.clSeleccionItemEntrenos);
-            btnNotificarEntreno=fragmentView.findViewById(R.id.btnNotificarEntreno);
+            clSeleccionItem = itemView.findViewById(R.id.clSeleccionItemEntrenos);
+            btnNotificarEntreno = fragmentView.findViewById(R.id.btnNotificarEntreno);
         }
     }
 

@@ -51,7 +51,7 @@ public class ListadoEntrenos extends Fragment {
 
         //vinculando los objetos de la vista
         rvEntreno = rootview.findViewById(R.id.rvEntrenos);
-        btnNotificarEntreno=rootview.findViewById(R.id.btnNotificarEntreno);
+        btnNotificarEntreno = rootview.findViewById(R.id.btnNotificarEntreno);
 
         //Inicializacion de variables
         listArraysEntrenos = new ArrayList<>();
@@ -105,35 +105,34 @@ public class ListadoEntrenos extends Fragment {
         btnNotificarEntreno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                conexion=new ConexionWebService();
+                conexion = new ConexionWebService();
                 try {
                     //conexion.execute(url,parametros,cookie)
-                    String resultado=conexion.execute(Variables.url+"entrenos.php",
-                            "accion=crearNotificacion&carnet=general&dias="+listArraysEntrenos.get(itemSeleccionado)[0]+"&lugar="
-                                    +listArraysEntrenos.get(itemSeleccionado)[2],cookie).get();
+                    String resultado = conexion.execute(Variables.url + "entrenos.php",
+                            "accion=crearNotificacion&carnet=general&dias=" + listArraysEntrenos.get(itemSeleccionado)[0] + "&lugar="
+                                    + listArraysEntrenos.get(itemSeleccionado)[2], cookie).get();
 
                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
-                    JSONArray jsonRespuesta= new JSONArray(resultado);
+                    JSONArray jsonRespuesta = new JSONArray(resultado);
 
-                    jsonObjeto=jsonRespuesta.getJSONObject(0);
+                    jsonObjeto = jsonRespuesta.getJSONObject(0);
 
-                    if(jsonObjeto.has("error"))
-                        Toast.makeText(getContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
+                    if (jsonObjeto.has("error"))
+                        Toast.makeText(getContext(), jsonObjeto.getString("error"), Toast.LENGTH_LONG).show();
                     else {
                         Toast.makeText(getContext(), jsonObjeto.getString("resultado"), Toast.LENGTH_LONG).show();
                     }
 
                 } catch (ExecutionException | InterruptedException | JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         return rootview;
     }
-
 
 
 }

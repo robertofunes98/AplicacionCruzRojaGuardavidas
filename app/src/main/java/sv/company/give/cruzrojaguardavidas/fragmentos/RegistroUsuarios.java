@@ -30,11 +30,11 @@ import sv.company.give.cruzrojaguardavidas.core.Variables;
 public class RegistroUsuarios extends Fragment {
     Button btnRegistrar;
     ConexionWebService conexion;
-    String cookie="";
+    String cookie = "";
 
     //contenedores de datos a guardar en DB
-    EditText etCarnet,etNombres,etApellidos,etClave,etCorreo,etTelefono,etFechaNacimiento,etCargo;
-    Spinner spRango,spSexo,spPermisos;
+    EditText etCarnet, etNombres, etApellidos, etClave, etCorreo, etTelefono, etFechaNacimiento, etCargo;
+    Spinner spRango, spSexo, spPermisos;
 
     public RegistroUsuarios() {
         // Required empty public constructor
@@ -45,20 +45,20 @@ public class RegistroUsuarios extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_registro_usuarios, container, false);
 
-        btnRegistrar=rootView.findViewById(R.id.btnRegistrar);
+        btnRegistrar = rootView.findViewById(R.id.btnRegistrar);
 
         //contenedores de datos a guardar en DB
-        etCarnet=(rootView.findViewById(R.id.etCarnet));
-        etNombres=(rootView.findViewById(R.id.etNombres));
-        etApellidos=(rootView.findViewById(R.id.etApellidos));
-        etClave=(rootView.findViewById(R.id.etClave));
-        etCorreo=(rootView.findViewById(R.id.etCorreo));
-        etTelefono=(rootView.findViewById(R.id.etTelefono));
-        etFechaNacimiento=(rootView.findViewById(R.id.etFechaNacimiento));
-        etCargo=(rootView.findViewById(R.id.etCargo));
-        spRango=(rootView.findViewById(R.id.spRango));
-        spSexo=(rootView.findViewById(R.id.spSexo));
-        spPermisos=(rootView.findViewById(R.id.spPermisos));
+        etCarnet = (rootView.findViewById(R.id.etCarnet));
+        etNombres = (rootView.findViewById(R.id.etNombres));
+        etApellidos = (rootView.findViewById(R.id.etApellidos));
+        etClave = (rootView.findViewById(R.id.etClave));
+        etCorreo = (rootView.findViewById(R.id.etCorreo));
+        etTelefono = (rootView.findViewById(R.id.etTelefono));
+        etFechaNacimiento = (rootView.findViewById(R.id.etFechaNacimiento));
+        etCargo = (rootView.findViewById(R.id.etCargo));
+        spRango = (rootView.findViewById(R.id.spRango));
+        spSexo = (rootView.findViewById(R.id.spSexo));
+        spPermisos = (rootView.findViewById(R.id.spPermisos));
 
         cookie = getArguments().getString("cookie");
 
@@ -69,7 +69,7 @@ public class RegistroUsuarios extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         // +1 because january is zero
-                        final String selectedDate = year + "-" + (month+1) + "-" + day;
+                        final String selectedDate = year + "-" + (month + 1) + "-" + day;
                         etFechaNacimiento.setText(selectedDate);
                     }
                 });
@@ -80,36 +80,36 @@ public class RegistroUsuarios extends Fragment {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject jsonObjeto=null;
-                conexion=new ConexionWebService();
+                JSONObject jsonObjeto = null;
+                conexion = new ConexionWebService();
                 try {
-                    String resultado=conexion.execute(Variables.url+"registroUsuarios.php","carnet="+etCarnet.getText()+"&nombres="+etNombres.getText()
-                            +"&apellidos="+etApellidos.getText()+"&clave="+etClave.getText()+"&correo="+etCorreo.getText()
-                            +"&telefono="+etTelefono.getText()+"&fechaNacimiento="+etFechaNacimiento.getText()
-                            +"&cargo="+etCargo.getText()+"&rango="+spRango.getSelectedItem().toString()
-                            +"&sexo="+spSexo.getSelectedItem().toString()
-                            +"&permisos="+Long.toString((spPermisos.getSelectedItemId()+1)),cookie).get();
+                    String resultado = conexion.execute(Variables.url + "registroUsuarios.php", "carnet=" + etCarnet.getText() + "&nombres=" + etNombres.getText()
+                            + "&apellidos=" + etApellidos.getText() + "&clave=" + etClave.getText() + "&correo=" + etCorreo.getText()
+                            + "&telefono=" + etTelefono.getText() + "&fechaNacimiento=" + etFechaNacimiento.getText()
+                            + "&cargo=" + etCargo.getText() + "&rango=" + spRango.getSelectedItem().toString()
+                            + "&sexo=" + spSexo.getSelectedItem().toString()
+                            + "&permisos=" + Long.toString((spPermisos.getSelectedItemId() + 1)), cookie).get();
 
                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
-                    JSONArray jsonRespuesta= new JSONArray(resultado);
+                    JSONArray jsonRespuesta = new JSONArray(resultado);
 
-                    jsonObjeto= jsonRespuesta.getJSONObject(0);
+                    jsonObjeto = jsonRespuesta.getJSONObject(0);
 
-                    if(jsonObjeto.getString("resultado").equals("true"))
-                        Toast.makeText(getContext(),"Usuario registrado",Toast.LENGTH_LONG).show();
+                    if (jsonObjeto.getString("resultado").equals("true"))
+                        Toast.makeText(getContext(), "Usuario registrado", Toast.LENGTH_LONG).show();
                     else
-                        Toast.makeText(getContext(),"Fallo al registrar usuario",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Fallo al registrar usuario", Toast.LENGTH_LONG).show();
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
 

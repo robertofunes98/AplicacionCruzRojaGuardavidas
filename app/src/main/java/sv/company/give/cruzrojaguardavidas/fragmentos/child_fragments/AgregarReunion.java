@@ -32,12 +32,12 @@ import sv.company.give.cruzrojaguardavidas.core.Variables;
 public class AgregarReunion extends Fragment {
 
     //Variable que guardara la cookie en el fragment al recibirla
-    String cookie="";
+    String cookie = "";
     ConexionWebService conexion;
-    JSONObject jsonObjeto=null;
+    JSONObject jsonObjeto = null;
 
     Button btnGuardar;
-    EditText etFecha,etHora,etLugar;
+    EditText etFecha, etHora, etLugar;
 
     public AgregarReunion() {
         // Required empty public constructor
@@ -55,35 +55,35 @@ public class AgregarReunion extends Fragment {
         cookie = getArguments().getString("cookie");
 
 
-        btnGuardar=rootView.findViewById(R.id.btnGuardar);
-        etFecha=rootView.findViewById(R.id.etFecha);
-        etHora=rootView.findViewById(R.id.etHora);
-        etLugar=rootView.findViewById(R.id.etLugar);
+        btnGuardar = rootView.findViewById(R.id.btnGuardar);
+        etFecha = rootView.findViewById(R.id.etFecha);
+        etHora = rootView.findViewById(R.id.etHora);
+        etLugar = rootView.findViewById(R.id.etLugar);
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                conexion=new ConexionWebService();
+                conexion = new ConexionWebService();
                 try {
                     //conexion.execute(url,parametros,cookie)
-                    String resultado=conexion.execute(Variables.url+"reuniones.php",
-                            "accion=guardarReunion&fecha="+etFecha.getText()+"&hora="+etHora.getText()+":00"+"&lugar="+etLugar.getText(),cookie).get();
+                    String resultado = conexion.execute(Variables.url + "reuniones.php",
+                            "accion=guardarReunion&fecha=" + etFecha.getText() + "&hora=" + etHora.getText() + ":00" + "&lugar=" + etLugar.getText(), cookie).get();
 
                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
-                    JSONArray jsonRespuesta= new JSONArray(resultado);
+                    JSONArray jsonRespuesta = new JSONArray(resultado);
 
-                    jsonObjeto=jsonRespuesta.getJSONObject(0);
+                    jsonObjeto = jsonRespuesta.getJSONObject(0);
 
-                    if(jsonObjeto.has("error"))
-                        Toast.makeText(getContext(),jsonObjeto.getString("error"),Toast.LENGTH_LONG).show();
+                    if (jsonObjeto.has("error"))
+                        Toast.makeText(getContext(), jsonObjeto.getString("error"), Toast.LENGTH_LONG).show();
                     else {
                         Toast.makeText(getContext(), jsonObjeto.getString("resultado"), Toast.LENGTH_LONG).show();
                     }
 
                 } catch (ExecutionException | InterruptedException | JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -95,7 +95,7 @@ public class AgregarReunion extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         // +1 because january is zero
-                        final String selectedDate = year + "-" + (month+1) + "-" + day;
+                        final String selectedDate = year + "-" + (month + 1) + "-" + day;
                         etFecha.setText(selectedDate);
                     }
                 });
@@ -106,19 +106,19 @@ public class AgregarReunion extends Fragment {
         etHora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int hora,minutos;
+                int hora, minutos;
                 final Calendar c = Calendar.getInstance();
-                hora=c.get(Calendar.HOUR_OF_DAY);
-                minutos=c.get(Calendar.MINUTE);
+                hora = c.get(Calendar.HOUR_OF_DAY);
+                minutos = c.get(Calendar.MINUTE);
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute==0)
-                            etHora.setText(hourOfDay+":"+minute+"0");
+                        if (minute == 0)
+                            etHora.setText(hourOfDay + ":" + minute + "0");
                         else
-                            etHora.setText(hourOfDay+":"+minute);
+                            etHora.setText(hourOfDay + ":" + minute);
                     }
-                },hora,minutos,false);
+                }, hora, minutos, false);
 
                 timePickerDialog.show();
             }

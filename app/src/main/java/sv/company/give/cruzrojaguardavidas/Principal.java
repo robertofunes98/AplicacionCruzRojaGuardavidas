@@ -25,9 +25,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
 
 import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
@@ -130,7 +132,7 @@ public class Principal extends AppCompatActivity
             cargarFragment(new PeticionNuevaClave());
         } else if (id == R.id.opc_reuniones_admin) {
             cargarFragment(new ReunionesAdministrador());
-        } else if(id==R.id.opc_entreno_admin) {
+        } else if (id == R.id.opc_entreno_admin) {
             cargarFragment(new EntrenosAdministrador());
         }
 
@@ -158,49 +160,47 @@ public class Principal extends AppCompatActivity
     }
 
 
-    public void MostrarNotificacion()
-    {
+    public void MostrarNotificacion() {
         ConexionWebService conexionPrincipal;
-        JSONObject jsonObjetoPrincipal=null;
-        conexionPrincipal=new ConexionWebService();
+        JSONObject jsonObjetoPrincipal = null;
+        conexionPrincipal = new ConexionWebService();
         try {
             //conexion.execute(url,parametros,cookie)
-            String resultado=conexionPrincipal.execute(Variables.url+"obtenerNotificaciones.php",
+            String resultado = conexionPrincipal.execute(Variables.url + "obtenerNotificaciones.php",
                     "accion=obtenerNotificacion&carnet="
-                            +Principal.carnetGlobal,cookie).get();
+                            + Principal.carnetGlobal, cookie).get();
 
             //Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
 
-            JSONArray jsonRespuestaPrincipal= new JSONArray(resultado);
+            JSONArray jsonRespuestaPrincipal = new JSONArray(resultado);
 
-            jsonObjetoPrincipal= jsonRespuestaPrincipal.getJSONObject(0);
+            jsonObjetoPrincipal = jsonRespuestaPrincipal.getJSONObject(0);
 
-            if(jsonObjetoPrincipal.has("error"))
-                Toast.makeText(getApplicationContext(),jsonObjetoPrincipal.getString("error"),Toast.LENGTH_LONG).show();
-            else
-            {
-                String cantidadNotificaciones=jsonObjetoPrincipal.getString("resultado"),mensajeInfo="";
+            if (jsonObjetoPrincipal.has("error"))
+                Toast.makeText(getApplicationContext(), jsonObjetoPrincipal.getString("error"), Toast.LENGTH_LONG).show();
+            else {
+                String cantidadNotificaciones = jsonObjetoPrincipal.getString("resultado"), mensajeInfo = "";
 
-                if(cantidadNotificaciones.equals("1"))
-                    mensajeInfo=" notificacion nueva";
+                if (cantidadNotificaciones.equals("1"))
+                    mensajeInfo = " notificacion nueva";
                 else
-                    mensajeInfo=" notificaciones nuevas";
+                    mensajeInfo = " notificaciones nuevas";
 
                 NotificationCompat.Builder mBuilder;
-                NotificationManager mNotifyMgr =(NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+                NotificationManager mNotifyMgr = (NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
 
                 int icono = R.mipmap.ic_launcher;
 
-                Intent intent=new Intent(getApplicationContext(),Principal.class);
-                intent.putExtra("cookie",cookie);
+                Intent intent = new Intent(getApplicationContext(), Principal.class);
+                intent.putExtra("cookie", cookie);
                 PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                mBuilder =new NotificationCompat.Builder(getApplicationContext(),"CruzRojaSantaAna")
+                mBuilder = new NotificationCompat.Builder(getApplicationContext(), "CruzRojaSantaAna")
                         .setContentIntent(pendingIntent)
                         .setSmallIcon(icono)
                         .setContentTitle("Notificaciones nuevas")
-                        .setContentText("Tienes "+cantidadNotificaciones+mensajeInfo)
-                        .setVibrate(new long[] {100, 250, 100, 500})
+                        .setContentText("Tienes " + cantidadNotificaciones + mensajeInfo)
+                        .setVibrate(new long[]{100, 250, 100, 500})
                         .setDefaults(Notification.DEFAULT_SOUND)
                         .setAutoCancel(true)
                         .setContentIntent(pendingIntent);
@@ -208,24 +208,24 @@ public class Principal extends AppCompatActivity
             }
         } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
-    private void ejecutar(){
-        final Handler handler= new Handler();
+    private void ejecutar() {
+        final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 MostrarNotificacion();//llamamos nuestro metodo
-                handler.postDelayed(this,900000);//se ejecutara cada 10 segundos
+                handler.postDelayed(this, 900000);//se ejecutara cada 10 segundos
             }
-        },1000);//empezara a ejecutarse después de 5 milisegundos
+        }, 1000);//empezara a ejecutarse después de 5 milisegundos
     }
 
     /*Codigo encargado de verificar el estado de la conexion*/
 
-    private BroadcastReceiver networkStateReceiver=new BroadcastReceiver() {
+    private BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -233,6 +233,7 @@ public class Principal extends AppCompatActivity
             recargarAplicacion(ni);
         }
     };
+
     @Override
     public void onResume() {
         super.onResume();
@@ -245,16 +246,14 @@ public class Principal extends AppCompatActivity
         super.onPause();
     }
 
-    public void recargarAplicacion(NetworkInfo ni)
-    {
-        if(ni== null)
-        {
+    public void recargarAplicacion(NetworkInfo ni) {
+        if (ni == null) {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(Principal.this);
             builder1.setMessage("Se ha detectado un cambio de red, por favor recargue la aplicacion")
                     .setTitle("Error de conexion").setPositiveButton("Recargar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent intento=new Intent(Principal.this,CapturarCookie.class);
+                    Intent intento = new Intent(Principal.this, CapturarCookie.class);
                     startActivity(intento);
                 }
             }).setCancelable(false).create().show();
