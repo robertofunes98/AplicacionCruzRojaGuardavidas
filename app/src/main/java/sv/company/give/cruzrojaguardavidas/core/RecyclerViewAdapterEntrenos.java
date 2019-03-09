@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapterEntrenos extends RecyclerView.Adapter<RecyclerViewAdapterEntrenos.ViewHolder> {
 
     private ArrayList<String[]> listArraysEntrenos;
     private Context mContext;
@@ -24,7 +24,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private int itemSeleccionado;
     private ConstraintLayout clSeleccionAnterior=null;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String[]> arrayListEntrenos, View viewFragmento) {
+    public RecyclerViewAdapterEntrenos(Context context, ArrayList<String[]> arrayListEntrenos, View viewFragmento) {
         listArraysEntrenos = arrayListEntrenos;
         mContext = context;
         fragmentView=viewFragmento;
@@ -95,7 +95,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tvHoraEntrenosLista = itemView.findViewById(R.id.tvHoraEntrenosLista);
             tvDiasEntrenoLista = itemView.findViewById(R.id.tvDiasEntrenoLista);
             tvLugarEntrenoLista = itemView.findViewById(R.id.tvLugarEntrenoLista);
-            clSeleccionItem= itemView.findViewById(R.id.clSeleccionItem);
+            clSeleccionItem= itemView.findViewById(R.id.clSeleccionItemEntrenos);
             btnNotificarEntreno=fragmentView.findViewById(R.id.btnNotificarEntreno);
         }
     }

@@ -110,11 +110,13 @@ public class AgregarReunion extends Fragment {
                 final Calendar c = Calendar.getInstance();
                 hora=c.get(Calendar.HOUR_OF_DAY);
                 minutos=c.get(Calendar.MINUTE);
-
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        etHora.setText(hourOfDay+":"+minute);
+                        if(minute==0)
+                            etHora.setText(hourOfDay+":"+minute+"0");
+                        else
+                            etHora.setText(hourOfDay+":"+minute);
                     }
                 },hora,minutos,false);
 

@@ -20,7 +20,8 @@ import java.util.concurrent.ExecutionException;
 
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
-import sv.company.give.cruzrojaguardavidas.core.RecyclerViewAdapter;
+import sv.company.give.cruzrojaguardavidas.core.Funciones;
+import sv.company.give.cruzrojaguardavidas.core.RecyclerViewAdapterEntrenos;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
 
 /**
@@ -82,15 +83,14 @@ public class ListadoEntrenos extends Fragment {
                 for (int i = 0; i < cantidadEntrenos; i++) {
                     jsonObjeto = jsonRespuesta.getJSONObject(i);
                     //Convirtiendo el patron a dias
-                    String dias = patron_a_dias(jsonObjeto.getString("patron"));
+                    String dias = Funciones.patron_a_dias(jsonObjeto.getString("patron"));
                     //Convirtiendo la hora a formato 12 horas
-                    String hora = formatearHora(jsonObjeto.getString("hora"));
-
+                    String hora = Funciones.formatearHora(jsonObjeto.getString("hora"));
                     listArraysEntrenos.add(new String[]{dias, hora, jsonObjeto.getString("lugar")});
                 }
 
                 //se crea el adaptador y se manda la lista con los datos
-                final RecyclerViewAdapter adaptador = new RecyclerViewAdapter(getContext(), listArraysEntrenos, rootview);
+                final RecyclerViewAdapterEntrenos adaptador = new RecyclerViewAdapterEntrenos(getContext(), listArraysEntrenos, rootview);
 
                 //se Añade el adaptador al recycler
                 rvEntreno.setAdapter(adaptador);
@@ -134,62 +134,6 @@ public class ListadoEntrenos extends Fragment {
         return rootview;
     }
 
-    private String formatearHora(String horaR) {
-
-        String[] horaSeparada = horaR.split(":");
-        String tipoHora, horaFormateada = "";
-
-        int hora = Integer.parseInt(horaSeparada[0]);
-        String minutos = horaSeparada[1];
-
-        if (hora == 0) {
-            horaFormateada += "12";
-            tipoHora = "AM";
-        }else if(hora == 12){
-            horaFormateada += String.valueOf(hora);
-            tipoHora = "PM";
-        }else if (hora > 12) {
-            horaFormateada += String.valueOf(hora - 12);
-            tipoHora = "PM";
-        } else {
-            horaFormateada = String.valueOf(hora);
-            tipoHora = "AM";
-        }
-
-        return horaFormateada + ":" + minutos + " " + tipoHora;
-    }
-
-    private String patron_a_dias(String patron) {
-        StringBuilder dias = new StringBuilder();
-        for (int i = 0; i < patron.length(); i++) {
-            if (dias.length() > 0)
-                dias.append(", ");
-            switch (patron.charAt(i)) {
-                case '0':
-                    dias.append("Lunes");
-                    break;
-                case '1':
-                    dias.append("Martes");
-                    break;
-                case '2':
-                    dias.append("Miercoles");
-                    break;
-                case '3':
-                    dias.append("Jueves");
-                    break;
-                case '4':
-                    dias.append("Viernes");
-                    break;
-                case '5':
-                    dias.append("Sabado");
-                    break;
-                case '6':
-                    dias.append("Domingo");
-                    break;
-            }
-        }
-        return dias.toString() + ".";
-    }
 
 
 }

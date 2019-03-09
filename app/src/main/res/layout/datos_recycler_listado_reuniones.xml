@@ -2,13 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/clItemListaEntrenos"
+    android:id="@+id/clItemListaReuniones"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@layout/borde">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/clSeleccionItemEntrenos"
+        android:id="@+id/clSeleccionItemReuniones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,20 +16,36 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tvDatosRecycler"
+            android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Días:"
+            android:text="Tipo:"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Fecha:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.023"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTipoReunion" />
 
         <TextView
             android:id="@+id/tvDatosRecycler2"
@@ -43,14 +59,14 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.023"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiasEntrenoLista" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFechaReunionLista" />
 
         <TextView
             android:id="@+id/tvDatosRecycler3"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -59,41 +75,57 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLugarEntrenoLista" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLugarReunionLista" />
 
         <TextView
-            android:id="@+id/tvDiasEntrenoLista"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Lunes, Martes, Miercoles, Jueves, Viernes, sabados y domingo"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvDatosRecycler"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.055"
-            app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler" />
-
-        <TextView
-            android:id="@+id/tvLugarEntrenoLista"
+            android:id="@+id/tvTipoReunion"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Lunes, Martes, Miercoles, Sabado y domingo"
+            android:text="Directiva  general Directiva o generaldddddd"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler2"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiasEntrenoLista" />
+            app:layout_constraintStart_toEndOf="@+id/tv"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvHoraEntrenosLista"
+            android:id="@+id/tvFechaReunionLista"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="Lunes 12/06/19 Lunes 12/06/19 Lunes 12/06/19"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0055"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toBottomOf="@+id/tvTipoReunion" />
+
+        <TextView
+            android:id="@+id/tvLugarReunionLista"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="Base Cruz Roja Santa Ana. Abajo del campero del centroe"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0055"
+            app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler2"
+            app:layout_constraintTop_toBottomOf="@+id/tvFechaReunionLista" />
+
+        <TextView
+            android:id="@+id/tvHoraReunionLista"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_marginStart="8dp"
@@ -103,10 +135,9 @@
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.0055"
             app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler3"
-            app:layout_constraintTop_toBottomOf="@+id/tvLugarEntrenoLista" />
-
+            app:layout_constraintTop_toBottomOf="@+id/tvLugarReunionLista" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,17 +1,5 @@
 package sv.company.give.cruzrojaguardavidas.no_usado;
 
-import android.annotation.SuppressLint;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
-import sv.company.give.cruzrojaguardavidas.core.RecyclerViewAdapter;
-
 public class PosiblesFuturosUsos {
 
     //empieza funcion para llamar en un periodo de tiempo

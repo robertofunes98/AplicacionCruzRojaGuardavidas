@@ -21,11 +21,20 @@
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>
+
+
     <string-array name="permisos">
         <item value="1">Acceso completo al sistema (Solo administradores)</item>
         <item value="2">Acceso como junta directiva</item>
         <item value="3">Acceso como miembro</item>
     </string-array>
+
+
+    <string-array name="filtradoReuniones">
+        <item value="1">Mostrar reuniones pendientes</item>
+        <item value="2">Mostrar todas las reuniones</item>
+    </string-array>
+
 
     <string-array name="tipoEntreno">
         <item value="1">Guardar por dia unico</item>

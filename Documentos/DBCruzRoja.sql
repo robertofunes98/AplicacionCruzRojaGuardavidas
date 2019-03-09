@@ -3,7 +3,7 @@ create database CruzRojaSAGuardavidas;
 use CruzRojaSAGuardavidas;
 
 create table Usuario(
-	carnet varchar(8) not null,
+	carnet varchar(12) not null,
 	nombres varchar(60) not null,
 	apellidos varchar(60) not null,
 	clave varchar(256) not null,
@@ -37,7 +37,7 @@ create table Entreno(
 
 create table UsuarioXEntreno(
 	idUsuarioXEntreno int auto_increment not null,
-	carnet varchar(8) not null,
+	carnet varchar(12) not null,
 	idEntreno int not null,
 	primary key pkUsuarioXEntreno(idUsuarioXEntreno),
 	foreign key fkUsuarioXEntrenoXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -49,6 +49,7 @@ create table Reunion(
 	idReunion int auto_increment not null,
 	fechaHora datetime not null,
 	lugar varchar(30) not null,
+	tipoReunion varchar(20) not null,
 	primary key pkReunion(idReunion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -56,7 +57,7 @@ create table Reunion(
 
 create table UsuarioXReunion(
 	idUsuarioXReunion int auto_increment not null,
-	carnet varchar(8)  not null,
+	carnet varchar(12)  not null,
 	idReunion int  not null,
 	primary key pkUsuarioXEntreno(idUsuarioXReunion),
 	foreign key fkUsuarioXReunionXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -81,7 +82,7 @@ create table Excursion(
 
 create table Acompanyante(
 	idAcompanyante int auto_increment not null,
-	carnet varchar(8) null,
+	carnet varchar(12) null,
 	carnetizado boolean not null,
 	idExcursion int not null,
 	primary key pkAcompanyante(idAcompanyante),
@@ -91,7 +92,7 @@ create table Acompanyante(
 
 create table UsuarioXExcursion(
 	idUsuarioXExcursion int auto_increment not null,
-	carnet varchar(8)  not null,
+	carnet varchar(12)  not null,
 	idExcursion int  not null,
 	primary key pkUsuarioXExcursion(idUsuarioXExcursion),
 	foreign key fkUsuarioXExcursionXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -109,7 +110,7 @@ create table Evento(
 
 create table UsuarioXEvento(
 	idUsuarioXEvento int auto_increment not null,
-	carnet varchar(8) not null,
+	carnet varchar(12) not null,
 	idEvento int not null,
 	primary key pkUsuarioXEvento(idUsuarioXEvento),
 	foreign key fkUsuarioXEventoXUsuario(carnet) references Usuario(carnet) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -123,10 +124,10 @@ create table Notificacion(
 	idNotificacion int auto_increment not null,
 	titulo varchar(60) not null,
 	contenido varchar(200) not null,
-	carnet varchar(8) not null,
+	carnet varchar(12) not null,
 	tipo int not null comment '0=excursion,1=evento,2=informativa,3=cambioClave,etc.',
 	referencia varchar(20) not null comment 'Id de lo que se asigno. Ejemplo: idExcursion',
-	fecha date,
+	fecha datetime,
 	primary key pkNotificacion(idNotificacion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -156,4 +157,8 @@ values(null,'Cambiar clave','Roberto Enrique Funes Rivera con carnet 216-258 nec
 
 
 insert into Reunion 
-values(null,'2018-12-31 16:30:00','Base cruz roja');
+values(null,'2019-4-30 16:30:00','Base cruz roja', 'general');
+
+insert into Reunion 
+values(null,'2019-4-25 16:30:00','Base cruz roja', 'diretiva');
+
