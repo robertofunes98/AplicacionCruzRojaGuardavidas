@@ -15,7 +15,6 @@ import java.util.List;
 
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarReunion;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AsistenciaReuniones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 /**
@@ -91,7 +90,6 @@ public class ReunionesAdministrador extends Fragment {
         Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new AgregarReunion(), "Agregar reunion");
         adapter.addFragment(new ListadoReuniones(), "Listado de reuniones");
-        adapter.addFragment(new AsistenciaReuniones(), "Asistencia a reuniones");
         viewPager.setAdapter(adapter);
     }
 }

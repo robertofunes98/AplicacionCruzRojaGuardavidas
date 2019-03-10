@@ -136,6 +136,88 @@ insert into Usuario
 values('216-258','Roberto Enrique',
 	'Funes Rivera','holamundo',20,'Masculino','1998-6-10','sub-jefe','novato','robertofunes98@gmail.com',1,'7504-8995',1);
 
+insert into Usuario 
+values('216-001','Juan',
+	'Perez','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+/*Descomentar si se necesita tener varios usuarios para pruebas*/
+/*
+insert into Usuario 
+values('216-259','agdgUsuario',
+	'1','holamundo',20,'Masculino','1998-6-10','sub-jefe','novato','robertofunes98@gmail.com',1,'7504-8995',1);
+
+insert into Usuario 
+values('216-001139','asdfUsuario',
+	'2','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-0123019','asfdUsuario',
+	'3','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-0012139','gasUsuario',
+	'4','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-0012319','dfgUsuario',
+	'5','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-12319','jyUsuario',
+	'6','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-0132019','ijkUsuario',
+	'7','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-0319','ftyUsuario',
+	'8','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-0013192','aewUsuario',
+	'9','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+insert into Usuario 
+values('216-0021s3123','ljUsuario',
+	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+
+insert into Usuario 
+values('216-8973587','ljUsufario',
+	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+
+insert into Usuario 
+values('216-897453','ljUgsuario',
+	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+
+insert into Usuario 
+values('216-0321s3123','ljUfsuario',
+	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+
+insert into Usuario 
+values('216-007s3123','ljUsuadrio',
+	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+
+insert into Usuario 
+values('216-0561s3123','ljUsuasdrio',
+	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+
+insert into Usuario 
+values('216-0021673123','ljUsusario',
+	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
+
+
+*/
+
+
+
+
 insert into Excursion 
 values(null,0,null,'Playa metalio rancho privado','2018-12-10',null,'6:00:00',1,'Cruz Roja Departamental Santa Ana','espera');
 

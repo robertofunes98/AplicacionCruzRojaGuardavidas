@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import sv.company.give.cruzrojaguardavidas.core.Asistencia;
 import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.core.Funciones;
@@ -38,7 +39,7 @@ public class ListadoReuniones extends Fragment {
 
     RecyclerView rvReunion;
     ArrayList<String[]> listArraysReuniones;
-    Button btnNotificarReunion;
+    Button btnNotificarReunion, btnAsistenciaReunion;
     Spinner spFiltradoReuniones;
 
 
@@ -63,6 +64,7 @@ public class ListadoReuniones extends Fragment {
         //vinculando los objetos de la vista
         rvReunion = rootview.findViewById(R.id.rvReuniones);
         btnNotificarReunion = rootview.findViewById(R.id.btnNotificarReunion);
+        btnAsistenciaReunion=rootview.findViewById(R.id.btnAsistenciaReunion);
         spFiltradoReuniones = rootview.findViewById(R.id.spFiltradoReuniones);
 
         //Click listeners
@@ -93,6 +95,14 @@ public class ListadoReuniones extends Fragment {
                     e.printStackTrace();
                     Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        btnAsistenciaReunion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Asistencia asistencia=new Asistencia(cookie,listArraysReuniones.get(itemSeleccionado)[0]);
+                asistencia.show(getFragmentManager(),"Asistencia");
             }
         });
 
@@ -144,7 +154,7 @@ public class ListadoReuniones extends Fragment {
 
                     String[] fechaHora = Funciones.separarFechaHora(jsonObjeto.getString("fechaHora"));
 
-                    listArraysReuniones.add(new String[]{fechaHora[0], fechaHora[1], jsonObjeto.getString("lugar"), jsonObjeto.getString("tipoReunion")});
+                    listArraysReuniones.add(new String[]{jsonObjeto.getString("idReunion"),fechaHora[0], fechaHora[1], jsonObjeto.getString("lugar"), jsonObjeto.getString("tipoReunion")});
                 }
 
                 //se crea el adaptador y se manda la lista con los datos

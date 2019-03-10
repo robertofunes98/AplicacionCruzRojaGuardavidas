@@ -189,7 +189,7 @@ public class Principal extends AppCompatActivity
                 NotificationCompat.Builder mBuilder;
                 NotificationManager mNotifyMgr = (NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
 
-                int icono = R.mipmap.ic_launcher;
+                int icono = R.drawable.logo_notificaciones;
 
                 Intent intent = new Intent(getApplicationContext(), Principal.class);
                 intent.putExtra("cookie", cookie);

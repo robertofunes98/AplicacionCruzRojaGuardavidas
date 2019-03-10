@@ -38,10 +38,10 @@ public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerV
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         //Se modifican los aspectos de la vista antes de la creacion de ella en el recycler
-        holder.tvFechaReunionLista.setText(listArraysReuniones.get(position)[0]);
-        holder.tvHoraReunionLista.setText(listArraysReuniones.get(position)[1]);
-        holder.tvLugarReunionLista.setText(listArraysReuniones.get(position)[2]);
-        holder.tvTipoReunion.setText(listArraysReuniones.get(position)[3]);
+        holder.tvFechaReunionLista.setText(listArraysReuniones.get(position)[1]);
+        holder.tvHoraReunionLista.setText(listArraysReuniones.get(position)[2]);
+        holder.tvLugarReunionLista.setText(listArraysReuniones.get(position)[3]);
+        holder.tvTipoReunion.setText(listArraysReuniones.get(position)[4]);
 
         //Aqui se cambia el tipo de borde
         if (position == 0)
@@ -57,11 +57,13 @@ public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerV
                     clSeleccionAnterior.setBackgroundResource(0);
                     clSeleccionAnterior = null;
                     holder.btnNotificarReunion.setEnabled(false);
+                    holder.btnAsistenciaReunion.setEnabled(false);
                 } else {
                     if (clSeleccionAnterior != null)
                         clSeleccionAnterior.setBackgroundResource(0);
                     holder.clSeleccionItemReuniones.setBackgroundColor(Color.parseColor("#B3485FE3"));
                     holder.btnNotificarReunion.setEnabled(true);
+                    holder.btnAsistenciaReunion.setEnabled(true);
                     ListadoReuniones.itemSeleccionado = position;
                     clSeleccionAnterior = holder.clSeleccionItemReuniones;
                 }
@@ -80,7 +82,7 @@ public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerV
         //Se declaran las variables contenedoras de los objetos de la vista
         ConstraintLayout clItemListaReuniones, clSeleccionItemReuniones;
         TextView tvTipoReunion, tvFechaReunionLista, tvLugarReunionLista, tvHoraReunionLista;
-        Button btnNotificarReunion;
+        Button btnNotificarReunion, btnAsistenciaReunion;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -92,6 +94,7 @@ public class RecyclerViewAdapterReuniones extends RecyclerView.Adapter<RecyclerV
             tvHoraReunionLista = itemView.findViewById(R.id.tvHoraReunionLista);
             clSeleccionItemReuniones = itemView.findViewById(R.id.clSeleccionItemReuniones);
             btnNotificarReunion = fragmentView.findViewById(R.id.btnNotificarReunion);
+            btnAsistenciaReunion = fragmentView.findViewById(R.id.btnAsistenciaReunion);
         }
     }
 
