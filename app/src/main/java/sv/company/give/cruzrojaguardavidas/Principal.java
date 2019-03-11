@@ -36,6 +36,7 @@ import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.EntrenosAdministrador;
+import sv.company.give.cruzrojaguardavidas.fragmentos.ExcursionesAdministrador;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.PeticionNuevaClave;
@@ -134,10 +135,12 @@ public class Principal extends AppCompatActivity
             cargarFragment(new ReunionesAdministrador());
         } else if (id == R.id.opc_entreno_admin) {
             cargarFragment(new EntrenosAdministrador());
+        } else if (id==R.id.opc_excursiones_admin){
+            cargarFragment(new ExcursionesAdministrador());
         }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

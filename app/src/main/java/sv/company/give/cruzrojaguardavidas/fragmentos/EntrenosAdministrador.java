@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.core.Adapter;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarEntreno;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 
@@ -50,52 +51,9 @@ public class EntrenosAdministrador extends Fragment {
 
     //Funciones para la carga de fragmentos en las tabs
 
-    private static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
-
-        Adapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        void addFragment(Fragment fragment, String title) {
-            // Creamos un nuevo Bundle
-            Bundle args = new Bundle();
-
-            // Colocamos el String
-            args.putString("cookie", cookie);
-
-            //Colocamos este nuevo Bundle como argumento en el fragmento.
-
-            fragment.setArguments(args);
-
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
-        }
-
-        @Override
-        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-            super.destroyItem(container, position, object);
-        }
-    }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getChildFragmentManager());
+        Adapter adapter = new Adapter(getChildFragmentManager(), cookie);
         adapter.addFragment(new AgregarEntreno(), "Agregar entrenos");
         adapter.addFragment(new ListadoEntrenos(), "Listado de entrenos");
         viewPager.setAdapter(adapter);

@@ -48,6 +48,12 @@
         <item value="3">Mensaje al administrador</item>
     </string-array>
 
+    <string-array name="estadosExcursion">
+        <item value="1">pendiente</item>
+        <item value="2">finalizada</item>
+        <item value="2">pagada</item>
+    </string-array>
+
 
     <!-- activity_capturar_cookie.xml -->
     <string name="cruz_roja">Cruz Roja Santa Ana\nGuardavidas</string>
