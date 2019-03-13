@@ -1,0 +1,119 @@
+package sv.company.give.cruzrojaguardavidas.core;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import sv.company.give.cruzrojaguardavidas.R;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoExcursiones;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
+
+public class RecyclerViewAdapterExcursiones extends RecyclerView.Adapter<RecyclerViewAdapterExcursiones.ViewHolder> {
+
+    private ArrayList<String[]> listArraysExcursiones;
+    private Context mContext;
+    private View fragmentView;
+    private ConstraintLayout clSeleccionAnterior = null;
+
+    public RecyclerViewAdapterExcursiones(Context context, ArrayList<String[]> arrayListExcursiones, View viewFragmento) {
+        listArraysExcursiones = arrayListExcursiones;
+        mContext = context;
+        fragmentView = viewFragmento;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.datos_recycler_listado_excursiones, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+        //Se modifican los aspectos de la vista antes de la creacion de ella en el recycler
+        holder.tvLugar.setText(listArraysExcursiones.get(position)[0]);
+        holder.tvFecha.setText(listArraysExcursiones.get(position)[1]);
+        holder.tvEncargado.setText(listArraysExcursiones.get(position)[2]);
+        holder.tvTelEncargado.setText(listArraysExcursiones.get(position)[3]);
+        holder.tvAsignada.setText(listArraysExcursiones.get(position)[4]);
+        holder.tvEstado.setText(listArraysExcursiones.get(position)[5]);
+        holder.tvCantidadDias.setText(listArraysExcursiones.get(position)[6]);
+        holder.tvMotivoExtraordinario.setText(listArraysExcursiones.get(position)[7]);
+
+        //Aqui se cambia el tipo de borde
+        if (position == 0)
+            holder.clItemLista.setBackground(mContext.getResources().getDrawable((int) R.layout.borde_superior));
+        else
+            holder.clItemLista.setBackground(mContext.getResources().getDrawable((int) R.layout.borde));
+
+        //Se establecen los OnClick para los eventos que necesitemos
+        holder.clItemLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clSeleccionAnterior != null && clSeleccionAnterior == holder.clSeleccionItem) {
+                    clSeleccionAnterior.setBackgroundResource(0);
+                    clSeleccionAnterior = null;
+                    holder.btnAsignarExcursion.setEnabled(false);
+                    holder.btnModificarExcursion.setEnabled(false);
+                    holder.btnBorrarExcursion.setEnabled(false);
+                } else {
+                    if (clSeleccionAnterior != null)
+                        clSeleccionAnterior.setBackgroundResource(0);
+                    holder.clSeleccionItem.setBackgroundColor(Color.parseColor("#B3485FE3"));
+                    holder.btnAsignarExcursion.setEnabled(true);
+                    holder.btnModificarExcursion.setEnabled(true);
+                    holder.btnBorrarExcursion.setEnabled(true);
+                    ListadoExcursiones.itemSeleccionado = position;
+                    clSeleccionAnterior = holder.clSeleccionItem;
+                }
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return listArraysExcursiones.size();
+    }
+
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        //Se declaran las variables contenedoras de los objetos de la vista
+        ConstraintLayout clItemLista, clSeleccionItem;
+        TextView tvLugar, tvFecha, tvEncargado, tvTelEncargado, tvAsignada, tvEstado, tvCantidadDias, tvMotivoExtraordinario;
+        Button btnAsignarExcursion, btnModificarExcursion, btnBorrarExcursion;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            //Se vinculan las variables contenedoras con el objeto
+            clItemLista= itemView.findViewById(R.id.clItemLista);
+            clSeleccionItem= itemView.findViewById(R.id.clSeleccionItem);
+
+            tvFecha = itemView.findViewById(R.id.tvFecha);
+            tvLugar = itemView.findViewById(R.id.tvLugar);
+            tvEncargado = itemView.findViewById(R.id.tvEncargado);
+            tvTelEncargado = itemView.findViewById(R.id.tvTelEncargado);
+            tvAsignada = itemView.findViewById(R.id.tvAsignada);
+            tvEstado = itemView.findViewById(R.id.tvEstado);
+            tvCantidadDias = itemView.findViewById(R.id.tvCantidadDias);
+            tvMotivoExtraordinario = itemView.findViewById(R.id.tvMotivoExtraordinario);
+
+            btnAsignarExcursion = fragmentView.findViewById(R.id.btnAsignarExcursion);
+            btnModificarExcursion = fragmentView.findViewById(R.id.btnModificarExcursion);
+            btnBorrarExcursion = fragmentView.findViewById(R.id.btnBorrarExcursion);
+        }
+    }
+
+}
+

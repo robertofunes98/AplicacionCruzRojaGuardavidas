@@ -35,6 +35,14 @@
         <item value="2">Mostrar todas las reuniones</item>
     </string-array>
 
+    <string-array name="filtradoExcursiones">
+        <item value="1">Mostrar excursiones pendientes</item>
+        <item value="2">Mostrar excursiones finalizadas</item>
+        <item value="2">Mostrar excursiones pagadas</item>
+        <item value="2">Mostrar excursiones borradas</item>
+        <item value="2">Mostrar todas las excursiones</item>
+    </string-array>
+
 
     <string-array name="tipoEntreno">
         <item value="1">Guardar por dia unico</item>

@@ -17,6 +17,7 @@ import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.core.Adapter;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarExcursion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarReunion;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoExcursiones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 /**
@@ -54,6 +55,7 @@ public class ExcursionesAdministrador extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getChildFragmentManager(), cookie);
         adapter.addFragment(new AgregarExcursion(), "Agregar excursión");
+        adapter.addFragment(new ListadoExcursiones(), "Listado de excursiones");
         viewPager.setAdapter(adapter);
     }
 }

@@ -76,6 +76,8 @@ create table Excursion(
 	extraordinaria boolean not null comment 'es extraordinaria si la salida es antes de las 6:30 am o no se recogera en base de cruz roja',
 	motivoExtraordinario varchar(100) null,
 	lugarLLegadaGuardavidas varchar(50) not null,
+	encargadoExcursion varchar(100) not null,
+	telefonoEncargado varchar(20) not null,
 	estado varchar(20) not null comment 'espera, en curso, pendiente, finalizada',
 	primary key pkExcursion(idExcursion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -43,7 +43,7 @@ public class AgregarExcursion extends Fragment {
     ConexionWebService conexion;
     JSONObject jsonObjeto = null;
 
-    EditText etFecha, etFechaFin, etHoraSalida, etLugarExcursion, etLugarLlegadaGv, etExtraordinaria;
+    EditText etFecha, etFechaFin, etHoraSalida, etLugarExcursion, etLugarLlegadaGv, etExtraordinaria, etEncargadoExcursion, etTelefonoEncargado;
     CheckBox cbDiaMultiple, cbExtraordinaria;
     TextView tvFechaFin, tvExtraordinaria;
 
@@ -77,6 +77,8 @@ public class AgregarExcursion extends Fragment {
         etLugarExcursion = rootView.findViewById(R.id.etLugarExcursion);
         etLugarLlegadaGv = rootView.findViewById(R.id.etLugarLlegadaGv);
         etExtraordinaria=rootView.findViewById(R.id.etExtraordinaria);
+        etEncargadoExcursion=rootView.findViewById(R.id.etEncargadoExcursion);
+        etTelefonoEncargado=rootView.findViewById(R.id.etTelefonoEncargado);
         tvFechaFin=rootView.findViewById(R.id.tvFechaFin);
         tvExtraordinaria=rootView.findViewById(R.id.tvExtraordinaria);
 
@@ -178,7 +180,8 @@ public class AgregarExcursion extends Fragment {
 
                 if (etFecha.getText().toString().isEmpty() || (cbDiaMultiple.isChecked() && etFechaFin.getText().toString().isEmpty()) ||
                         (cbDiaMultiple.isChecked() && etExtraordinaria.getText().toString().isEmpty()) || etHoraSalida.getText().toString().isEmpty()
-                        || etLugarExcursion.getText().toString().isEmpty() || etLugarLlegadaGv.getText().toString().isEmpty())
+                        || etLugarExcursion.getText().toString().isEmpty() || etLugarLlegadaGv.getText().toString().isEmpty()
+                        || etEncargadoExcursion.getText().toString().isEmpty() || etTelefonoEncargado.getText().toString().isEmpty())
                     Toast.makeText(getContext(), "Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
                 else
                     guardarExcursion(cbDiaMultiple.isChecked(), cbExtraordinaria.isChecked());
@@ -199,7 +202,8 @@ public class AgregarExcursion extends Fragment {
                 int cantidadDias=(int) TimeUnit.MILLISECONDS.toDays(diff);
                 datos="accion=guardarExcursion&tipo=0&cantidadDias="+(cantidadDias+1)+"&lugarExcursion="+etLugarExcursion.getText()+"&fechaInicio="+etFecha.getText()
                         +"&fechaFin="+etFechaFin.getText()+ "&horaSalida=" + etHoraSalida.getText()+"&motivoExtraordinario="+etExtraordinaria.getText()
-                        +"&lugarLLegadaGuardavidas="+etLugarLlegadaGv.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
+                        +"&lugarLLegadaGuardavidas="+etLugarLlegadaGv.getText()+"&encargadoExcursion="+etEncargadoExcursion.getText()+"&telefonoEncargado="
+                        +etTelefonoEncargado.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
             } else if(diaMultiple){
                 Date d1=fecha.getTime();
                 Date d2=fechaFin.getTime();
@@ -207,16 +211,19 @@ public class AgregarExcursion extends Fragment {
                 int cantidadDias=(int) TimeUnit.MILLISECONDS.toDays(diff);
                 datos="accion=guardarExcursion&tipo=1&diaMultiple=1&cantidadDias="+(cantidadDias+1)+"&lugarExcursion="+etLugarExcursion.getText()+"&fechaInicio="
                         +etFecha.getText()+"&fechaFin="+etFechaFin.getText()+ "&horaSalida=" + etHoraSalida.getText()+"&lugarLLegadaGuardavidas="
-                        +etLugarLlegadaGv.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
+                        +etLugarLlegadaGv.getText()+"&encargadoExcursion="+etEncargadoExcursion.getText()+"&telefonoEncargado="
+                        +etTelefonoEncargado.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
             } else if(extraordinaria){
                 datos="accion=guardarExcursion&tipo=2&diaMultiple=0&lugarExcursion="+etLugarExcursion.getText()+"&fechaInicio="
                         +etFecha.getText()+"&horaSalida=" + etHoraSalida.getText()+"&extraordinaria=1"+"&motivoExtraordinario="+etExtraordinaria.getText()
-                        +"&lugarLLegadaGuardavidas="+etLugarLlegadaGv.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
+                        +"&lugarLLegadaGuardavidas="+etLugarLlegadaGv.getText()+"&encargadoExcursion="+etEncargadoExcursion.getText()+"&telefonoEncargado="
+                        +etTelefonoEncargado.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
             }
             else{
                 datos="accion=guardarExcursion&tipo=3&diaMultiple=0&lugarExcursion="+etLugarExcursion.getText()+"&fechaInicio="
                         +etFecha.getText()+"&horaSalida=" + etHoraSalida.getText()+"&extraordinaria=0"
-                        +"&lugarLLegadaGuardavidas="+etLugarLlegadaGv.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
+                        +"&lugarLLegadaGuardavidas="+etLugarLlegadaGv.getText()+"&encargadoExcursion="+etEncargadoExcursion.getText()+"&telefonoEncargado="
+                        +etTelefonoEncargado.getText()+"&estado="+spEstadoExcursion.getSelectedItem().toString();
             }
 
             //conexion.execute(url,parametros,cookie)
