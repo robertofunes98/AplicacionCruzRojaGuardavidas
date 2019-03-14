@@ -70,8 +70,8 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:focusable="false"
+                android:hint="yyyy-MM-dd"
                 android:inputType="date"
-                android:text="dd/MM/yyyy"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,6 @@
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="date"
-                android:text="dd/MM/yyyy"
                 android:textAlignment="center"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -178,6 +177,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etEncargadoExcursion" />
 
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Numero de guardavidas:"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.051"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etTelefonoEncargado" />
+
             <EditText
                 android:id="@+id/etHoraSalida"
                 android:layout_width="97dp"
@@ -187,8 +200,8 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:focusable="false"
+                android:hint="hh:mm "
                 android:inputType="time"
-                android:text="hh:mm "
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.032"
@@ -245,6 +258,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
+                android:hint="1234-5678"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
@@ -332,7 +346,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.026"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etTelefonoEncargado" />
+                app:layout_constraintTop_toBottomOf="@+id/etNumeroGuardavidas" />
 
             <Spinner
                 android:id="@+id/spEstadoExcursion"
@@ -345,6 +359,22 @@
                 app:layout_constraintHorizontal_bias="0.036"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <EditText
+                android:id="@+id/etNumeroGuardavidas"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="#"
+                android:inputType="number"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.035"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

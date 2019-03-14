@@ -80,6 +80,22 @@
             app:layout_constraintTop_toBottomOf="@+id/tvEncargado" />
 
         <TextView
+            android:id="@+id/tvDatosRecycler6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="# de guardavidas:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.004"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTelEncargado" />
+
+        <TextView
             android:id="@+id/tvDatosRecycler4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,7 +109,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.004"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTelEncargado" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNumeroGuardavidas" />
 
         <TextView
             android:id="@+id/tvDatosRecycler5"
@@ -112,7 +128,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAsignada" />
 
         <TextView
-            android:id="@+id/tvDatosRecycler6"
+            android:id="@+id/tvCantidadDiasEstatico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -129,7 +145,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvEstado" />
 
         <TextView
-            android:id="@+id/tvDatosRecycler7"
+            android:id="@+id/tvMotivoExtraordinarioEstatico"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -207,24 +223,40 @@
             app:layout_constraintTop_toBottomOf="@+id/tvEncargado" />
 
         <TextView
-            android:id="@+id/tvAsignada"
-            android:layout_width="209dp"
-            android:layout_height="27dp"
+            android:id="@+id/tvNumeroGuardavidas"
+            android:layout_width="43dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Juan perez juan perez juan perez"
+            android:text="2"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler6"
+            app:layout_constraintTop_toBottomOf="@+id/tvTelEncargado" />
+
+        <TextView
+            android:id="@+id/tvAsignada"
+            android:layout_width="209dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Juan perez juan perez juan perez Juan perez juan perez juan perez"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler4"
-            app:layout_constraintTop_toBottomOf="@+id/tvTelEncargado" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNumeroGuardavidas" />
 
         <TextView
             android:id="@+id/tvEstado"
             android:layout_width="243dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -239,7 +271,7 @@
         <TextView
             android:id="@+id/tvCantidadDias"
             android:layout_width="189dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -248,8 +280,8 @@
             android:textSize="18sp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler6"
+            app:layout_constraintHorizontal_bias="0.032"
+            app:layout_constraintStart_toEndOf="@+id/tvCantidadDiasEstatico"
             app:layout_constraintTop_toBottomOf="@+id/tvEstado" />
 
         <TextView
@@ -259,15 +291,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:text="Juan perez juan perez juan perez Juan perez juan perez juan perez"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/tvDatosRecycler7"
+            app:layout_constraintStart_toEndOf="@+id/tvMotivoExtraordinarioEstatico"
             app:layout_constraintTop_toBottomOf="@+id/tvCantidadDias" />
     </android.support.constraint.ConstraintLayout>
 

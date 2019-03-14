@@ -69,6 +69,7 @@ create table Excursion(
 	idExcursion int auto_increment not null,
 	diaMultiple boolean not null,
 	cantidadDias int null,
+	numeroGuardavidas int not null,
 	lugarExcursion varchar(60) not null,
 	fechaInicio date not null,
 	fechaFin date null,

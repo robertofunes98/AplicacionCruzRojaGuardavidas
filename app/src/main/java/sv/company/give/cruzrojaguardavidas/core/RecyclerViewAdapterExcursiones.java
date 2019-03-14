@@ -15,9 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import sv.company.give.cruzrojaguardavidas.R;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoExcursiones;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 public class RecyclerViewAdapterExcursiones extends RecyclerView.Adapter<RecyclerViewAdapterExcursiones.ViewHolder> {
 
@@ -48,8 +46,33 @@ public class RecyclerViewAdapterExcursiones extends RecyclerView.Adapter<Recycle
         holder.tvTelEncargado.setText(listArraysExcursiones.get(position)[3]);
         holder.tvAsignada.setText(listArraysExcursiones.get(position)[4]);
         holder.tvEstado.setText(listArraysExcursiones.get(position)[5]);
-        holder.tvCantidadDias.setText(listArraysExcursiones.get(position)[6]);
-        holder.tvMotivoExtraordinario.setText(listArraysExcursiones.get(position)[7]);
+        holder.tvNumeroGuardavidas.setText(listArraysExcursiones.get(position)[11]);
+
+
+        if(listArraysExcursiones.get(position)[9].equals("1")) {
+            holder.tvCantidadDias.setText(listArraysExcursiones.get(position)[6]);
+            holder.tvCantidadDias.setVisibility(View.VISIBLE);
+            holder.tvCantidadDiasEstatico.setVisibility(View.VISIBLE);
+        }
+        else if(listArraysExcursiones.get(position)[10].equals("0")){
+            holder.tvCantidadDias.setVisibility(View.GONE);
+            holder.tvCantidadDiasEstatico.setVisibility(View.GONE);
+        }
+        else {
+            holder.tvCantidadDias.setVisibility(View.INVISIBLE);
+            holder.tvCantidadDiasEstatico.setVisibility(View.INVISIBLE);
+        }
+
+        if(listArraysExcursiones.get(position)[10].equals("1")) {
+            holder.tvMotivoExtraordinario.setText(listArraysExcursiones.get(position)[6]);
+            holder.tvMotivoExtraordinario.setVisibility(View.VISIBLE);
+            holder.tvMotivoExtraordinarioEstatico.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.tvMotivoExtraordinario.setVisibility(View.GONE);
+            holder.tvMotivoExtraordinarioEstatico.setVisibility(View.GONE);
+        }
+
 
         //Aqui se cambia el tipo de borde
         if (position == 0)
@@ -91,7 +114,8 @@ public class RecyclerViewAdapterExcursiones extends RecyclerView.Adapter<Recycle
 
         //Se declaran las variables contenedoras de los objetos de la vista
         ConstraintLayout clItemLista, clSeleccionItem;
-        TextView tvLugar, tvFecha, tvEncargado, tvTelEncargado, tvAsignada, tvEstado, tvCantidadDias, tvMotivoExtraordinario;
+        TextView tvLugar, tvFecha, tvEncargado, tvTelEncargado, tvAsignada, tvEstado, tvCantidadDias, tvMotivoExtraordinario, tvCantidadDiasEstatico,
+                tvMotivoExtraordinarioEstatico, tvNumeroGuardavidas;
         Button btnAsignarExcursion, btnModificarExcursion, btnBorrarExcursion;
 
         ViewHolder(View itemView) {
@@ -108,6 +132,9 @@ public class RecyclerViewAdapterExcursiones extends RecyclerView.Adapter<Recycle
             tvEstado = itemView.findViewById(R.id.tvEstado);
             tvCantidadDias = itemView.findViewById(R.id.tvCantidadDias);
             tvMotivoExtraordinario = itemView.findViewById(R.id.tvMotivoExtraordinario);
+            tvCantidadDiasEstatico=itemView.findViewById(R.id.tvCantidadDiasEstatico);
+            tvMotivoExtraordinarioEstatico=itemView.findViewById(R.id.tvMotivoExtraordinarioEstatico);
+            tvNumeroGuardavidas=itemView.findViewById(R.id.tvNumeroGuardavidas);
 
             btnAsignarExcursion = fragmentView.findViewById(R.id.btnAsignarExcursion);
             btnModificarExcursion = fragmentView.findViewById(R.id.btnModificarExcursion);

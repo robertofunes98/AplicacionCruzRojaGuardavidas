@@ -35,8 +35,8 @@ public class ListadoExcursiones extends Fragment {
     //Variable que guardara la cookie en el fragment al recibirla
     String cookie = "", filtrado = "pendientes";
     ConexionWebService conexion;
-    JSONObject jsonObjeto = null;
-    JSONArray jsonRespuesta;
+    JSONObject jsonObjeto = null, jsonObjetoAsignaciones;
+    JSONArray jsonRespuesta, jsonRespuestaAsignaciones;
 
     RecyclerView rvExcursion;
     ArrayList<String[]> listArraysExcursiones;
@@ -160,12 +160,21 @@ public class ListadoExcursiones extends Fragment {
                 for (int i = 0; i < cantidad; i++) {
                     jsonObjeto = jsonRespuesta.getJSONObject(i);
 
+                    conexion = new ConexionWebService();
+                    //obteniendo los asignados a la excursion
+                    String resultadoAsignaciones = conexion.execute(Variables.url + "excursiones.php",
+                            "accion=obtenerAsignaciones&idExcursion="+jsonObjeto.getString("idExcursion"), cookie).get();
+
+                    jsonRespuestaAsignaciones = new JSONArray(resultadoAsignaciones);
+                    jsonObjetoAsignaciones = jsonRespuestaAsignaciones.getJSONObject(0);
+
                     String[] fechaHora = Funciones.separarFechaHora(jsonObjeto.getString("fechaInicio")+" "+jsonObjeto.getString("horaSalida"));
 
                     listArraysExcursiones.add(new String[]{jsonObjeto.getString("lugarExcursion"),fechaHora[0]+" a las "+ fechaHora[1],
                             jsonObjeto.getString("encargadoExcursion"), jsonObjeto.getString("telefonoEncargado"),
-                            jsonObjeto.getString("encargadoExcursion")+" NO", jsonObjeto.getString("estado"), jsonObjeto.getString("cantidadDias"),
-                            jsonObjeto.getString("motivoExtraordinario"),jsonObjeto.getString("idExcursion") });
+                            jsonObjetoAsignaciones.getString("resultado"), jsonObjeto.getString("estado"), jsonObjeto.getString("cantidadDias"),
+                            jsonObjeto.getString("motivoExtraordinario"),jsonObjeto.getString("idExcursion"),jsonObjeto.getString("diaMultiple"),
+                            jsonObjeto.getString("extraordinaria"), jsonObjeto.getString("numeroGuardavidas")});
                 }
 
                 //se crea el adaptador y se manda la lista con los datos
