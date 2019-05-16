@@ -34,6 +34,9 @@ public class ConexionWebService extends AsyncTask<String, String, String> {
             conexionHttp = (HttpURLConnection) url.openConnection();
             conexionHttp.setReadTimeout(10000);
             conexionHttp.setConnectTimeout(15000);
+
+
+
             //Esta cadena es la cookie que permite la conexion al servidor web, es necesario renovarla de vez en cuando
             //Todos estos datos se sacan  desde un navegador en informacion de la pagina
             //si se trabajase con un web service local se debe comentar la linea de la cookie

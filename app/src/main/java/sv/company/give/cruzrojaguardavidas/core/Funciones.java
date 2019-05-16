@@ -80,7 +80,7 @@ public class Funciones {
         return fechaSeparada;
     }
 
-    static String ucFirst(String str) {
+    public static String ucFirst(String str) {
         if (str == null || str.isEmpty())
             return str;
         else

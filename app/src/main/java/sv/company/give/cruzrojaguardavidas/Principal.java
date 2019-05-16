@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -24,6 +25,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -32,12 +37,14 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
+import sv.company.give.cruzrojaguardavidas.core.CalendarioPersonalizadoDialog;
 import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.EntrenosAdministrador;
 import sv.company.give.cruzrojaguardavidas.fragmentos.ExcursionesAdministrador;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
+import sv.company.give.cruzrojaguardavidas.fragmentos.MiDisponibilidad;
 import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
 import sv.company.give.cruzrojaguardavidas.fragmentos.PeticionNuevaClave;
 import sv.company.give.cruzrojaguardavidas.fragmentos.RegistroUsuarios;
@@ -46,8 +53,8 @@ import sv.company.give.cruzrojaguardavidas.fragmentos.ReunionesAdministrador;
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     String cookie = "";
-    public static String carnetGlobal = "216-258";
-    public static int tipoUsuario = 1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +124,8 @@ public class Principal extends AppCompatActivity
             cargarFragment(new RegistroUsuarios());
         } else if (id == R.id.opc_cambiar_claves) {
             cargarFragment(new CambiarClaves());
+        } else if(id==R.id.opc_mi_disponibilidad) {
+            cargarFragment(new MiDisponibilidad(cookie));
         } else if (id == R.id.opc_entrenos) {
 
         } else if (id == R.id.opc_eventos) {
@@ -145,7 +154,7 @@ public class Principal extends AppCompatActivity
         return true;
     }
 
-    private void cargarFragment(Fragment fragmento) {
+    public void cargarFragment(Fragment fragmento) {
 
         // Creamos un nuevo Bundle
         Bundle args = new Bundle();
@@ -171,7 +180,7 @@ public class Principal extends AppCompatActivity
             //conexion.execute(url,parametros,cookie)
             String resultado = conexionPrincipal.execute(Variables.url + "obtenerNotificaciones.php",
                     "accion=obtenerNotificacion&carnet="
-                            + Principal.carnetGlobal, cookie).get();
+                            + Variables.carnetGlobal, cookie).get();
 
             //Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
 

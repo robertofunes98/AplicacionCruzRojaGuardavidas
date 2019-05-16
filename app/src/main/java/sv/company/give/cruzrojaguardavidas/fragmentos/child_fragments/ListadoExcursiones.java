@@ -21,11 +21,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import sv.company.give.cruzrojaguardavidas.R;
-import sv.company.give.cruzrojaguardavidas.core.Asistencia;
 import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.core.Funciones;
+import sv.company.give.cruzrojaguardavidas.core.Guardavidas;
 import sv.company.give.cruzrojaguardavidas.core.RecyclerViewAdapterExcursiones;
-import sv.company.give.cruzrojaguardavidas.core.RecyclerViewAdapterReuniones;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
 
 /**
@@ -42,6 +41,7 @@ public class ListadoExcursiones extends Fragment {
     ArrayList<String[]> listArraysExcursiones;
     Button btnAsignarExcursion, btnBorrarExcursion, btnModificarExcursion;
     Spinner spFiltradoExcursiones;
+
 
 
     public static int itemSeleccionado;
@@ -73,13 +73,14 @@ public class ListadoExcursiones extends Fragment {
         btnBorrarExcursion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(),String.valueOf(itemSeleccionado),Toast.LENGTH_SHORT).show();
                 conexion = new ConexionWebService();
                 try {
                     //conexion.execute(url,parametros,cookie)
                     String resultado = conexion.execute(Variables.url + "excursiones.php",
-                            "accion=borrarExcursion&idExcursion=" + listArraysExcursiones.get(itemSeleccionado)[8], cookie).get();
+                            "accion=borrarExcursion&idExcursion=" + listArraysExcursiones.get(itemSeleccionado)[9], cookie).get();
 
-                    Toast.makeText(getContext(),listArraysExcursiones.get(itemSeleccionado)[8],Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),listArraysExcursiones.get(itemSeleccionado)[9],Toast.LENGTH_LONG).show();
 
                     JSONArray jsonRespuesta = new JSONArray(resultado);
 
@@ -98,13 +99,14 @@ public class ListadoExcursiones extends Fragment {
             }
         });
 
-//        btnAsistenciaReunion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Asistencia asistencia=new Asistencia(cookie,listArraysReuniones.get(itemSeleccionado)[0]);
-//                asistencia.show(getFragmentManager(),"Asistencia");
-//            }
-//        });
+        btnAsignarExcursion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Guardavidas objSelec=new Guardavidas(cookie, Guardavidas.ASIGNAR_GUARDAVIDAS, listArraysExcursiones.get(itemSeleccionado),false);
+                objSelec.show(getFragmentManager(), "lol");
+            }
+        });
+
 
         spFiltradoExcursiones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -168,13 +170,11 @@ public class ListadoExcursiones extends Fragment {
                     jsonRespuestaAsignaciones = new JSONArray(resultadoAsignaciones);
                     jsonObjetoAsignaciones = jsonRespuestaAsignaciones.getJSONObject(0);
 
-                    String[] fechaHora = Funciones.separarFechaHora(jsonObjeto.getString("fechaInicio")+" "+jsonObjeto.getString("horaSalida"));
-
-                    listArraysExcursiones.add(new String[]{jsonObjeto.getString("lugarExcursion"),fechaHora[0]+" a las "+ fechaHora[1],
-                            jsonObjeto.getString("encargadoExcursion"), jsonObjeto.getString("telefonoEncargado"),
+                    listArraysExcursiones.add(new String[]{jsonObjeto.getString("lugarExcursion"),jsonObjeto.getString("fechaInicio"),
+                            jsonObjeto.getString("horaSalida"), jsonObjeto.getString("encargadoExcursion"), jsonObjeto.getString("telefonoEncargado"),
                             jsonObjetoAsignaciones.getString("resultado"), jsonObjeto.getString("estado"), jsonObjeto.getString("cantidadDias"),
                             jsonObjeto.getString("motivoExtraordinario"),jsonObjeto.getString("idExcursion"),jsonObjeto.getString("diaMultiple"),
-                            jsonObjeto.getString("extraordinaria"), jsonObjeto.getString("numeroGuardavidas")});
+                            jsonObjeto.getString("extraordinaria"), jsonObjeto.getString("numeroGuardavidas"), jsonObjeto.getString("lugarLlegadaGuardavidas")});
                 }
 
                 //se crea el adaptador y se manda la lista con los datos
@@ -183,7 +183,7 @@ public class ListadoExcursiones extends Fragment {
                 //se Añade el adaptador al recycler
                 rvExcursion.setAdapter(adaptador);
             }
-        } catch (ExecutionException | InterruptedException | JSONException | ParseException e) {
+        } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }

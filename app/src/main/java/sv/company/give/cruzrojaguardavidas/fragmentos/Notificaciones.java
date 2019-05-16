@@ -1,6 +1,7 @@
 package sv.company.give.cruzrojaguardavidas.fragmentos;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -52,12 +53,18 @@ public class Notificaciones extends Fragment {
 
         btnVerMas = rootView.findViewById(R.id.btnVerMas);
 
+        cargarNotificaciones();
+
+        return rootView;
+    }
+
+    public void cargarNotificaciones() {
         conexion = new ConexionWebService();
         try {
             //conexion.execute(url,parametros,cookie)
             String resultado = conexion.execute(Variables.url + "obtenerNotificaciones.php",
                     "accion=obtenerContenidoNotificaciones&carnet="
-                            + Principal.carnetGlobal, cookie).get();
+                            + Variables.carnetGlobal, cookie).get();
 
             //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
@@ -82,10 +89,9 @@ public class Notificaciones extends Fragment {
             e.printStackTrace();
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        return rootView;
     }
 
-    private void cargarFragment(Fragment fragmento, String titulo, String contenido, int icono, String tipo, String referencia, String idNotificacion) {
+    private void cargarFragment(Fragment fragmento, String titulo, String contenido, int icono, String tipo, String referencia, String idNotificacion ) {
         // Creamos un nuevo Bundle
         Bundle args = new Bundle();
 
@@ -97,6 +103,8 @@ public class Notificaciones extends Fragment {
         args.putString("tipo", tipo);
         args.putString("referencia", referencia);
         args.putString("idNotificacion", idNotificacion);
+
+
 
         //Colocamos este nuevo Bundle como argumento en el fragmento.
 

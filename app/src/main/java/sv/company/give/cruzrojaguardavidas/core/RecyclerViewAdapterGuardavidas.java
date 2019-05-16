@@ -6,13 +6,17 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import sv.company.give.cruzrojaguardavidas.R;
 
@@ -23,10 +27,17 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
     private View fragmentView;
     private ConstraintLayout clSeleccionAnterior = null;
 
+
+    //prueba
+    private boolean[] arraySelecciones;
+    private SparseBooleanArray seleccionados;
+
     public RecyclerViewAdapterGuardavidas(Context context, ArrayList<String[]> arrayListGuardavidas, View viewFragmento) {
         listArrayGuardavidas = arrayListGuardavidas;
         mContext = context;
         fragmentView = viewFragmento;
+        arraySelecciones = new boolean[arrayListGuardavidas.size()];
+        seleccionados = new SparseBooleanArray();
     }
 
     @NonNull
@@ -38,38 +49,23 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        //Se modifican los aspectos de la vista antes de la creacion de ella en el recycler
-        holder.tvNombreCompleto.setText(listArrayGuardavidas.get(position)[0]);
-
-        //Aqui se cambia el tipo de borde
-        if (position == 0)
-            holder.clItemListaGuardavidas.setBackground(mContext.getResources().getDrawable((int) R.layout.borde_superior));
-        else
-            holder.clItemListaGuardavidas.setBackground(mContext.getResources().getDrawable((int) R.layout.borde));
-
-        //Se establecen los OnClick para los eventos que necesitemos
-        holder.clItemListaGuardavidas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clSeleccionAnterior != null && clSeleccionAnterior == holder.clSeleccionItemGuardavidas) {
-                    clSeleccionAnterior.setBackgroundResource(0);
-                    clSeleccionAnterior = null;
-                    holder.btnConfirmar.setEnabled(false);
-                } else {
-                    if (clSeleccionAnterior != null)
-                        clSeleccionAnterior.setBackgroundResource(0);
-                    holder.clSeleccionItemGuardavidas.setBackgroundColor(Color.parseColor("#B3485FE3"));
-                    holder.btnConfirmar.setEnabled(true);
-                    Guardavidas.itemSeleccionado = position;
-                    clSeleccionAnterior = holder.clSeleccionItemGuardavidas;
-                }
-            }
-        });
+        holder.bindView(position);
     }
 
     @Override
     public int getItemCount() {
         return listArrayGuardavidas.size();
+    }
+
+    /*Devuelve aquellos objetos marcados.*/
+    public LinkedList<String[]> obtenerSeleccionados(){
+        LinkedList<String[]> marcados = new LinkedList<>();
+        for (int i = 0; i < listArrayGuardavidas.size(); i++) {
+            if (seleccionados.get(i)){
+                marcados.add(listArrayGuardavidas.get(i));
+            }
+        }
+        return marcados;
     }
 
 
@@ -79,17 +75,76 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
         ConstraintLayout clItemListaGuardavidas, clSeleccionItemGuardavidas;
         TextView tvNombreCompleto;
         Button btnConfirmar;
+        Integer posicion;
+        View item;
+
+        //borrar
+        TextView tvPruebas;
 
         ViewHolder(View itemView) {
             super(itemView);
             //Se vinculan las variables contenedoras con el objeto
-            clItemListaGuardavidas= itemView.findViewById(R.id.clItemListaGuardavidas);
-            clSeleccionItemGuardavidas= itemView.findViewById(R.id.clSeleccionItemGuardavidas);
+            clItemListaGuardavidas = itemView.findViewById(R.id.clItemListaGuardavidas);
+            clSeleccionItemGuardavidas = itemView.findViewById(R.id.clSeleccionItemGuardavidas);
 
             tvNombreCompleto = itemView.findViewById(R.id.tvNombreCompleto);
 
             btnConfirmar = fragmentView.findViewById(R.id.btnConfirmar);
+
+            item = itemView;
+
+            //borrar
+            tvPruebas = fragmentView.findViewById(R.id.tvPruebas);
         }
+
+        public void bindView(final int position) {
+
+            //Se modifican los aspectos de la vista antes de la creacion de ella en el recycler
+            tvNombreCompleto.setText(listArrayGuardavidas.get(position)[0]);
+
+            //Aqui se cambia el tipo de borde
+            if (position == 0)
+                clItemListaGuardavidas.setBackground(mContext.getResources().getDrawable((int) R.layout.borde_superior));
+            else
+                clItemListaGuardavidas.setBackground(mContext.getResources().getDrawable((int) R.layout.borde));
+
+
+            //Selecciona el objeto si estaba seleccionado
+            if (seleccionados.get(getAdapterPosition()))
+                item.setSelected(true);
+            else
+                item.setSelected(false);
+
+            /*Selecciona/deselecciona un ítem*/
+            item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!v.isSelected()) {
+                        v.setSelected(true);
+                        seleccionados.put(getAdapterPosition(), true);
+                    } else {
+                        v.setSelected(false);
+                        seleccionados.put(getAdapterPosition(), false);
+                    }
+                    if(haySeleccionados())
+                        btnConfirmar.setEnabled(true);
+                    else
+                        btnConfirmar.setEnabled(false);
+                }
+            });
+
+        }
+
+
+        public Boolean haySeleccionados() {
+            for (int i = 0; i <= listArrayGuardavidas.size(); i++) {
+                if (seleccionados.get(i))
+                    return true;
+            }
+            return false;
+        }
+
+
     }
 
 }

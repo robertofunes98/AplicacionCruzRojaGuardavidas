@@ -77,8 +77,8 @@ public class InicioSesion extends Fragment {
                     if (((VetCarnet.getText().toString()).equals(jsonObjeto.getString("carnet"))) &&
                             ((VetClave.getText().toString()).equals(jsonObjeto.getString("clave")))) {
                         Toast.makeText(getContext(), "Usuario Encontrado y rango del usuario es " + jsonObjeto.getString("tipoUsuario"), Toast.LENGTH_LONG).show();
-                        Principal.carnetGlobal = jsonObjeto.getString("carnet");
-                        Principal.tipoUsuario = Integer.parseInt(jsonObjeto.getString("tipoUsuario"));
+                        Variables.carnetGlobal = jsonObjeto.getString("carnet");
+                        Variables.tipoUsuario = Integer.parseInt(jsonObjeto.getString("tipoUsuario"));
                     }
 
                 } catch (ExecutionException e) {

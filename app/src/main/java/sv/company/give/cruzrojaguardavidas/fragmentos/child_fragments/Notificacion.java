@@ -24,6 +24,7 @@ import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.Principal;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
+import sv.company.give.cruzrojaguardavidas.fragmentos.Notificaciones;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,7 +70,7 @@ public class Notificacion extends Fragment {
         notificacionPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), String.valueOf(tipo), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), String.valueOf(tipo), Toast.LENGTH_LONG).show();
                 switch (tipo) {
                     case 0:
                         //Excursion
@@ -81,15 +82,22 @@ public class Notificacion extends Fragment {
                                 conexion = new ConexionWebService();
                                 try {
                                     //conexion.execute(url,parametros,cookie)
-                                    String resultado = conexion.execute(Variables.url + "confirmacionNotificaciones.php",
+                                    String resultado = conexion.execute(Variables.url + "notificaciones.php",
                                             "accion=ConfirmarExcursion&referencia=" + referencia + "&carnet="
-                                                    + Principal.carnetGlobal + "&idNotificacion=" + idNotificacion, cookie).get();
+                                                    + Variables.carnetGlobal + "&idNotificacion=" + idNotificacion, cookie).get();
 
-                                    Toast.makeText(getContext(), resultado, Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getContext(), resultado, Toast.LENGTH_LONG).show();
 
                                     JSONArray jsonRespuesta = new JSONArray(resultado);
 
                                     jsonObjeto = jsonRespuesta.getJSONObject(0);
+
+
+                                    Toast.makeText(getContext(), jsonObjeto.getString("resultado"), Toast.LENGTH_LONG).show();
+
+                                    //recargando lista
+                                    Principal actividadPadre = ((Principal)getActivity());
+                                    actividadPadre.cargarFragment(new Notificaciones());
 
 
                                 } catch (ExecutionException | InterruptedException | JSONException e) {
@@ -111,7 +119,7 @@ public class Notificacion extends Fragment {
                                     //conexion.execute(url,parametros,cookie)
                                     String resultado = conexion.execute(Variables.url + "confirmacionNotificaciones.php",
                                             "accion=confirmarEvento&referencia=" + referencia + "&carnet="
-                                                    + Principal.carnetGlobal + "&idNotificacion=" + idNotificacion, cookie).get();
+                                                    + Variables.carnetGlobal + "&idNotificacion=" + idNotificacion, cookie).get();
 
                                     Toast.makeText(getContext(), resultado, Toast.LENGTH_LONG).show();
 
@@ -144,7 +152,7 @@ public class Notificacion extends Fragment {
                         try {
                             //conexion.execute(url,parametros,cookie)
                             String resultado = conexion.execute(Variables.url + "cambiarClave.php", "accion=obtenerNombre&carnet="
-                                    + Principal.carnetGlobal, cookie).get();
+                                    + Variables.carnetGlobal, cookie).get();
 
                             //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
@@ -156,7 +164,7 @@ public class Notificacion extends Fragment {
                                 Toast.makeText(getContext(), jsonObjeto.getString("error"), Toast.LENGTH_LONG).show();
                             else {
                                 mensaje = "Asigne la nueva clave para el usuario " + jsonObjeto.getString("nombres")
-                                        + " " + jsonObjeto.getString("apellidos") + " con carnet " + Principal.carnetGlobal;
+                                        + " " + jsonObjeto.getString("apellidos") + " con carnet " + Variables.carnetGlobal;
                             }
 
                         } catch (ExecutionException | InterruptedException | JSONException e) {
@@ -173,7 +181,7 @@ public class Notificacion extends Fragment {
                                     //conexion.execute(url,parametros,cookie)
                                     String resultado = conexion.execute(Variables.url + "confirmacionNotificaciones.php",
                                             "accion=CambiarClave&carnet="
-                                                    + Principal.carnetGlobal + "&idNotificacion=" + idNotificacion + "&clave=" + clave.getText().toString(), cookie).get();
+                                                    + Variables.carnetGlobal + "&idNotificacion=" + idNotificacion + "&clave=" + clave.getText().toString(), cookie).get();
 
                                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 

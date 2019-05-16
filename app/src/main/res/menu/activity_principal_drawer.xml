@@ -14,6 +14,10 @@
             android:icon="@drawable/ic_adduser"
             android:title="Registro de usuarios" />
         <item
+            android:id="@+id/opc_mi_disponibilidad"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Mi disponibilidad" />
+        <item
             android:id="@+id/opc_entrenos"
             android:icon="@drawable/ic_entreno"
             android:title="Entrenos" />

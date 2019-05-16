@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import sv.company.give.cruzrojaguardavidas.R;
@@ -37,24 +38,33 @@ public class RecyclerViewAdapterExcursiones extends RecyclerView.Adapter<Recycle
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+
+        String[] fecha=null;
+        try {
+            fecha=Funciones.separarFechaHora(listArraysExcursiones.get(position)[1]+" "+listArraysExcursiones.get(position)[2]);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         //Se modifican los aspectos de la vista antes de la creacion de ella en el recycler
         holder.tvLugar.setText(listArraysExcursiones.get(position)[0]);
-        holder.tvFecha.setText(listArraysExcursiones.get(position)[1]);
-        holder.tvEncargado.setText(listArraysExcursiones.get(position)[2]);
-        holder.tvTelEncargado.setText(listArraysExcursiones.get(position)[3]);
-        holder.tvAsignada.setText(listArraysExcursiones.get(position)[4]);
-        holder.tvEstado.setText(listArraysExcursiones.get(position)[5]);
-        holder.tvNumeroGuardavidas.setText(listArraysExcursiones.get(position)[11]);
+        holder.tvFecha.setText(fecha[0]+" a las "+fecha[1]);
+        holder.tvEncargado.setText(listArraysExcursiones.get(position)[3]);
+        holder.tvTelEncargado.setText(listArraysExcursiones.get(position)[4]);
+        holder.tvAsignada.setText(listArraysExcursiones.get(position)[5]);
+        holder.tvEstado.setText(listArraysExcursiones.get(position)[6]);
+        holder.tvNumeroGuardavidas.setText(listArraysExcursiones.get(position)[12]);
 
 
-        if(listArraysExcursiones.get(position)[9].equals("1")) {
-            holder.tvCantidadDias.setText(listArraysExcursiones.get(position)[6]);
+        if(listArraysExcursiones.get(position)[10].equals("1")) {
+            holder.tvCantidadDias.setText(listArraysExcursiones.get(position)[7]);
             holder.tvCantidadDias.setVisibility(View.VISIBLE);
             holder.tvCantidadDiasEstatico.setVisibility(View.VISIBLE);
         }
-        else if(listArraysExcursiones.get(position)[10].equals("0")){
+        else if(listArraysExcursiones.get(position)[11].equals("0")){
             holder.tvCantidadDias.setVisibility(View.GONE);
             holder.tvCantidadDiasEstatico.setVisibility(View.GONE);
         }
@@ -63,8 +73,8 @@ public class RecyclerViewAdapterExcursiones extends RecyclerView.Adapter<Recycle
             holder.tvCantidadDiasEstatico.setVisibility(View.INVISIBLE);
         }
 
-        if(listArraysExcursiones.get(position)[10].equals("1")) {
-            holder.tvMotivoExtraordinario.setText(listArraysExcursiones.get(position)[6]);
+        if(listArraysExcursiones.get(position)[11].equals("1")) {
+            holder.tvMotivoExtraordinario.setText(listArraysExcursiones.get(position)[7]);
             holder.tvMotivoExtraordinario.setVisibility(View.VISIBLE);
             holder.tvMotivoExtraordinarioEstatico.setVisibility(View.VISIBLE);
         }
