@@ -66,7 +66,8 @@ public class InicioSesion extends Fragment {
                 conexion = new ConexionWebService();
                 try {
                     //conexion.execute(url,parametros,cookie)
-                    String resultado = conexion.execute(Variables.url + "inicioSesion.php", "carnet=" + VetCarnet.getText() + "&clave=" + VetClave.getText(), cookie).get();
+                    String resultado = conexion.execute(Variables.url + "inicioSesion.php", "accion=iniciarSesion&carnet=" + VetCarnet.getText() + "&clave="
+                            + VetClave.getText(), cookie).get();
 
                     //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
