@@ -68,13 +68,22 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
         return marcados;
     }
 
+    public int cantidadSeleccionados() {
+        int contador=0;
+        for (int i = 0; i <= listArrayGuardavidas.size(); i++) {
+            if (seleccionados.get(i))
+                contador++;
+        }
+        return contador;
+    }
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         //Se declaran las variables contenedoras de los objetos de la vista
         ConstraintLayout clItemListaGuardavidas, clSeleccionItemGuardavidas;
         TextView tvNombreCompleto;
-        Button btnConfirmar;
+        Button btnConfirmar, btnAsignarForzadamente;
         Integer posicion;
         View item;
 
@@ -90,6 +99,7 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
             tvNombreCompleto = itemView.findViewById(R.id.tvNombreCompleto);
 
             btnConfirmar = fragmentView.findViewById(R.id.btnConfirmar);
+            btnAsignarForzadamente=fragmentView.findViewById(R.id.btnAsignarForzadamente);
 
             item = itemView;
 
@@ -127,9 +137,16 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
                         seleccionados.put(getAdapterPosition(), false);
                     }
                     if(haySeleccionados())
+                    {
                         btnConfirmar.setEnabled(true);
+                        btnAsignarForzadamente.setEnabled(true);
+                    }
                     else
+                    {
                         btnConfirmar.setEnabled(false);
+                        btnAsignarForzadamente.setEnabled(false);
+                    }
+
                 }
             });
 
@@ -143,6 +160,8 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
             }
             return false;
         }
+
+
 
 
     }
