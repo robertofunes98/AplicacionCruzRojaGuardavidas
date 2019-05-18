@@ -116,8 +116,8 @@ public class CapturarCookie extends AppCompatActivity {
                     obtenerCookie();
                 else {
                     if (!actividadIniciada) {
+                        Variables.cookie=cookie;
                         revisarVersion();
-
                     }
                 }
             }

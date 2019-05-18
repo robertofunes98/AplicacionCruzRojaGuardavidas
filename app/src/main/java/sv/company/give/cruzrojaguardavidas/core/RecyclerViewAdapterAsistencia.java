@@ -15,7 +15,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import sv.company.give.cruzrojaguardavidas.R;
-import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoReuniones;
 
 public class RecyclerViewAdapterAsistencia extends RecyclerView.Adapter<RecyclerViewAdapterAsistencia.ViewHolder> {
 
@@ -87,7 +86,7 @@ public class RecyclerViewAdapterAsistencia extends RecyclerView.Adapter<Recycler
             clItemListaAsistencia = itemView.findViewById(R.id.clItemListaAsistencia);
             clSeleccionItemAsistencia = itemView.findViewById(R.id.clSeleccionItemAsistencia);
 
-            tvNombreCompleto = itemView.findViewById(R.id.tvNombreCompleto);
+            tvNombreCompleto = itemView.findViewById(R.id.tvInformacionEntreno);
 
             btnBorrarAsistente = fragmentView.findViewById(R.id.btnBorrarAsistente);
         }

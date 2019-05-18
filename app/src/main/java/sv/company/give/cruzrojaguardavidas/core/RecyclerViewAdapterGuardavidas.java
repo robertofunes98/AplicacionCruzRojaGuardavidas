@@ -2,7 +2,6 @@ package sv.company.give.cruzrojaguardavidas.core;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -93,10 +90,10 @@ public class RecyclerViewAdapterGuardavidas extends RecyclerView.Adapter<Recycle
         ViewHolder(View itemView) {
             super(itemView);
             //Se vinculan las variables contenedoras con el objeto
-            clItemListaGuardavidas = itemView.findViewById(R.id.clItemListaGuardavidas);
+            clItemListaGuardavidas = itemView.findViewById(R.id.clItemListaEntrenos);
             clSeleccionItemGuardavidas = itemView.findViewById(R.id.clSeleccionItemGuardavidas);
 
-            tvNombreCompleto = itemView.findViewById(R.id.tvNombreCompleto);
+            tvNombreCompleto = itemView.findViewById(R.id.tvInformacionEntreno);
 
             btnConfirmar = fragmentView.findViewById(R.id.btnConfirmar);
             btnAsignarForzadamente=fragmentView.findViewById(R.id.btnAsignarForzadamente);

@@ -5,4 +5,5 @@ public class Variables {
     public static String carnetGlobal = "216-258";
     public static int tipoUsuario = 1;
     public static String version="Beta 0.61";
+    public static String cookie="";
 }

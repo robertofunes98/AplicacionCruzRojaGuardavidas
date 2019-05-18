@@ -42,6 +42,7 @@ import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
 import sv.company.give.cruzrojaguardavidas.fragmentos.CambiarClaves;
 import sv.company.give.cruzrojaguardavidas.fragmentos.EntrenosAdministrador;
+import sv.company.give.cruzrojaguardavidas.fragmentos.EntrenosUsuario;
 import sv.company.give.cruzrojaguardavidas.fragmentos.ExcursionesAdministrador;
 import sv.company.give.cruzrojaguardavidas.fragmentos.InicioSesion;
 import sv.company.give.cruzrojaguardavidas.fragmentos.MiDisponibilidad;
@@ -127,7 +128,7 @@ public class Principal extends AppCompatActivity
         } else if(id==R.id.opc_mi_disponibilidad) {
             cargarFragment(new MiDisponibilidad(cookie));
         } else if (id == R.id.opc_entrenos) {
-
+            cargarFragment(new EntrenosUsuario());
         } else if (id == R.id.opc_eventos) {
 
         } else if (id == R.id.opc_excursiones) {

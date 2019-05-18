@@ -21,7 +21,7 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.core.Funciones;
-import sv.company.give.cruzrojaguardavidas.core.RecyclerViewAdapterEntrenos;
+import sv.company.give.cruzrojaguardavidas.core.RecyclerViewAdapterEntrenosAdministrador;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
 
 /**
@@ -90,7 +90,7 @@ public class ListadoEntrenos extends Fragment {
                 }
 
                 //se crea el adaptador y se manda la lista con los datos
-                final RecyclerViewAdapterEntrenos adaptador = new RecyclerViewAdapterEntrenos(getContext(), listArraysEntrenos, rootview);
+                final RecyclerViewAdapterEntrenosAdministrador adaptador = new RecyclerViewAdapterEntrenosAdministrador(getContext(), listArraysEntrenos, rootview);
 
                 //se Añade el adaptador al recycler
                 rvEntreno.setAdapter(adaptador);

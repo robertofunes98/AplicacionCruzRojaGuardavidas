@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 
-public class RecyclerViewAdapterEntrenos extends RecyclerView.Adapter<RecyclerViewAdapterEntrenos.ViewHolder> {
+public class RecyclerViewAdapterEntrenosAdministrador extends RecyclerView.Adapter<RecyclerViewAdapterEntrenosAdministrador.ViewHolder> {
 
     private ArrayList<String[]> listArraysEntrenos;
     private Context mContext;
@@ -23,7 +23,7 @@ public class RecyclerViewAdapterEntrenos extends RecyclerView.Adapter<RecyclerVi
     private int itemSeleccionado;
     private ConstraintLayout clSeleccionAnterior = null;
 
-    public RecyclerViewAdapterEntrenos(Context context, ArrayList<String[]> arrayListEntrenos, View viewFragmento) {
+    public RecyclerViewAdapterEntrenosAdministrador(Context context, ArrayList<String[]> arrayListEntrenos, View viewFragmento) {
         listArraysEntrenos = arrayListEntrenos;
         mContext = context;
         fragmentView = viewFragmento;
