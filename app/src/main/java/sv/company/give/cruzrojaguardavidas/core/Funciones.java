@@ -36,25 +36,25 @@ public class Funciones {
                 dias.append(", ");
             switch (patron.charAt(i)) {
                 case '1':
-                    dias.append("Lunes");
+                    dias.append("Domingo");
                     break;
                 case '2':
-                    dias.append("Martes");
+                    dias.append("Lunes");
                     break;
                 case '3':
-                    dias.append("Miercoles");
+                    dias.append("Martes");
                     break;
                 case '4':
-                    dias.append("Jueves");
+                    dias.append("Miercoles");
                     break;
                 case '5':
-                    dias.append("Viernes");
+                    dias.append("Jueves");
                     break;
                 case '6':
-                    dias.append("Sabado");
+                    dias.append("Viernes");
                     break;
                 case '7':
-                    dias.append("Domingo");
+                    dias.append("Sabado");
                     break;
             }
         }

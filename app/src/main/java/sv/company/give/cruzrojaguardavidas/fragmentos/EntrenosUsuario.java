@@ -34,8 +34,9 @@ public class EntrenosUsuario extends Fragment {
 
     ConexionWebService conexion;
     JSONObject jsonObjeto = null;
-    JSONArray jsonRespuesta;
-    ArrayList<String[]> listArraysEntrenos;
+    JSONArray jsonRespuesta,jsonExcepciones;
+    ArrayList<String[]> listArraysEntrenos,listArraysExcepciones;
+    
 
     Spinner spFiltroEntrenos;
     RecyclerView rvEntrenosUsuario;
@@ -68,9 +69,30 @@ public class EntrenosUsuario extends Fragment {
 
         obtenerLugares();
 
+        obtenerExcepciones();
+        
         cargarRecycler(rootview);
 
         return rootview;
+    }
+
+    private void obtenerExcepciones() {
+        listArraysExcepciones=new ArrayList<>();
+        int cantidadExcepciones=jsonExcepciones.length();
+        JSONObject jsonObjetoExcepciones;
+
+        try {
+            for (int i = 0; i < cantidadExcepciones; i++) {
+                jsonObjetoExcepciones = jsonExcepciones.getJSONObject(i);
+
+                String[] fecha=jsonObjetoExcepciones.getString("fecha").split(" ");
+
+                listArraysExcepciones.add(new String[]{jsonObjetoExcepciones.getString("idDiaSinEntreno"), fecha[0]
+                        , jsonObjetoExcepciones.getString("idEntreno")});
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void cargarRecycler(View rootview) {
@@ -90,19 +112,21 @@ public class EntrenosUsuario extends Fragment {
                     jsonObjeto = jsonRespuesta.getJSONObject(i);
                     //Convirtiendo la hora a formato 12 horas
                     String hora = Funciones.formatearHora(jsonObjeto.getString("hora"));
-                    listArraysEntrenos.add(new String[]{jsonObjeto.getString("patron"), hora, jsonObjeto.getString("lugar")});
+                    listArraysEntrenos.add(new String[]{jsonObjeto.getString("patron"), hora, jsonObjeto.getString("lugar")
+                            ,jsonObjeto.getString("idEntreno")});
                 }
             } else {
                 jsonObjeto = jsonRespuesta.getJSONObject((posicion - 1));
                 //Convirtiendo la hora a formato 12 horas
                 String hora = Funciones.formatearHora(jsonObjeto.getString("hora"));
-                listArraysEntrenos.add(new String[]{jsonObjeto.getString("patron"), hora, jsonObjeto.getString("lugar")});
+                listArraysEntrenos.add(new String[]{jsonObjeto.getString("patron"), hora, jsonObjeto.getString("lugar")
+                        ,jsonObjeto.getString("idEntreno")});
             }
         }catch (JSONException e) {
             e.printStackTrace();
         }
         //se crea el adaptador y se manda la lista con los datos
-        final RecyclerViewAdapterEntrenosUsuario adaptador = new RecyclerViewAdapterEntrenosUsuario(getContext(), listArraysEntrenos, rootview);
+        final RecyclerViewAdapterEntrenosUsuario adaptador = new RecyclerViewAdapterEntrenosUsuario(getContext(), listArraysEntrenos,listArraysExcepciones, rootview);
 
         //se Añade el adaptador al recycler
         rvEntrenosUsuario.setAdapter(adaptador);
@@ -116,9 +140,15 @@ public class EntrenosUsuario extends Fragment {
             String resultado = conexion.execute(Variables.url + "entrenos.php",
                     "accion=obtenerEntrenos", Variables.cookie).get();
 
-            //Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(),resultado,Toast.LENGTH_LONG).show();
 
-            jsonRespuesta = new JSONArray(resultado);
+            //separando JsoonArrays(entrenos y excepciones respectivamente)
+            String[] resultados=resultado.split("xxxx");
+
+
+            jsonRespuesta = new JSONArray(resultados[0]);
+            jsonExcepciones = new JSONArray(resultados[1]);
+
             jsonObjeto = jsonRespuesta.getJSONObject(0);
             int cantidadLugares = jsonRespuesta.length();
 
@@ -134,7 +164,7 @@ public class EntrenosUsuario extends Fragment {
                     datos.add(jsonObjeto.getString("lugar"));
                 }
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, datos);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, datos);
 
                 spFiltroEntrenos.setAdapter(adapter);
             }

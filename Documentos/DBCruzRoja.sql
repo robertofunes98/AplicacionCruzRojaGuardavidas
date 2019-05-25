@@ -30,11 +30,19 @@ create table Disponibilidad(
 
 create table Entreno(
 	idEntreno int auto_increment not null,
-	patron varchar(15) null comment '0=lunes,1=martes,2=miercoles,3=jueves,4=viernes,5=sabado,6=domingo. ejemplo de patron "0,2,4"',
+	patron varchar(15) null comment '1=domingo,2=lunes,3=martes,4=miercoles,5=jueves,6=viernes,7=sabado, ejemplo de patron "0,2,4"',
 	hora varchar(20) null comment 'formato 24 Horas ejemplo "15:30"',
 	lugar varchar(30) not null,
 	primary key pkEntreno(idEntreno)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table DiaSinEntreno(
+	idDiaSinEntreno int auto_increment not null,
+	fecha datetime not null,
+	idEntreno int not null,
+	primary key pkDiaSinEntreno(idDiaSinEntreno),
+	foreign key fkDiaSinEntrenoXEntreno(idEntreno) references Entreno(idEntreno) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 create table UsuarioXEntreno(
 	idUsuarioXEntreno int auto_increment not null,
@@ -147,7 +155,7 @@ values('216-001','Juan',
 	'Perez','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
 
 /*Descomentar si se necesita tener varios usuarios para pruebas*/
-/*
+
 insert into Usuario 
 values('216-259','agdgUsuario',
 	'1','holamundo',20,'Masculino','1998-6-10','sub-jefe','novato','robertofunes98@gmail.com',1,'7504-8995',1);
@@ -219,13 +227,17 @@ values('216-0021673123','ljUsusario',
 	'10','holamundo',40,'Masculino','1978-6-10','miembro','guardavidas','juanperez78@gmail.com',3,'7504-8995',1);
 
 
-*/
 
 
 
 
 insert into Excursion 
-values(null,0,null,'Playa metalio rancho privado','2018-12-10',null,'6:00:00',1,'Cruz Roja Departamental Santa Ana','espera');
+values(null,0,null,0,
+	'Playa metalio rancho privado',
+	'2018-12-10',null,'6:00:00',1,'',
+	'Cruz Roja Departamental Santa Ana',
+	'Juan perezosa','555corriente :v',
+	'espera');
 
 insert into Notificacion 
 values(null,'Excursion','Se te ha asignado una excursion para: Metalio. Fecha: 25-12-2018. Hora: 6:00, Lugar de llegada: Base cruz roja'

@@ -1,22 +1,17 @@
 package sv.company.give.cruzrojaguardavidas.fragmentos;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.core.Adapter;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.AgregarEntreno;
+import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.DiaSinEntreno;
 import sv.company.give.cruzrojaguardavidas.fragmentos.child_fragments.ListadoEntrenos;
 
 /**
@@ -55,6 +50,7 @@ public class EntrenosAdministrador extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getChildFragmentManager(), cookie);
         adapter.addFragment(new AgregarEntreno(), "Agregar entrenos");
+        adapter.addFragment(new DiaSinEntreno(), "Dias sin entreno");
         adapter.addFragment(new ListadoEntrenos(), "Listado de entrenos");
         viewPager.setAdapter(adapter);
     }
