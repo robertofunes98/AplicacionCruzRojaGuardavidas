@@ -30,6 +30,8 @@ import java.util.concurrent.ExecutionException;
 import sv.company.give.cruzrojaguardavidas.R;
 import sv.company.give.cruzrojaguardavidas.core.ConexionWebService;
 import sv.company.give.cruzrojaguardavidas.core.DatePickerFragment;
+import sv.company.give.cruzrojaguardavidas.core.Excepciones;
+import sv.company.give.cruzrojaguardavidas.core.Guardavidas;
 import sv.company.give.cruzrojaguardavidas.core.Variables;
 
 /**
@@ -40,9 +42,9 @@ public class DiaSinEntreno extends Fragment {
     JSONObject jsonObjeto = null;
 
 
-    Button btnGuardarExcepcion;
+    Button btnGuardarExcepcion,btnListaExcepciones;
     EditText etFecha;
-Spinner spEntrenos;
+    Spinner spEntrenos;
     private JSONArray jsonRespuesta;
 
     public DiaSinEntreno() {
@@ -58,6 +60,7 @@ Spinner spEntrenos;
         etFecha=rootView.findViewById(R.id.etFecha);
 
         btnGuardarExcepcion=rootView.findViewById(R.id.btnGuardarExcepcion);
+        btnListaExcepciones=rootView.findViewById(R.id.btnListaExcepciones);
 
         spEntrenos=rootView.findViewById(R.id.spEntrenos);
 
@@ -110,6 +113,14 @@ Spinner spEntrenos;
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+
+        btnListaExcepciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Excepciones objExcepciones=new Excepciones();
+                objExcepciones.show(getFragmentManager(), "excepciones");
             }
         });
 
